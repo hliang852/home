@@ -1,0 +1,225 @@
+/* =====================================================================
+   STYLE.CSS — shared styles for index.html, resume.html, projects.html
+   ---------------------------------------------------------------------
+   # EDIT: COLORS
+   All colors live in the :root block right below. Change a value here
+   and it updates everywhere on the site (all three pages share this file).
+   ===================================================================== */
+
+:root{
+  --paper:#FAFAF6;       /* # EDIT: page background (off-white) */
+  --paper-deep:#F1F1EC;  /* # EDIT: card / portrait background */
+  --ink:#2A241C;         /* # EDIT: main text color */
+  --ink-soft:#6B6051;    /* # EDIT: secondary / muted text color */
+  --rule:#DDDCD2;        /* # EDIT: hairline divider color */
+  --accent:#7A2E1F;      /* # EDIT: link / accent color */
+  --stamp:#4B5A45;       /* # EDIT: tag / skill chip color */
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Source Serif 4', serif;
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:'Space Mono', monospace;}
+a{color:var(--accent); text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* ---------- overall layout: content + right-hand nav rail ---------- */
+.layout{
+  max-width:920px; margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 120px;
+  grid-template-areas:
+    "name nav"
+    "main nav"
+    "foot nav";
+  column-gap:48px;
+  padding:0 28px;
+}
+.name-block{grid-area:name; padding:54px 0 8px;}
+main{grid-area:main; padding:18px 0 80px;}
+footer{grid-area:foot;}
+
+.sidenav{
+  grid-area:nav;
+  width:120px;
+  position:sticky; top:54px; align-self:start;
+  padding-top:54px;
+  display:flex; flex-direction:column; gap:14px;
+  text-align:right;
+}
+.sidenav a{
+  color:var(--ink-soft);
+  font-family:'Space Mono', monospace; font-size:12px;
+  letter-spacing:0.1em; text-transform:uppercase;
+  border-right:2px solid transparent;
+  padding:4px 0;
+}
+.sidenav a:hover{color:var(--ink); text-decoration:none;}
+.sidenav a.active{color:var(--ink); border-right-color:var(--accent);}
+
+/* ---------- name + social links header ---------- */
+/* # EDIT: NAME AND LINKS — see the comment above the markup in each
+   HTML file for exactly which lines to change. */
+h1.wordmark{
+  font-family:'Fraunces', serif; font-weight:600; font-size:44px;
+  letter-spacing:0.005em; margin:0 0 14px; line-height:1.05;
+}
+.social-row{
+  display:flex; gap:18px; font-family:'Space Mono', monospace; font-size:12px;
+  letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;
+}
+.social-row a{color:var(--ink-soft); border-bottom:1px solid var(--rule);}
+.social-row a:hover{color:var(--accent); border-bottom-color:var(--accent); text-decoration:none;}
+
+/* ---------- home / about page ---------- */
+h2.hero{
+  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-size:28px; line-height:1.3; margin:18px 0 26px; max-width:520px;
+}
+.home-meta{display:flex; gap:50px; flex-wrap:wrap; margin:30px 0;}
+.home-meta div{font-family:'Space Mono', monospace; font-size:12px; color:var(--ink-soft);}
+.home-meta strong{display:block; color:var(--ink); font-size:13px; margin-bottom:5px;}
+
+/* ---------- portrait + basic facts, side by side ---------- */
+.profile-row{
+  display:flex;
+  gap:36px;
+  align-items:flex-start;
+  margin:30px 0;
+}
+.profile-row .img{flex-shrink:0;}
+.profile-row .img img{display:block; width:260px; height:334px; object-fit:cover;}
+
+/* the meta block sits in the narrower remaining column next to the
+   portrait, so its rows stack vertically here instead of trying to
+   sit side by side */
+.profile-row .home-meta{
+  flex:1 1 auto;
+  min-width:0;
+  flex-direction:column;
+  flex-wrap:nowrap;
+  gap:16px;
+  margin:0;
+}
+
+@media (max-width:600px){
+  .profile-row{flex-direction:column;}
+  .profile-row .img img{width:100%; height:auto; max-width:260px;}
+}
+
+.about-grid{display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap; margin-top:36px;}
+.portrait{
+  width:130px; height:130px; flex-shrink:0;
+  background:var(--paper-deep); border:1px solid var(--rule);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft);
+  text-align:center; text-transform:uppercase; letter-spacing:0.05em;
+  overflow:hidden;
+}
+.portrait img{width:100%; height:100%; object-fit:cover;}
+.about-text{flex:1; min-width:240px;}
+blockquote{
+  font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+  font-size:21px; line-height:1.4; margin:30px 0; padding-left:18px;
+  border-left:2px solid var(--accent); color:var(--ink);
+}
+
+/* ---------- resume page ---------- */
+.resume-head{display:flex; justify-content:space-between; align-items:flex-end;
+  flex-wrap:wrap; gap:14px; margin-bottom:18px;}
+.btn-ghost{
+  font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.08em;
+  text-transform:uppercase; border:1px solid var(--ink); color:var(--ink);
+  background:none; padding:8px 16px; cursor:pointer; border-radius:2px;
+  display:inline-block;
+}
+.btn-ghost:hover{background:var(--ink); color:var(--paper); text-decoration:none;}
+h3.section-title{
+  font-family:'Fraunces', serif; font-weight:600; font-size:13px;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);
+  margin:40px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--rule);
+}
+h3.section-title:first-of-type{margin-top:0;}
+.entry{
+  display:grid; grid-template-columns:108px 1fr; gap:18px;
+  padding:16px 0; border-bottom:1px solid var(--rule);
+}
+.entry:last-child{border-bottom:none;}
+.entry .when{font-family:'Space Mono', monospace; font-size:12px; color:var(--ink-soft); padding-top:3px;}
+.entry .role{font-weight:600; margin:0 0 2px; font-size:17px;}
+.entry .org{color:var(--ink-soft); font-size:14px; margin:0 0 8px;}
+.entry p.desc{margin:0 0 10px; font-size:15.5px;}
+.tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;}
+.tag{
+  font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:0.05em;
+  text-transform:uppercase; color:var(--stamp); border:1px solid var(--stamp);
+  padding:2px 8px; border-radius:2px;
+} 
+
+.skills-grid{display:flex; flex-wrap:wrap; gap:10px;}
+.skills-grid + .skills-grid{
+  margin-top:12px;
+}
+
+/* ---------- projects page ---------- */
+.proj-entry{
+  display:grid; grid-template-columns:108px 1fr; gap:18px;
+  padding:16px 0; border-bottom:1px solid var(--rule);
+}
+.proj-entry:last-child{border-bottom:none;}
+.proj-entry .kind{font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft); padding-top:3px;}
+.proj-entry h4{
+  font-family:'Fraunces', serif; font-weight:600; font-size:17px; margin:0 0 6px;
+}
+.proj-entry p.desc{font-size:15.5px; margin:0 0 10px;}
+.proj-links a{font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; margin-right:14px;}
+
+footer{
+  border-top:1px solid var(--rule); padding:20px 0 50px;
+  font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft);
+}
+
+@media (max-width:760px){
+  .layout{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "name"
+      "nav"
+      "main"
+      "foot";
+  }
+  .sidenav{
+    position:static; width:100%; padding-top:0;
+    flex-direction:row; justify-content:flex-start; gap:20px;
+    text-align:left; border-bottom:1px solid var(--rule);
+    padding:18px 0;
+  }
+  .sidenav a{border-right:none; border-bottom:2px solid transparent;}
+  .sidenav a.active{border-bottom-color:var(--accent);}
+  .name-block{padding:34px 0 8px;}
+  h1.wordmark{font-size:34px;}
+}
+@media (max-width:600px){
+  .entry, .proj-entry{grid-template-columns:1fr;}
+  .entry .when, .proj-entry .kind{padding-top:0;}
+}
+
+#my-tight-div {
+  /* Controls space OUTSIDE the div (top, right, bottom, left) */
+  margin: 0; 
+  
+  /* Controls the spacing between lines of text */
+  line-height: 1.5; 
+}
+
+#my-tight-div p {
+  /* Tightens spacing between paragraphs inside the div */
+  margin-bottom: 1px; 
+}
