@@ -34,7 +34,27 @@
 
       <h3 class="section-title">Garden Leave 2026</h3>
 
-      <!-- #TEMPLATE FOR ENTRY 
+      <!-- Activity heatmap: auto-built by heatmap.js from the .entry dates
+           below. Nothing to maintain here — new dated entries appear as
+           green squares automatically. -->
+      <div class="heatmap-wrap">
+        <p class="heatmap-caption" id="hm-caption">Journal activity</p>
+        <div class="heatmap-scroll">
+          <div class="hm-daylabels" id="hm-daylabels"></div>
+          <div class="heatmap" id="heatmap"></div>
+        </div>
+        <div class="heatmap-legend">
+          <span class="hm-cell filled"></span>
+          <span>Entry (click it!)</span>
+          <span class="hm-cell"></span>
+          <span>No entry</span>
+          <span class="hm-cell books" id="hm-books"></span>
+          <span>Book list</span>
+        </div>
+      </div>
+      <div class="hm-tip" id="hm-tip"></div>
+
+      <!-- #TEMPLATE FOR ENTRY
       <div class="entry">
         <div class="when">July 2 2026</div>
         <div>
@@ -191,6 +211,8 @@
     <footer>© 2026 Kelly Huilin Liang</footer>
 
   </div>
+
+  <script src="heatmap.js"></script>
 
 </body>
 </html>

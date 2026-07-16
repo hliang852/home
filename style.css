@@ -197,6 +197,87 @@ h3.section-title:first-of-type{margin-top:0;}
 .proj-entry p.desc{font-size:15.5px; margin:0 0 10px;}
 .proj-links a{font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; margin-right:14px;}
 
+/* ---------- garden leave journal: activity heatmap ---------- */
+.heatmap-wrap{
+  margin:0 0 28px;
+  padding:16px 18px 14px;
+  background:var(--paper-deep);
+  border:1px solid var(--rule);
+  border-radius:3px;
+}
+.heatmap-caption{
+  font-family:'Space Mono', monospace; font-size:11px;
+  letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--ink-soft); margin:0 0 12px;
+}
+.heatmap-scroll{overflow-x:auto;}
+.heatmap{
+  display:grid;
+  grid-auto-flow:column;                    /* weeks are columns */
+  grid-template-rows:14px repeat(7, 12px);  /* month label row + 7 days */
+  gap:3px;
+  width:max-content;
+}
+.hm-cell{
+  width:12px; height:12px; border-radius:2px;
+  background:var(--paper);
+  border:1px solid var(--rule);
+}
+.hm-cell.out{background:transparent; border-color:transparent;} /* outside range */
+.hm-cell.filled{
+  background:var(--stamp);
+  border-color:var(--stamp);
+  cursor:pointer;
+}
+.hm-cell.filled:hover{
+  outline:2px solid var(--accent);
+  outline-offset:1px;
+}
+.hm-cell.books{
+  background:#C29B3B;             /* muted ochre — matches the paper/ink palette */
+  border-color:#C29B3B;
+  cursor:pointer;
+}
+.hm-cell.books:hover{
+  outline:2px solid var(--accent);
+  outline-offset:1px;
+}
+.hm-month{
+  font-family:'Space Mono', monospace; font-size:10px;
+  color:var(--ink-soft); height:14px; line-height:14px;
+  white-space:nowrap;
+}
+.hm-daylabels{
+  display:grid;
+  grid-template-rows:14px repeat(7, 12px);
+  gap:3px; margin-right:6px; float:left;
+}
+.hm-daylabels span{
+  font-family:'Space Mono', monospace; font-size:9px;
+  color:var(--ink-soft); line-height:12px;
+}
+.heatmap-legend{
+  display:flex; align-items:center; gap:6px; margin-top:10px;
+  font-family:'Space Mono', monospace; font-size:10px; color:var(--ink-soft);
+}
+.heatmap-legend .hm-cell{cursor:default;}
+.heatmap-legend .hm-cell.books{cursor:pointer;}
+/* flash highlight when a square scrolls to an entry */
+.entry.flash{animation:entryFlash 1.6s ease-out;}
+@keyframes entryFlash{
+  0%   {background:rgba(75,90,69,0.18);}
+  100% {background:transparent;}
+}
+/* heatmap hover tooltip */
+.hm-tip{
+  position:fixed; z-index:10; pointer-events:none;
+  font-family:'Space Mono', monospace; font-size:11px;
+  background:var(--ink); color:var(--paper);
+  padding:4px 8px; border-radius:2px;
+  transform:translate(-50%, -130%);
+  white-space:nowrap; display:none;
+}
+
 footer{
   border-top:1px solid var(--rule); padding:20px 0 50px;
   font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft);
