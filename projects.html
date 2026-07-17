@@ -32,10 +32,77 @@
   <main>
 
     <h3 class="section-title">Projects</h3>
-    <div class="proj-entry">
+
+    <!-- Ikebana field index: each stem is a field of work; the vase is the
+         "others" stem. Every project card below carries a hidden data-group
+         (ai / finance / philosophy / others) — ikebana.js reads those, paints
+         the watercolor arrangement, and wires each bloom to scroll to its
+         project. The grouping is never shown as text on the cards themselves.
+         # EDIT a card's data-group to move it to a different stem. -->
+    <div class="ikebana-wrap">
+      <p class="heatmap-caption">Explore by field</p>
+      <div class="stage-wrap" id="ikb-stage">
+        <svg id="ikb-scene" viewBox="0 52 620 240" class="sway show-hints"
+             aria-label="Watercolor vase with three flowers — click a flower or the vase to open a field of projects">
+          <defs>
+            <filter id="ikb-bleed" x="-25%" y="-25%" width="150%" height="150%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.018 0.024" numOctaves="2" seed="5" result="n"/>
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+            <filter id="ikb-bleedSoft" x="-25%" y="-25%" width="150%" height="150%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.024 0.03" numOctaves="2" seed="9" result="n"/>
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <g id="ikb-root">
+            <g id="ikb-stems" fill="none" stroke-linecap="round" filter="url(#ikb-bleedSoft)">
+              <path d="M306,238 C276,200 250,168 206,120" stroke="#7C8A66" stroke-width="4"/>
+              <path d="M312,238 C322,198 326,160 314,96"  stroke="#8AA06B" stroke-width="4.5"/>
+              <path d="M322,238 C366,214 414,192 452,150" stroke="#8C6E3F" stroke-width="4"/>
+              <path d="M372,206 C386,196 400,190 416,190" stroke="#8C6E3F" stroke-width="2.4"/>
+            </g>
+            <g id="ikb-vase" filter="url(#ikb-bleed)">
+              <ellipse cx="305" cy="250" rx="120" ry="48" fill="#463C2E" opacity="0.9"/>
+              <ellipse cx="284" cy="259" rx="110" ry="39" fill="#2A2419" opacity="0.5"/>
+              <ellipse cx="356" cy="244" rx="92"  ry="34" fill="#8A7355" opacity="0.35"/>
+              <ellipse cx="310" cy="228" rx="72"  ry="18" fill="#6B5A44" opacity="0.45"/>
+              <ellipse cx="312" cy="212" rx="30"  ry="9"  fill="#201C15"/>
+              <path d="M312,207 q5,5 0,10" stroke="#141009" stroke-width="1.8" fill="none" opacity="0.6"/>
+            </g>
+            <g class="flower f-philosophy"></g>
+            <g class="flower f-finance"></g>
+            <g class="flower f-ai"></g>
+            <g id="ikb-spots"></g>
+            <g id="ikb-overlay"></g>
+            <g id="ikb-nodes"></g>
+          </g>
+        </svg>
+        <button class="ikb-back" id="ikb-back">← All stems</button>
+        <div class="ikb-gtitle" id="ikb-gtitle"><div class="g"></div><div class="c"></div></div>
+      </div>
+      <p class="ikb-hint" id="ikb-hint">✿&nbsp; Click a flower — or the vase — to open a field</p>
+    </div>
+
+<!-- <div class="proj-entry" data-group="CHOOSE A STEM">
+      <div class="kind">TYPE</div>
+      <div>
+        <h4>NAME OF PROJECT</h4>
+        <p class="desc">DESCRIPTION<div class="tags">
+          <span class="tag">TAG1</span>
+          <span class="tag">TAG2</span>
+          <span class="tag">TAG3</span>
+        </div>
+        <div class="proj-links">
+          <a href="#">LINK1</a>
+          <a href="#">LINK2</a>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="proj-entry" data-group="finance">
       <div class="kind">Data Analytics</div>
       <div>
-        <h4>IPO Deep Dive</h4>
+        <h4>HK IPO Deep Dive</h4>
         <p class="desc">How are the performance of IPO in Hong Kong from 2024 to June 2026 during this rush of Chinese companies coming for offshore listing? What's the characteristics of these IPO? What is a good strategy for trading around them? Does it make sense to participate in them?</p>
         <div class="tags">
           <span class="tag">Python</span>
@@ -49,7 +116,7 @@
       </div>
     </div>
     
-    <div class="proj-entry">
+    <div class="proj-entry" data-group="ai">
       <div class="kind">Agentic AI</div>
       <div>
         <h4>Agent Daikoku</h4>
@@ -68,10 +135,10 @@
       </div>
     </div>
 
-    <div class="proj-entry">
+    <div class="proj-entry" data-group="finance">
       <div class="kind">Finance</div>
       <div>
-        <h4>Vault: Agentic M&A Intelligence Platform</h4>
+        <h4>Vault: Japan M&A Precedents</h4>
         <p class="desc">My attempt to catalogue a number of interesting situations and deals happened in the last 3 years in Japan. This is an Anthropic-powered agent that conducts independent, multi-source financial research, with a 24/7 CI/CD scanner to detect and alert on landmark Japanese special situations in real-time. It also has a HITL system. </p>
         <div class="tags">
           <span class="tag">Research</span>
@@ -86,10 +153,10 @@
         </div>
       </div>
     </div>
-    <div class="proj-entry">
+    <div class="proj-entry" data-group="philosophy">
       <div class="kind">AI x Philosophy</div>
       <div>
-        <h4>Tyche</h4>
+        <h4>Tyche: AI, National Debt, and the Future of Governance</h4>
         <p class="desc"></p>
         <div class="tags">
           <span class="tag">Political Theory</span>
@@ -102,10 +169,10 @@
       </div>
     </div>
 
-    <div class="proj-entry">
+    <div class="proj-entry" data-group="finance">
       <div class="kind">Front-End Development</div>
       <div>
-        <h4>Buyback & Disclosure</h4>
+        <h4>Asia Buyback & Disclosure</h4>
         <p class="desc">An exchange filing auto-scraper (Hong Kong, Singapore and Japan). Provides structured data and analyses on 1) corporate actions (share buyback), 2) disclosure of interests, and 3) ECM/Capital Market Tracker. </p>
         <div class="tags">
           <span class="tag">Python</span>
@@ -120,10 +187,10 @@
         </div>
       </div>
 
-      <div class="proj-entry">
+      <div class="proj-entry" data-group="others">
         <div class="kind">iOS App Development</div>
         <div>
-          <h4>Colette</h4>
+          <h4>Colette: iOS Grocery Tracker</h4>
           <p class="desc">I created this iOS app for myself and my friends to track our grocery and dine-out spending that takes in manual input and scanning of receipts.</p>
           <div class="tags">
             <span class="tag">Swift</span>
@@ -137,10 +204,10 @@
         </div>
       </div>
 
-      <div class="proj-entry">
+      <div class="proj-entry" data-group="ai">
         <div class="kind">AI Economy</div>
         <div>
-          <h4>Eilogue</h4>
+          <h4>Eilogue: App Platform</h4>
           <p class="desc">App-ilogue, more like.</p>
           <p class="desc">Brainchild as of right now, inspired by Softbank and Alibaba after reading Lionel Barber's <i>Gambling Man</i>... Also due to a lot of headaches from my instagram doomscrolling and overwhelmed by the plethora of AI tools out there. It's too much for everyday folks like myself.</p>
           <div class="tags">
@@ -158,6 +225,8 @@
     <footer>© 2026 Kelly Huilin Liang</footer>
 
   </div>
+
+  <script src="ikebana.js"></script>
 
 </body>
 </html>

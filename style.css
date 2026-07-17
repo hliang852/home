@@ -137,10 +137,10 @@ blockquote{
 .btn-ghost{
   font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.08em;
   text-transform:uppercase; border:1px solid var(--ink); color:var(--ink);
-  background:none; padding:8px 16px; cursor:pointer; border-radius:2px;
+  background:var(--ink); color:var(--paper); padding:8px 16px; cursor:pointer; border-radius:2px;
   display:inline-block;
 }
-.btn-ghost:hover{background:var(--ink); color:var(--paper); text-decoration:none;}
+.btn-ghost:hover{text-decoration:none;}
 h3.section-title{
   font-family:'Fraunces', serif; font-weight:600; font-size:13px;
   letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);
@@ -277,6 +277,72 @@ h3.section-title:first-of-type{margin-top:0;}
   transform:translate(-50%, -130%);
   white-space:nowrap; display:none;
 }
+
+/* ---------- projects page: ikebana field index ---------- */
+/* boxed banner, same paper-deep card family as the journal heatmap */
+.ikebana-wrap{
+  margin:0 0 28px;
+  padding:14px 16px 12px;
+  background:var(--paper-deep);
+  border:1px solid var(--rule);
+  border-radius:3px;
+}
+.ikebana-wrap .heatmap-caption{margin:0 0 8px;}
+/* the arrangement floats free on the card — no frame, transparent interior,
+   so only the vase + flowers show */
+.stage-wrap{
+  position:relative; width:100%; aspect-ratio:620/240; overflow:hidden;
+}
+.stage-wrap svg{display:block; width:100%; height:100%; touch-action:none;}
+
+/* gentle idle sway on the stems; paused while a field is open */
+.flower{transform-box:fill-box; transform-origin:50% 100%;}
+.sway .flower{animation:ikbSway 7s ease-in-out infinite alternate;}
+.sway .flower.f-ai{animation-duration:6.2s;}
+.sway .flower.f-finance{animation-duration:8s; animation-delay:-1s;}
+.sway .flower.f-philosophy{animation-duration:7.4s; animation-delay:-.5s;}
+@keyframes ikbSway{from{transform:rotate(-1deg) translateY(0);}to{transform:rotate(1deg) translateY(-1.5px);}}
+@media (prefers-reduced-motion:reduce){.sway .flower{animation:none;}}
+
+.ikb-hit{cursor:pointer; fill:transparent;}
+.ikb-ring{fill:none; stroke-width:1.4; opacity:0;
+  transform-box:fill-box; transform-origin:center;}
+.show-hints .ikb-ring{animation:ikbPulse 2.6s ease-out infinite;}
+@keyframes ikbPulse{0%{opacity:.5; transform:scale(.8);}70%{opacity:0; transform:scale(1.5);}100%{opacity:0;}}
+.ikb-olabel{font-family:'Space Mono',monospace; font-size:8.5px; letter-spacing:0.12em;
+  text-transform:uppercase; fill:var(--ink-soft); transition:opacity .4s;}
+/* the "Others" label printed onto the vase surface */
+.ikb-vaselabel{fill:#F2EFE6; font-size:9px; letter-spacing:0.16em;}
+.flower, .ikb-olabel, .ikb-ring, .ikb-spot{transition:opacity .5s;}
+
+.ikb-node{opacity:0; pointer-events:none; transition:opacity .5s;}
+.ikb-node.on{opacity:1; pointer-events:auto; cursor:pointer;}
+.ikb-node text{font-family:'Space Mono',monospace; font-size:6.5px; letter-spacing:0.06em;
+  text-transform:uppercase; fill:var(--ink);}
+.ikb-node .plate{fill:var(--paper); opacity:.9;}
+
+/* chrome that appears once a field is open */
+.ikb-back{position:absolute; top:10px; left:10px;
+  font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--ink-soft);
+  background:var(--paper); border:1px solid var(--rule); border-radius:2px;
+  padding:4px 9px; cursor:pointer; opacity:0; visibility:hidden; transition:opacity .4s;}
+.ikb-back:hover{color:var(--ink); border-color:var(--ink-soft);}
+.ikb-gtitle{position:absolute; top:10px; right:12px; text-align:right;
+  opacity:0; visibility:hidden; transition:opacity .4s;}
+.ikb-gtitle .g{font-family:'Fraunces',serif; font-weight:600; font-size:18px; line-height:1;}
+.ikb-gtitle .c{font-family:'Space Mono',monospace; font-size:9px; color:var(--ink-soft);
+  letter-spacing:0.08em; text-transform:uppercase;}
+.stage-wrap.zoomed .ikb-back,
+.stage-wrap.zoomed .ikb-gtitle{opacity:1; visibility:visible;}
+
+/* the guide / readout line sits BELOW the arrangement, never over the vase */
+.ikb-hint{font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:0.04em;
+  color:var(--ink-soft); text-align:center; margin:10px 0 2px; transition:color .3s;}
+.ikb-hint.readout{color:var(--accent);}
+
+/* flash highlight when a bloom scrolls to a project (mirrors .entry.flash) */
+.proj-entry.flash{animation:entryFlash 1.6s ease-out;}
 
 footer{
   border-top:1px solid var(--rule); padding:20px 0 50px;
