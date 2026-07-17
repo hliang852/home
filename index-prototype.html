@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- PROTOTYPE — does not touch index.html or style.css.
+     Links the real style.css, then layers the proposed changes in the
+     <style> block below so you can preview them in isolation. -->
+<title>Kelly Huilin Liang — Home (prototype)</title>
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* =====================================================================
+   PROTOTYPE-ONLY STYLES
+   These would move into style.css if you adopt them. Nothing here
+   overrides existing site behaviour on other pages — the classes are
+   either new (.intro, .ps, .home-feature) or scoped to this page.
+   ===================================================================== */
+
+/* (2) Section-title header for the home page — same rule the other
+   two pages already use, just applied here. Uses the shared class,
+   so no new CSS needed for the header itself; shown for reference. */
+
+/* (3) .intro moved off inline styles into a real class */
+.intro{max-width:560px; margin:0 0 8px;}
+.intro p{margin:0 0 12px;}
+.intro .ps{
+  /* the "p.s." aside — was inline text-align + Zapfino */
+  text-align:left;
+  color:var(--ink-soft);
+  font-size:15.5px;
+}
+
+/* (1) Flourish now uses Fraunces italic — the site's expressive voice —
+   instead of the macOS-only Zapfino, which silently fell back to a
+   generic cursive on most machines. */
+.intro .ps .flourish{
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-weight:500;
+  font-size:1.05em;
+}
+
+/* (4) Boxed feature treatment for the profile row — echoes the
+   paper-deep card family used by .heatmap-wrap and .ikebana-wrap,
+   so the three pages read as siblings. */
+.home-feature{
+  margin:24px 0 30px;
+  padding:22px 22px 20px;
+  background:var(--paper-deep);
+  border:1px solid var(--rule);
+  border-radius:3px;
+}
+.home-feature .profile-row{margin:0;}
+.home-feature .heatmap-caption{margin:0 0 16px;}
+</style>
+</head>
+<body>
+
+  <div class="layout">
+
+       <div class="name-block">
+        <h1 class="wordmark">Kelly Huilin Liang</h1>
+        <div class="social-row">
+          <a href="mailto:kellylianghl@gmail.com">Email</a>
+          <a href="https://github.com/hliang852">GitHub</a>
+          <a href="https://www.linkedin.com/in/kellylianghuilin">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="sidenav">
+        <a href="index.html" class="active">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="garden-leave.html">Garden Leave Journal</a>
+      </div>
+
+      <main>
+
+        <!-- (2) section-title header, matching projects.html / garden-leave.html -->
+        <h3 class="section-title">About</h3>
+
+        <!-- (3) intro paragraph — inline styles replaced by .intro / .ps classes -->
+        <div class="intro">
+          <p>I trade <strong>risk</strong> for a living, <strong>build</strong> tools as a side-hustle, and rest of my time
+            asking <strong>questions</strong>. This site records what I've
+          worked on, built, and written. Welcome!</p>
+          <!-- (1) Fraunces italic flourish instead of Zapfino -->
+          <p class="ps">(<span class="flourish">p.s.</span> <a href="garden-leave.html">weekly updates on my utter negligence of botanical pursuits &#x1FAB4;</a>)</p>
+        </div>
+
+        <!-- (4) Profile Picture + Basic Facts, now inside a paper-deep feature card -->
+        <div class="home-feature">
+          <p class="heatmap-caption">At a glance</p>
+          <div class="profile-row">
+            <!-- (5) img dimensions aligned to the CSS-rendered size (260x334) -->
+            <div class="img"><img src="portrait.jpg" alt="Kelly Liang" width="260" height="334"></div>
+            <div class="home-meta">
+              <div><strong>Current</strong>Boston, MA</div>
+              <div><strong>Home</strong>Hong Kong SAR </div>
+              <div><strong>Last Gig</strong>Event-driven Trader, Platform HF</div>
+              <div><strong>Longings</strong>Long walks, Long runs, History</div>
+              <div><strong>Languages</strong>Fluent English, Mandarin & Cantonese
+                <br>Conversational French & Japanese
+                <br>... and I read some German
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- # Longer intro -->
+        <div class="about-text">
+          <p>(oh... you scrolled down...)</p>
+          <p>I studied political thoughts and computer science before drifting into equities trading, though my philosophy and engineering sides never quite left me. Nowadays, I split my time musing about markets, working with claude code, and reading "unecessary" German political thoughts. </p>
+        </div>
+
+</main>
+
+<footer>© 2026 Kelly Liang</footer>
+
+</div>
+
+</body>
+</html>
