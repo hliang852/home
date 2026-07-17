@@ -13,6 +13,11 @@
                   august:7,september:8,october:9,november:10,december:11};
   const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
+  // touch devices fire a synthetic mousemove on tap but never mouseleave, which
+  // left the tooltip stuck on screen after navigating. Only wire the hover
+  // tooltip on devices that can actually hover.
+  const canHover = !window.matchMedia || window.matchMedia('(hover: hover)').matches;
+
   // ---- 1. scan entries for dates like "July 16 2026" ----
   const entryByDay = new Map(); // Date.toDateString() -> entry element
   let earliest = null;
@@ -35,6 +40,8 @@
     /^books i read/i.test((e.querySelector('.when')||{textContent:''}).textContent.trim()));
 
   const jumpTo = el => {
+    const t = document.getElementById('hm-tip');
+    if(t) t.style.display = 'none';    // never leave the tooltip stuck after a tap
     el.scrollIntoView({behavior:'smooth', block:'start'});
     el.classList.remove('flash');
     void el.offsetWidth;               // restart animation
@@ -86,13 +93,15 @@
       } else {
         cell.dataset.tip = dateStr;
       }
-      cell.addEventListener('mousemove', e => {
-        tip.textContent = cell.dataset.tip;
-        tip.style.display = 'block';
-        tip.style.left = e.clientX + 'px';
-        tip.style.top = e.clientY + 'px';
-      });
-      cell.addEventListener('mouseleave', () => tip.style.display = 'none');
+      if(canHover){
+        cell.addEventListener('mousemove', e => {
+          tip.textContent = cell.dataset.tip;
+          tip.style.display = 'block';
+          tip.style.left = e.clientX + 'px';
+          tip.style.top = e.clientY + 'px';
+        });
+        cell.addEventListener('mouseleave', () => tip.style.display = 'none');
+      }
     }
     grid.appendChild(cell);
     cur.setDate(cur.getDate() + 1);
@@ -112,13 +121,15 @@
   if(booksCell && booksEntry){
     booksCell.dataset.tip = 'Books I Read — click to read';
     booksCell.addEventListener('click', () => jumpTo(booksEntry));
-    booksCell.addEventListener('mousemove', e => {
-      tip.textContent = booksCell.dataset.tip;
-      tip.style.display = 'block';
-      tip.style.left = e.clientX + 'px';
-      tip.style.top = e.clientY + 'px';
-    });
-    booksCell.addEventListener('mouseleave', () => tip.style.display = 'none');
+    if(canHover){
+      booksCell.addEventListener('mousemove', e => {
+        tip.textContent = booksCell.dataset.tip;
+        tip.style.display = 'block';
+        tip.style.left = e.clientX + 'px';
+        tip.style.top = e.clientY + 'px';
+      });
+      booksCell.addEventListener('mouseleave', () => tip.style.display = 'none');
+    }
   } else if(booksCell){
     booksCell.style.display = 'none'; // hide legend square if the section is ever removed
     booksCell.nextElementSibling.style.display = 'none';
