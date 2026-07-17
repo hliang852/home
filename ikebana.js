@@ -48,6 +48,7 @@
 
   // ---- 1. collect projects from the cards ----
   const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const indexEl=document.querySelector('.ikebana-wrap');   // scroll target for "Top ↑"
   document.querySelectorAll('.proj-entry').forEach(card=>{
     const h4=card.querySelector('h4');
     const title=h4?h4.textContent.trim():'';
@@ -56,6 +57,15 @@
     let g=(card.dataset.group||'others').toLowerCase();
     if(!GROUPS[g]) g='others';
     (GROUPS[g].projects=GROUPS[g].projects||[]).push({t:title,card});
+    // append a "Top ↑" link to each project that returns to the field index
+    const body=(card.querySelector('.proj-links')||{}).parentNode||card.lastElementChild;
+    if(body && !body.querySelector('.to-top')){
+      const top=document.createElement('a');
+      top.className='to-top'; top.href='#'; top.textContent='Top ↑';
+      top.addEventListener('click',ev=>{ev.preventDefault();
+        (indexEl||document.body).scrollIntoView({behavior:'smooth',block:'start'});});
+      body.appendChild(top);
+    }
   });
 
   const jumpTo=card=>{
