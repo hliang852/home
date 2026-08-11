@@ -6,7 +6,8 @@
    Entries without a date (e.g. "Books I Read (Rolling Updates)") are
    skipped; that section instead gets a yellow square on the latest
    Tuesday, rolling forward each week. Clicking any colored square
-   smooth-scrolls to its entry.
+   smooth-scrolls to its entry. Each entry also gets a "Top ↑" link back
+   to the heatmap.
    ===================================================================== */
 (function(){
   const MONTHS = {january:0,february:1,march:2,april:3,may:4,june:5,july:6,
@@ -32,6 +33,19 @@
     entryByDay.set(d.toDateString(), entry);
     if(!earliest || d < earliest) earliest = d;
   });
+  // append a "Top ↑" link to every entry that returns to the heatmap
+  // (mirrors the same link on the projects page — see ikebana.js)
+  const indexEl = document.querySelector('.heatmap-wrap'); // scroll target for "Top ↑"
+  document.querySelectorAll('.entry').forEach(entry => {
+    const body = entry.lastElementChild;
+    if(!body || body.querySelector('.to-top')) return;
+    const top = document.createElement('a');
+    top.className = 'to-top'; top.href = '#'; top.textContent = 'Top ↑';
+    top.addEventListener('click', ev => { ev.preventDefault();
+      (indexEl || document.body).scrollIntoView({behavior:'smooth', block:'start'}); });
+    body.appendChild(top);
+  });
+
   if(!earliest) return;
 
   // the books section has no date of its own — find it by heading text so it
