@@ -1,13 +1,14 @@
 /* =====================================================================
    HEATMAP.JS — GitHub-style activity grid for garden-leave.html
    ---------------------------------------------------------------------
-   Zero maintenance: it scans every .entry .when on the page for dates
-   written like "July 16 2026" and paints one green square per entry.
-   Entries without a date (e.g. "Books I Read (Rolling Updates)") are
-   skipped; that section instead gets a yellow square on the latest
-   Tuesday, rolling forward each week. Clicking any colored square
-   smooth-scrolls to its entry. Each entry also gets a "Top ↑" link back
-   to the heatmap.
+   Zero maintenance: it scans every .entry .when on the page for a date
+   written like "July 16 2026" (or "Aug 3 2026") and paints one green
+   square on exactly that day. The square position always comes from the
+   date in the left-hand column — never from today's date. The rolling
+   book list gets a yellow square, also on the date written in its .when
+   label. Entries with no readable date get no square. Clicking any
+   colored square smooth-scrolls to its entry. Each entry also gets a
+   "Top ↑" link back to the heatmap.
    ===================================================================== */
 (function(){
   const MONTHS = {january:0,february:1,march:2,april:3,may:4,june:5,july:6,
@@ -19,17 +20,32 @@
   // tooltip on devices that can actually hover.
   const canHover = !window.matchMedia || window.matchMedia('(hover: hover)').matches;
 
+  // reads a date out of a .when label. Accepts full or abbreviated months
+  // ("July 16 2026", "Aug 3 2026", "Sept. 1, 2026") and tolerates
+  // surrounding words, so "Books I Read (rolling) Aug 28 2026" works too.
+  const parseWhen = text => {
+    const m = (text || '').match(/([A-Za-z]{3,})\.?\s+(\d{1,2}),?\s+(\d{4})/);
+    if(!m) return null;
+    const key = m[1].toLowerCase();
+    const name = Object.keys(MONTHS).find(n => n === key || n.startsWith(key));
+    if(!name) return null;
+    return new Date(+m[3], MONTHS[name], +m[2]);
+  };
+
+  // the rolling book list gets a yellow square instead of green — find it by
+  // heading text so it keeps working wherever the section moves in the page
+  const booksEntry = [...document.querySelectorAll('.entry')].find(e =>
+    /^\s*books i read/i.test((e.querySelector('.when')||{textContent:''}).textContent));
+
   // ---- 1. scan entries for dates like "July 16 2026" ----
   const entryByDay = new Map(); // Date.toDateString() -> entry element
-  let earliest = null;
+  let earliest = null, booksDay = null;
   document.querySelectorAll('.entry').forEach(entry => {
     const whenEl = entry.querySelector('.when');
     if(!whenEl) return;
-    const m = whenEl.textContent.trim().match(/^([A-Za-z]+)\s+(\d{1,2})\s+(\d{4})$/);
-    if(!m) return; // skips "Books I Read (Rolling Updates)" etc.
-    const mon = MONTHS[m[1].toLowerCase()];
-    if(mon === undefined) return;
-    const d = new Date(+m[3], mon, +m[2]);
+    const d = parseWhen(whenEl.textContent);
+    if(!d) return;
+    if(entry === booksEntry){ booksDay = d; return; } // its own colour, kept out of the count
     entryByDay.set(d.toDateString(), entry);
     if(!earliest || d < earliest) earliest = d;
   });
@@ -48,11 +64,6 @@
 
   if(!earliest) return;
 
-  // the books section has no date of its own — find it by heading text so it
-  // keeps working wherever the rolling section moves in the page
-  const booksEntry = [...document.querySelectorAll('.entry')].find(e =>
-    /^books i read/i.test((e.querySelector('.when')||{textContent:''}).textContent.trim()));
-
   const jumpTo = el => {
     const t = document.getElementById('hm-tip');
     if(t) t.style.display = 'none';    // never leave the tooltip stuck after a tap
@@ -64,11 +75,9 @@
 
   // ---- 2. build the grid: from the Sunday before the first entry through today ----
   const today = new Date(); today.setHours(0,0,0,0);
-  // most recent Tuesday on or before today — the book list's rolling home
-  const latestTue = new Date(today);
-  latestTue.setDate(latestTue.getDate() - ((latestTue.getDay() + 5) % 7));
   const start = new Date(earliest); start.setDate(start.getDate() - start.getDay()); // snap to Sunday
-  const end = new Date(Math.max(today, ...[...entryByDay.keys()].map(k => new Date(k))));
+  const end = new Date(Math.max(today, ...[...entryByDay.keys()].map(k => new Date(k)),
+                                ...(booksDay ? [booksDay] : [])));
 
   const grid = document.getElementById('heatmap');
   const tip = document.getElementById('hm-tip');
@@ -99,8 +108,8 @@
         cell.classList.add('filled');
         cell.dataset.tip = dateStr + ' — click to read';
         cell.addEventListener('click', () => jumpTo(entry));
-      } else if(booksEntry && cur.getTime() === latestTue.getTime()){
-        // book list sits on the latest Tuesday only, rolling forward each week
+      } else if(booksEntry && booksDay && cur.getTime() === booksDay.getTime()){
+        // book list sits on the date written in its own .when label
         cell.classList.add('books');
         cell.dataset.tip = dateStr + ' — book list, click to read';
         cell.addEventListener('click', () => jumpTo(booksEntry));
