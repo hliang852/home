@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Quarterly re-grade of the garden leave journal.
+
+  Fires at 09:00 on the 1st of January, April, July and October. If the Mac is
+  asleep or off at that moment, launchd runs the job once on the next wake
+  rather than skipping the quarter.
+
+  Install:
+      cp tools/com.kellyliang.regrade.plist ~/Library/LaunchAgents/
+      launchctl load ~/Library/LaunchAgents/com.kellyliang.regrade.plist
+
+  Check / run now / remove:
+      launchctl list | grep regrade
+      launchctl start com.kellyliang.regrade
+      launchctl unload ~/Library/LaunchAgents/com.kellyliang.regrade.plist
+
+  Credentials: no API key is stored here on purpose. Run `ant auth login` once
+  and the SDK picks up the stored profile from ~/.config/anthropic. If you would
+  rather use a key, add an EnvironmentVariables dict with ANTHROPIC_API_KEY —
+  but note the plist is world-readable, so the profile is the better option.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.kellyliang.regrade</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/kellyliang/homepage/tools/regrade.py</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/kellyliang/homepage</string>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Month</key><integer>1</integer>
+          <key>Day</key><integer>1</integer>
+          <key>Hour</key><integer>9</integer>
+          <key>Minute</key><integer>0</integer></dict>
+    <dict><key>Month</key><integer>4</integer>
+          <key>Day</key><integer>1</integer>
+          <key>Hour</key><integer>9</integer>
+          <key>Minute</key><integer>0</integer></dict>
+    <dict><key>Month</key><integer>7</integer>
+          <key>Day</key><integer>1</integer>
+          <key>Hour</key><integer>9</integer>
+          <key>Minute</key><integer>0</integer></dict>
+    <dict><key>Month</key><integer>10</integer>
+          <key>Day</key><integer>1</integer>
+          <key>Hour</key><integer>9</integer>
+          <key>Minute</key><integer>0</integer></dict>
+  </array>
+
+  <key>StandardOutPath</key>
+  <string>/Users/kellyliang/homepage/tools/regrade.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/kellyliang/homepage/tools/regrade.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

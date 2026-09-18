@@ -63,9 +63,18 @@
     if(shown) booksDays.add(shown.toDateString());
   }
 
-  // the periodic report entry gets a red square on its own date. It is a normal
-  // dated entry otherwise, so it is opted in by markup, not by heading text.
-  const reportEntry = document.querySelector('.entry[data-hm="report"]');
+  // Each periodic report keeps its own red square, so the quarterly reports
+  // accumulate down the page the same way the book-list squares do. They are
+  // normal dated entries otherwise, so they opt in by markup, not by heading.
+  const reportEntries = [...document.querySelectorAll('.entry[data-hm="report"]')];
+  // the legend swatch jumps to the newest report, chosen by date rather than
+  // page order so it stays right however the reports are stacked
+  const reportEntry = reportEntries.reduce((best, e) => {
+    const d = parseWhen(e.querySelector('.when').textContent);
+    if(!d) return best;
+    const bd = best && parseWhen(best.querySelector('.when').textContent);
+    return (!bd || d > bd) ? e : best;
+  }, null);
 
   // ---- 1. scan entries for dates like "July 16 2026" ----
   const entryByDay = new Map(); // Date.toDateString() -> entry element
@@ -135,7 +144,7 @@
       const entry = entryByDay.get(key);
       const dateStr = MONTH_ABBR[cur.getMonth()] + ' ' + cur.getDate() + ', ' + cur.getFullYear();
       if(entry){
-        if(entry === reportEntry){
+        if(reportEntries.includes(entry)){
           cell.classList.add('report');
           cell.dataset.tip = dateStr + ' — 3 months report, click to read';
         } else {

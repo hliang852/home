@@ -1,0 +1,5 @@
+# regrade.py leaves a backup of the page and a run log behind
+garden-leave.html.bak
+tools/regrade.log
+tools/__pycache__/
+.DS_Store
