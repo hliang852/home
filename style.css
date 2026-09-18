@@ -197,6 +197,73 @@ h3.section-title:first-of-type{margin-top:0;}
 .proj-entry p.desc{font-size:15.5px; margin:0 0 10px;}
 .proj-links a{font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; margin-right:14px;}
 
+/* ---------- garden leave journal: the grade strip ----------
+   No card, no fill: this is a bare scoreboard for the heatmap directly above
+   it, closed off with a hairline before the entries begin. The written
+   summary it used to contain now lives in the Sep 18 journal entry.
+   All values below sit on the page paper at >=4.5:1 (graphics >=3:1). */
+.ai-grade-strip{
+  --ai-mark:var(--stamp);      /* the hero grade ....... 7.1:1 */
+  --ai-muted:var(--ink-soft);  /* headings, labels ..... 5.9:1 */
+  --ai-rule:var(--rule);
+  margin:-8px 0 26px;          /* pulls up under the heatmap card */
+  padding:0 0 18px;
+  border-bottom:1px solid var(--ai-rule);
+}
+.ai-grade-strip h4{
+  font-family:'Space Mono', monospace; font-size:11px; font-weight:400;
+  letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--ai-muted); margin:0 0 14px;
+}
+/* the grade: one hero figure + a row of four stat tiles. Deliberately not a
+   chart — four ordinal marks are text, and a bar would imply a numeric scale
+   that doesn't exist. Letters carry the meaning, so nothing is color-coded. */
+.ai-grade{display:flex; align-items:baseline; gap:16px; margin:0 0 16px;}
+.ai-grade .mark{
+  font-family:'Space Mono', monospace;      /* mono, not the page's serif — machine-written */
+  font-size:52px; font-weight:700; line-height:0.85;
+  letter-spacing:-0.03em; color:var(--ai-mark);
+}
+.ai-grade .verdict{
+  font-family:'Space Mono', monospace;
+  font-size:12.5px; line-height:1.7; color:var(--ai-muted); margin:0;
+}
+.ai-cards{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;
+  margin:0; padding:14px 0 0; border-top:1px solid var(--ai-rule);
+}
+.ai-cards .g{
+  display:block; font-family:'Space Mono', monospace;
+  font-size:20px; font-weight:700; line-height:1.2; color:var(--ink);
+}
+.ai-cards .l{
+  display:block; margin-top:1px;
+  font-family:'Space Mono', monospace; font-size:9.5px;
+  letter-spacing:0.05em; text-transform:uppercase; color:var(--ai-muted);
+}
+
+/* ---------- the Sep 18 report entry ----------
+   An ordinary .entry (so it gets a date column, a heatmap square and a
+   "Top ↑" link like any other), but set in mono so it still reads as
+   machine-written rather than as Kelly's own prose. */
+.ai-entry .ai-head{
+  font-family:'Space Mono', monospace; font-size:11px;
+  letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--ink-soft); margin:0 0 12px;
+}
+.ai-entry ul{margin:0; padding:0 0 0 18px;}
+.ai-entry li{
+  font-family:'Space Mono', monospace;
+  font-size:12.5px; line-height:1.75;
+  margin:0 0 12px;
+}
+.ai-entry li::marker{color:var(--stamp);}
+.ai-entry li:last-child{margin-bottom:0;}
+.ai-entry .ai-note{
+  font-family:'Space Mono', monospace; font-size:10px; line-height:1.6;
+  color:var(--ink-soft); margin:14px 0 0;
+}
+
 /* ---------- garden leave journal: activity heatmap ---------- */
 .heatmap-wrap{
   margin:0 0 28px;
@@ -240,6 +307,19 @@ h3.section-title:first-of-type{margin-top:0;}
 }
 .hm-cell.books:hover{
   outline:2px solid var(--accent);
+  outline-offset:1px;
+}
+/* the 3-month report: a red square. Separates cleanly from the ochre books
+   square (CVD dE 20.4) but NOT from the green entry squares (CVD dE 4.5) —
+   red/green is the classic colourblind collapse, so the legend label and the
+   hover tooltip, not the hue, are what actually name this marker. */
+.hm-cell.report{
+  background:#A83A24;
+  border-color:#A83A24;
+  cursor:pointer;
+}
+.hm-cell.report:hover{
+  outline:2px solid var(--ink);
   outline-offset:1px;
 }
 .hm-month{
@@ -381,6 +461,7 @@ footer{
 @media (max-width:600px){
   .entry, .proj-entry{grid-template-columns:1fr;}
   .entry .when, .proj-entry .kind{padding-top:0;}
+  .ai-cards{grid-template-columns:repeat(2, 1fr); gap:14px 12px;}
 }
 
 #my-tight-div {

@@ -49,11 +49,32 @@
           <span>Entry </span>
           <span class="hm-cell books" id="hm-books"></span>
           <span> Books </span>
+          <span class="hm-cell report" id="hm-report"></span>
+          <span> 3 months report </span>
           <span class="hm-cell"></span>
           <span> No entry :/</span>
         </div>
       </div>
       <div class="hm-tip" id="hm-tip"></div>
+
+      <!-- The grade strip: stays pinned under the heatmap as a bare strip (no
+           card), so it reads as a scoreboard for the grid above rather than as
+           another journal entry. The written summary lives in the Sep 18 entry. -->
+      <div class="ai-grade-strip">
+        <h4>How is Claude grading the quality of my garden leave... (As of Sep 18)</h4>
+        <div class="ai-grade">
+          <div class="mark">A−</div>
+          <p class="verdict">Unusually productive for time off, and genuinely
+            thought about rather than merely filled. Marked down on the one thing
+            the leave was for: what comes next is still open.</p>
+        </div>
+        <div class="ai-cards">
+          <div><span class="g">A</span><span class="l">Building &amp; shipping</span></div>
+          <div><span class="g">A+</span><span class="l">Reading &amp; thinking</span></div>
+          <div><span class="g">A−</span><span class="l">Health &amp; admin</span></div>
+          <div><span class="g">B−</span><span class="l">Deciding what's next</span></div>
+        </div>
+      </div>
 
       <!-- #******** REGULAR TEMPLATE FOR ENTRY
       <div class="entry">
@@ -86,7 +107,67 @@
           <p class="desc">
             <strong>What I have been <i>doing</i> since last entry: </strong><br>
           </p>
+        </div>
       </div> -->
+
+       <div class="entry">
+        <div class="when">Sep 18 2026</div>
+        <div>
+          <p class="desc">
+            <strong>Accomplishment this week: </strong><br> 
+            * Saw a few friends visiting Boston and went to New Hampshire with new ones <br> 
+            * Finally getting my VO2Max to 49! <br> 
+            * Did I mention that I took out all four of my wisdom teeth?<br>
+            * Continued to preparing for a few projects - Project ELLE (HIGHLY CONFIDENTIAL), starting to bring together some of what I've worked on into a concerted platform <br> 
+          </p>
+          <p class="desc">
+            <strong>What I have been thinking this week: </strong><br>
+            1. I attended a fascinating panel discussion on <strong>AI constitution</strong> at Harvard Law School. It was a bit disorganized, which likely speaks to the novelness of the field. Nonetheless, it was a meaningful exercise to put Anthropic's Constitution and Microsoft's "Code of Conduct" side by side and evaluate the language. It was also very meaningful to read how lawyers are evaluating these documents. The question that no one seems to answer is -- "who is enforcing these constitution?", or we are just trusting that the AI agents will adhere to them? I do think that there are a lot of legal work that should be done and can be done. It is a fascination corner of the constitution - why aren't we instead try to restrict what humans could do with the agents as well? Why don't we have a constitution for AI developers? Why are we trusting black box logic and neural networks more than we trust each other?  <br> 
+            2. Reading Polly Barton's book Fifty Sounds... led me to think about the use of <strong>language</strong>. I am starting to think why Project ELLE is important to me. Because, it is a project about language - what does it mean to find the right word to communicate. I was especially drawn to the idea that there are areas in language, in communication that evokes the feeling of eros. The grey area, the inescapable mistakes/grey area/uncertainty. It is fascinating. <br> 
+            3. I have been thinking a lot about self-expression. Partially related to my project on language above, but I am also thinking about in terms of what I wear, how I carry myself, signalling, branding. There are so much to our daily life that we are constantly signalling to others what we are doing, and what we would like to be seen, what we would like to achieve. I guess there were some reason to my maddness and obsession with online shopping, desperate for some floral pieces immediately after my trip to New York. It was almost a declaration for who I am and who I would like to be. In that department, I am almost jealous of my friends who are living in New York, where they will never be the weirdest person on the street, and they can dress in a way that is flamboyant, conservative, quiet or audacious. <br> 
+          </p>
+          <p class="desc">
+            <strong>What I have had fun learning this week: </strong><br> 
+            1. Wittgenstein philosophy on a very high level <br>
+            2. Making a very perfect cup of matcha <br> 
+            3. Tarot cards...? and the importance of interpretations <br> 
+            4. The Anatomy of Fraud at HLS, what MBA students are learning. 
+          </p>
+          <p class="desc">
+            <strong>Onward to next week! </strong><br> 
+            1. Recovering from my wisdom teeth extraction <br> 
+            2. Preparation for a few exams in November 
+          </p>
+        </div>
+      </div> 
+
+      <!-- data-hm="report" is what tells heatmap.js to paint this date as a
+           gold star instead of a green square. Only one entry should carry it. -->
+      <div class="entry ai-entry" data-hm="report">
+        <div class="when">Sep 17 2026</div>
+        <div>
+          <p class="desc ai-head">Three months in — summary by Claude</p>
+          <ul>
+            <li><strong>Shipped four projects from a standing start</strong> —
+              <a href="colette.html">Colette</a>,
+              <a href="ipodeepdive.html">Vault</a>,
+              <a href="daikoku.html">Agent Daikoku</a>, and this site in
+              hand-written HTML. The sharpest call wasn't code: swapping an
+              hours-long scraper for bulk downloads plus regex freed 20+ hours for
+              real analysis.</li>
+            <li><strong>Sustained one inquiry rather than a reading list</strong> —
+              ten books, from the Odyssey in 70mm to The Song of Achilles, circling
+              a single question: if creativity is only recombined memory and
+              knowledge, what is left of invention?</li>
+            <li><strong>Turned limbo into vocational clarity</strong> — apartment
+              furnished, portfolio restructured, seven days hiking the Pacific
+              Northwest, friendships rebuilt across four cities, and one hard-won
+              conclusion: the pull is toward architecture and first principles, not
+              tool-fluency.</li>
+          </ul>
+          <p class="ai-note">Written by Claude from every entry below · Jun 25 – Sep 9 2026</p>
+        </div>
+      </div>
 
       <div class="entry">
         <div class="when">Sep 9 2026</div>
@@ -127,9 +208,13 @@
       </div> 
     </div>
 
-      <div class="entry">
-        <!-- The date in the label below is what places this section's yellow
-             square on the heatmap. Bump it whenever you add a book. -->
+      <!-- data-dates is every date this list was added to. Each one keeps a
+           yellow square on the heatmap for good, and all of them click through
+           to the list below. To add books: append today's date to data-dates
+           and put the same date in the label. -->
+      <div class="entry" data-dates="Jul 1 2026, Jul 8 2026, Jul 13 2026, Jul 25 2026,
+                                     Jul 28 2026, Aug 5 2026, Aug 14 2026, Aug 28 2026,
+                                     Sep 4 2026">
         <div class="when">Books I Read<br>(rolling)<br>Sep 4 2026</div>
         <div>
           <p class="desc">

@@ -33,19 +33,49 @@
   };
 
   // the rolling book list gets a yellow square instead of green — find it by
-  // heading text so it keeps working wherever the section moves in the page
-  const booksEntry = [...document.querySelectorAll('.entry')].find(e =>
+  // heading text so it keeps working wherever the section moves in the page.
+  // Collected as a list, not a single match: if the page ever carries a stale
+  // second copy of the list, every copy must still be kept out of the journal
+  // count rather than silently painting itself green.
+  const booksEntries = [...document.querySelectorAll('.entry')].filter(e =>
     /^\s*books i read/i.test((e.querySelector('.when')||{textContent:''}).textContent));
+  // the squares always point at the newest copy of the list, chosen by its own
+  // date rather than by page order, so it stays right wherever the list sits
+  const booksEntry = booksEntries.reduce((best, e) => {
+    const d = parseWhen(e.querySelector('.when').textContent);
+    if(!d) return best;
+    const bd = best && parseWhen(best.querySelector('.when').textContent);
+    return (!bd || d > bd) ? e : best;
+  }, null) || booksEntries[0] || null;
+
+  // Every date the book list was ever added to keeps its yellow square — the
+  // list rolls forward but its history does not get erased. The dates come
+  // from data-dates on the live entry, unioned with whatever date its own
+  // label shows, so neither source can silently drop a square. All of them
+  // click through to the one current list.
+  const booksDays = new Set();                  // Date.toDateString() keys
+  if(booksEntry){
+    (booksEntry.dataset.dates || '').split(/[,;·]/).forEach(part => {
+      const d = parseWhen(part);
+      if(d) booksDays.add(d.toDateString());
+    });
+    const shown = parseWhen(booksEntry.querySelector('.when').textContent);
+    if(shown) booksDays.add(shown.toDateString());
+  }
+
+  // the periodic report entry gets a red square on its own date. It is a normal
+  // dated entry otherwise, so it is opted in by markup, not by heading text.
+  const reportEntry = document.querySelector('.entry[data-hm="report"]');
 
   // ---- 1. scan entries for dates like "July 16 2026" ----
   const entryByDay = new Map(); // Date.toDateString() -> entry element
-  let earliest = null, booksDay = null;
+  let earliest = null;
   document.querySelectorAll('.entry').forEach(entry => {
     const whenEl = entry.querySelector('.when');
     if(!whenEl) return;
     const d = parseWhen(whenEl.textContent);
     if(!d) return;
-    if(entry === booksEntry){ booksDay = d; return; } // its own colour, kept out of the count
+    if(booksEntries.includes(entry)) return;          // own colour, out of the count
     entryByDay.set(d.toDateString(), entry);
     if(!earliest || d < earliest) earliest = d;
   });
@@ -77,7 +107,7 @@
   const today = new Date(); today.setHours(0,0,0,0);
   const start = new Date(earliest); start.setDate(start.getDate() - start.getDay()); // snap to Sunday
   const end = new Date(Math.max(today, ...[...entryByDay.keys()].map(k => new Date(k)),
-                                ...(booksDay ? [booksDay] : [])));
+                                ...[...booksDays].map(k => new Date(k))));
 
   const grid = document.getElementById('heatmap');
   const tip = document.getElementById('hm-tip');
@@ -105,11 +135,16 @@
       const entry = entryByDay.get(key);
       const dateStr = MONTH_ABBR[cur.getMonth()] + ' ' + cur.getDate() + ', ' + cur.getFullYear();
       if(entry){
-        cell.classList.add('filled');
-        cell.dataset.tip = dateStr + ' — click to read';
+        if(entry === reportEntry){
+          cell.classList.add('report');
+          cell.dataset.tip = dateStr + ' — 3 months report, click to read';
+        } else {
+          cell.classList.add('filled');
+          cell.dataset.tip = dateStr + ' — click to read';
+        }
         cell.addEventListener('click', () => jumpTo(entry));
-      } else if(booksEntry && booksDay && cur.getTime() === booksDay.getTime()){
-        // book list sits on the date written in its own .when label
+      } else if(booksEntry && booksDays.has(key)){
+        // one square per book-list update, all pointing at the current list
         cell.classList.add('books');
         cell.dataset.tip = dateStr + ' — book list, click to read';
         cell.addEventListener('click', () => jumpTo(booksEntry));
@@ -139,24 +174,29 @@
     });
   }
 
-  // ---- 4. legend book square: same jump as the grid's Tuesday cell ----
-  const booksCell = document.getElementById('hm-books');
-  if(booksCell && booksEntry){
-    booksCell.dataset.tip = 'Books I Read — click to read';
-    booksCell.addEventListener('click', () => jumpTo(booksEntry));
+  // ---- 4. legend swatches: same jump as their square in the grid ----
+  const wireLegend = (id, entry, tipText) => {
+    const cell = document.getElementById(id);
+    if(!cell) return;
+    if(!entry){                        // hide the swatch and its label if the
+      cell.style.display = 'none';     // section it points at is ever removed
+      if(cell.nextElementSibling) cell.nextElementSibling.style.display = 'none';
+      return;
+    }
+    cell.dataset.tip = tipText;
+    cell.addEventListener('click', () => jumpTo(entry));
     if(canHover){
-      booksCell.addEventListener('mousemove', e => {
-        tip.textContent = booksCell.dataset.tip;
+      cell.addEventListener('mousemove', e => {
+        tip.textContent = cell.dataset.tip;
         tip.style.display = 'block';
         tip.style.left = e.clientX + 'px';
         tip.style.top = e.clientY + 'px';
       });
-      booksCell.addEventListener('mouseleave', () => tip.style.display = 'none');
+      cell.addEventListener('mouseleave', () => tip.style.display = 'none');
     }
-  } else if(booksCell){
-    booksCell.style.display = 'none'; // hide legend square if the section is ever removed
-    booksCell.nextElementSibling.style.display = 'none';
-  }
+  };
+  wireLegend('hm-books', booksEntry, 'Books I Read — click to read');
+  wireLegend('hm-report', reportEntry, '3 months report — click to read');
 
   // ---- 5. caption with entry count ----
   const n = entryByDay.size;
