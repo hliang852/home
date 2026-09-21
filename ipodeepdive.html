@@ -15,7 +15,7 @@
   <div class="layout">
 
    <div class="name-block">
-    <h1 class="wordmark">Kelly Huilin Liang</h1>
+    <h1 class="wordmark"><a class="home-link" href="index.html" aria-label="Kelly Huilin Liang — Home">Kelly Huilin Liang</a></h1>
     <div class="social-row">
       <a href="mailto:kellylianghl@gmail.com">Email</a>
       <a href="https://github.com/hliang852">GitHub</a>
@@ -24,11 +24,20 @@
   </div>
 
   <div class="sidenav">
-    <a href="index.html" class="active">Home</a>
+    <a href="index.html">Home</a>
     <a href="resume.html">Resume</a>
-    <a href="projects.html">Projects</a>
-    <a href="garden-leave.html">Garden Leave Journal</a>
-  </div>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="garden-leave.html">Garden-Leave</a>
+      <div class="vault-nav">
+        <div class="vault-nav-heading">
+          <a href="vault.html" aria-expanded="false" aria-controls="vault-submenu">Vault</a>
+        </div>
+        <div class="vault-submenu" id="vault-submenu">
+          <a href="map.html">Maps</a>
+          <a href="articles.html">Articles</a>
+        </div>
+      </div>
+    </div>
   <main>
 
     <h3 class="section-title">Project: IPO Deep Dive</h3>
@@ -56,5 +65,6 @@
 
 </div>
 
+  <script src="vault-nav.js"></script>
 </body>
 </html>

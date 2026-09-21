@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KHL — Maps</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="layout">
+
+    <div class="name-block">
+      <h1 class="wordmark"><a class="home-link" href="index.html" aria-label="Kelly Huilin Liang — Home">Kelly Huilin Liang</a></h1>
+      <div class="social-row">
+        <a href="mailto:kellylianghl@gmail.com">Email</a>
+        <a href="https://github.com/hliang852">GitHub</a>
+        <a href="https://www.linkedin.com/in/kellylianghuilin">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="sidenav">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="garden-leave.html">Garden-Leave</a>
+      <div class="vault-nav">
+        <div class="vault-nav-heading">
+          <a href="vault.html" class="active" aria-expanded="false" aria-controls="vault-submenu">Vault</a>
+        </div>
+        <div class="vault-submenu" id="vault-submenu">
+          <a href="map.html" class="active" aria-current="page">Maps</a>
+          <a href="articles.html">Articles</a>
+        </div>
+      </div>
+    </div>
+
+    <main>
+
+      <h3 class="section-title">Maps</h3>
+
+      <!-- The map: same boxed card family as the journal heatmap and the
+           projects ikebana. map.js draws the world from world-data.js and
+           drops one pin per <li class="place"> in the list further down —
+           the list below IS the data, there is nothing else to keep in sync.
+
+           Zoom tiers (set in map.js) are measured in kilometres across the
+           view, not in zoom steps: grid + country names at 6000 km, capitals
+           and world cities at 2500 km, every city name at 500 km, dates at
+           250 km. -->
+      <div class="map-wrap">
+        <p class="heatmap-caption" id="map-caption">Where I've been</p>
+
+        <div class="map-stage z1" id="map-stage">
+          <svg id="worldmap" aria-label="World map — one pin per city visited, pinch to zoom"></svg>
+          <div class="map-ctrl">
+            <button type="button" id="map-in"  aria-label="Zoom in">+</button>
+            <button type="button" id="map-out" aria-label="Zoom out">−</button>
+            <button type="button" id="map-reset" aria-label="Back to the whole world">⤾</button>
+          </div>
+          <div class="map-scale" id="map-scale"><span></span></div>
+        </div>
+
+        <p class="ikb-hint" id="map-hint">✜&nbsp; Pinch to zoom — drag to pan — click a pin</p>
+      </div>
+
+      <!-- THE PLACES. This list is the map's data and it does not show on the
+           page — map.js reads it, drops a pin for each entry, and the details
+           surface on the map itself (city name and date as you zoom in, the
+           note in the line under the map when you click a pin).
+           # EDIT: to read the places as a written list on the page again,
+           delete the word `hidden` from the <ul> below.
+
+           # EDIT: ADD A CITY — copy one <li> below and change it. Only the
+           five data- attributes matter; the note is free text.
+
+             data-city     what gets printed and labelled on the map
+             data-country  must match the map's own name for the country for
+                           it to tint. Most are the obvious one; the odd ones
+                           already in use below are "United States of America",
+                           "United Kingdom", "South Korea", "Macao" and
+                           "Vatican". Hong Kong, Macao, Taiwan, Singapore,
+                           Monaco and the Vatican each count as their own
+                           country. A name the map doesn't know still gets
+                           its pin, just no tint.
+             data-when     free text: "Jun 2026", "2019 & 2024", or leave ""
+             data-lat/lon  decimal degrees, south and west are negative
+                           (look a city up as "CITY latitude longitude")
+             data-major    OPTIONAL flag, no value. Every other city is
+                           named only once you are inside 500 km; a
+                           data-major place is named from 2500 km out.
+                           It is on the capitals and the world cities
+                           below — but NOT on Macao, Monaco or the
+                           Vatican, whose labels would collide with Hong
+                           Kong, Nice and Rome at that distance.
+
+      <li class="place" data-city="CITY" data-country="COUNTRY" data-when="WHEN"
+          data-lat="0.0000" data-lon="0.0000">
+        <span class="note">ONE LINE ABOUT IT</span>
+      </li>
+      -->
+
+      <ul class="place-list" id="place-list" hidden>
+
+        <!-- China -->
+        <li class="place" data-major data-city="Beijing" data-country="China" data-when=""
+            data-lat="39.9042" data-lon="116.4074">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Tianjin" data-country="China" data-when=""
+            data-lat="39.1042" data-lon="117.2009">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Dalian" data-country="China" data-when=""
+            data-lat="38.9140" data-lon="121.6147">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Harbin" data-country="China" data-when=""
+            data-lat="45.8038" data-lon="126.5349">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Qingdao" data-country="China" data-when=""
+            data-lat="36.0671" data-lon="120.3826">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Xi'an" data-country="China" data-when=""
+            data-lat="34.3416" data-lon="108.9398">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Nanjing" data-country="China" data-when=""
+            data-lat="32.0603" data-lon="118.7969">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Suzhou" data-country="China" data-when=""
+            data-lat="31.2989" data-lon="120.5853">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Shanghai" data-country="China" data-when=""
+            data-lat="31.2304" data-lon="121.4737">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Hangzhou" data-country="China" data-when=""
+            data-lat="30.2741" data-lon="120.1551">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Wuhan" data-country="China" data-when=""
+            data-lat="30.5928" data-lon="114.3055">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Chengdu" data-country="China" data-when=""
+            data-lat="30.5728" data-lon="104.0668">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Xiamen" data-country="China" data-when=""
+            data-lat="24.4798" data-lon="118.0894">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Guangzhou" data-country="China" data-when=""
+            data-lat="23.1291" data-lon="113.2644">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Shenzhen" data-country="China" data-when=""
+            data-lat="22.5431" data-lon="114.0579">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Zhuhai" data-country="China" data-when=""
+            data-lat="22.2769" data-lon="113.5678">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Guilin" data-country="China" data-when=""
+            data-lat="25.2736" data-lon="110.2907">
+          <span class="note">Yangshuo</span>
+        </li>
+        <li class="place" data-city="Kunming" data-country="China" data-when=""
+            data-lat="25.0389" data-lon="102.7183">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Lijiang" data-country="China" data-when=""
+            data-lat="26.8721" data-lon="100.2299">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Sanya" data-country="China" data-when=""
+            data-lat="18.2528" data-lon="109.5119">
+          <span class="note"></span>
+        </li>
+
+        <!-- Hong Kong &amp; Macao -->
+        <li class="place" data-major data-city="Hong Kong" data-country="Hong Kong" data-when=""
+            data-lat="22.3193" data-lon="114.1694">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Macao" data-country="Macao" data-when=""
+            data-lat="22.1987" data-lon="113.5439">
+          <span class="note"></span>
+        </li>
+
+        <!-- Taiwan -->
+        <li class="place" data-major data-city="Taipei" data-country="Taiwan" data-when=""
+            data-lat="25.0330" data-lon="121.5654">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="New Taipei" data-country="Taiwan" data-when=""
+            data-lat="25.0169" data-lon="121.4628">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Jiufen" data-country="Taiwan" data-when=""
+            data-lat="25.1097" data-lon="121.8443">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Taichung" data-country="Taiwan" data-when=""
+            data-lat="24.1477" data-lon="120.6736">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Hualien" data-country="Taiwan" data-when=""
+            data-lat="23.9910" data-lon="121.6111">
+          <span class="note">Taroko Gorge</span>
+        </li>
+        <li class="place" data-city="Tainan" data-country="Taiwan" data-when=""
+            data-lat="22.9997" data-lon="120.2270">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Kaohsiung" data-country="Taiwan" data-when=""
+            data-lat="22.6273" data-lon="120.3014">
+          <span class="note"></span>
+        </li>
+
+        <!-- Japan -->
+        <li class="place" data-major data-city="Tokyo" data-country="Japan" data-when=""
+            data-lat="35.6762" data-lon="139.6503">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Kyoto" data-country="Japan" data-when=""
+            data-lat="35.0116" data-lon="135.7681">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Osaka" data-country="Japan" data-when=""
+            data-lat="34.6937" data-lon="135.5023">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Naha" data-country="Japan" data-when=""
+            data-lat="26.2124" data-lon="127.6809">
+          <span class="note">Okinawa</span>
+        </li>
+
+        <!-- South Korea -->
+        <li class="place" data-major data-city="Seoul" data-country="South Korea" data-when=""
+            data-lat="37.5665" data-lon="126.9780">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Incheon" data-country="South Korea" data-when=""
+            data-lat="37.4563" data-lon="126.7052">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Busan" data-country="South Korea" data-when=""
+            data-lat="35.1796" data-lon="129.0756">
+          <span class="note"></span>
+        </li>
+
+        <!-- Southeast Asia -->
+        <li class="place" data-major data-city="Bangkok" data-country="Thailand" data-when=""
+            data-lat="13.7563" data-lon="100.5018">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Chiang Mai" data-country="Thailand" data-when=""
+            data-lat="18.7883" data-lon="98.9853">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Pattaya" data-country="Thailand" data-when=""
+            data-lat="12.9236" data-lon="100.8825">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Phuket" data-country="Thailand" data-when=""
+            data-lat="7.8804" data-lon="98.3923">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Hanoi" data-country="Vietnam" data-when=""
+            data-lat="21.0278" data-lon="105.8342">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Da Nang" data-country="Vietnam" data-when=""
+            data-lat="16.0544" data-lon="108.2022">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Hoi An" data-country="Vietnam" data-when=""
+            data-lat="15.8801" data-lon="108.3380">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Ho Chi Minh City" data-country="Vietnam" data-when=""
+            data-lat="10.8231" data-lon="106.6297">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Manila" data-country="Philippines" data-when=""
+            data-lat="14.5995" data-lon="120.9842">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Cebu City" data-country="Philippines" data-when=""
+            data-lat="10.3157" data-lon="123.8854">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Kuala Lumpur" data-country="Malaysia" data-when=""
+            data-lat="3.1390" data-lon="101.6869">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Singapore" data-country="Singapore" data-when=""
+            data-lat="1.3521" data-lon="103.8198">
+          <span class="note"></span>
+        </li>
+
+        <!-- Britain &amp; France -->
+        <li class="place" data-major data-city="London" data-country="United Kingdom" data-when=""
+            data-lat="51.5074" data-lon="-0.1278">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Cambridge" data-country="United Kingdom" data-when=""
+            data-lat="52.2053" data-lon="0.1218">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Bath" data-country="United Kingdom" data-when=""
+            data-lat="51.3811" data-lon="-2.3590">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Paris" data-country="France" data-when=""
+            data-lat="48.8566" data-lon="2.3522">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Versailles" data-country="France" data-when=""
+            data-lat="48.8049" data-lon="2.1204">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Lyon" data-country="France" data-when=""
+            data-lat="45.7640" data-lon="4.8357">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Marseille" data-country="France" data-when=""
+            data-lat="43.2965" data-lon="5.3698">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Saint-Tropez" data-country="France" data-when=""
+            data-lat="43.2677" data-lon="6.6407">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Cannes" data-country="France" data-when=""
+            data-lat="43.5528" data-lon="7.0174">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Nice" data-country="France" data-when=""
+            data-lat="43.7102" data-lon="7.2620">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Monaco" data-country="Monaco" data-when=""
+            data-lat="43.7384" data-lon="7.4246">
+          <span class="note"></span>
+        </li>
+
+        <!-- Low Countries, Germany, the Alps -->
+        <li class="place" data-major data-city="Brussels" data-country="Belgium" data-when=""
+            data-lat="50.8503" data-lon="4.3517">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Antwerp" data-country="Belgium" data-when=""
+            data-lat="51.2194" data-lon="4.4025">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Amsterdam" data-country="Netherlands" data-when=""
+            data-lat="52.3676" data-lon="4.9041">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Berlin" data-country="Germany" data-when=""
+            data-lat="52.5200" data-lon="13.4050">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Hamburg" data-country="Germany" data-when=""
+            data-lat="53.5511" data-lon="9.9937">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Dresden" data-country="Germany" data-when=""
+            data-lat="51.0504" data-lon="13.7373">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Frankfurt" data-country="Germany" data-when=""
+            data-lat="50.1109" data-lon="8.6821">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Nuremberg" data-country="Germany" data-when=""
+            data-lat="49.4521" data-lon="11.0767">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Munich" data-country="Germany" data-when=""
+            data-lat="48.1351" data-lon="11.5820">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Zurich" data-country="Switzerland" data-when=""
+            data-lat="47.3769" data-lon="8.5417">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Lucerne" data-country="Switzerland" data-when=""
+            data-lat="47.0502" data-lon="8.3093">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Bern" data-country="Switzerland" data-when=""
+            data-lat="46.9480" data-lon="7.4474">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Interlaken" data-country="Switzerland" data-when=""
+            data-lat="46.6863" data-lon="7.8632">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Lausanne" data-country="Switzerland" data-when=""
+            data-lat="46.5197" data-lon="6.6323">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Montreux" data-country="Switzerland" data-when=""
+            data-lat="46.4312" data-lon="6.9107">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Geneva" data-country="Switzerland" data-when=""
+            data-lat="46.2044" data-lon="6.1432">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Vienna" data-country="Austria" data-when=""
+            data-lat="48.2082" data-lon="16.3738">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Innsbruck" data-country="Austria" data-when=""
+            data-lat="47.2692" data-lon="11.4041">
+          <span class="note"></span>
+        </li>
+
+        <!-- Scandinavia -->
+        <li class="place" data-major data-city="Copenhagen" data-country="Denmark" data-when=""
+            data-lat="55.6761" data-lon="12.5683">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Oslo" data-country="Norway" data-when=""
+            data-lat="59.9139" data-lon="10.7522">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Bergen" data-country="Norway" data-when=""
+            data-lat="60.3913" data-lon="5.3221">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Tromsø" data-country="Norway" data-when=""
+            data-lat="69.6492" data-lon="18.9553">
+          <span class="note"></span>
+        </li>
+
+        <!-- Iberia -->
+        <li class="place" data-major data-city="Madrid" data-country="Spain" data-when=""
+            data-lat="40.4168" data-lon="-3.7038">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Barcelona" data-country="Spain" data-when=""
+            data-lat="41.3874" data-lon="2.1686">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Seville" data-country="Spain" data-when=""
+            data-lat="37.3891" data-lon="-5.9845">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Córdoba" data-country="Spain" data-when=""
+            data-lat="37.8882" data-lon="-4.7794">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Granada" data-country="Spain" data-when=""
+            data-lat="37.1773" data-lon="-3.5986">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Ronda" data-country="Spain" data-when=""
+            data-lat="36.7413" data-lon="-5.1613">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Lisbon" data-country="Portugal" data-when=""
+            data-lat="38.7223" data-lon="-9.1393">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Sintra" data-country="Portugal" data-when=""
+            data-lat="38.8029" data-lon="-9.3817">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Porto" data-country="Portugal" data-when=""
+            data-lat="41.1579" data-lon="-8.6291">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Lagos" data-country="Portugal" data-when=""
+            data-lat="37.1028" data-lon="-8.6730">
+          <span class="note">Algarve</span>
+        </li>
+
+        <!-- Italy -->
+        <li class="place" data-major data-city="Rome" data-country="Italy" data-when=""
+            data-lat="41.9028" data-lon="12.4964">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Vatican City" data-country="Vatican" data-when=""
+            data-lat="41.9029" data-lon="12.4534">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Florence" data-country="Italy" data-when=""
+            data-lat="43.7696" data-lon="11.2558">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Pisa" data-country="Italy" data-when=""
+            data-lat="43.7228" data-lon="10.4017">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Cinque Terre" data-country="Italy" data-when=""
+            data-lat="44.1204" data-lon="9.7100">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Milan" data-country="Italy" data-when=""
+            data-lat="45.4642" data-lon="9.1900">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Lake Como" data-country="Italy" data-when=""
+            data-lat="45.9865" data-lon="9.2610">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Venice" data-country="Italy" data-when=""
+            data-lat="45.4408" data-lon="12.3155">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Naples" data-country="Italy" data-when=""
+            data-lat="40.8518" data-lon="14.2681">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Sorrento" data-country="Italy" data-when=""
+            data-lat="40.6263" data-lon="14.3757">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Positano" data-country="Italy" data-when=""
+            data-lat="40.6281" data-lon="14.4850">
+          <span class="note">Amalfi Coast</span>
+        </li>
+
+        <!-- United States — Northeast -->
+        <li class="place" data-city="Boston" data-country="United States of America" data-when="2024 &mdash; now"
+            data-lat="42.3601" data-lon="-71.0589">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Cambridge MA" data-country="United States of America" data-when=""
+            data-lat="42.3736" data-lon="-71.1097">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Providence" data-country="United States of America" data-when=""
+            data-lat="41.8240" data-lon="-71.4128">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="New Haven" data-country="United States of America" data-when=""
+            data-lat="41.3083" data-lon="-72.9279">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="New York" data-country="United States of America" data-when="Sep 2026"
+            data-lat="40.7128" data-lon="-74.0060">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Philadelphia" data-country="United States of America" data-when=""
+            data-lat="39.9526" data-lon="-75.1652">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Washington DC" data-country="United States of America" data-when=""
+            data-lat="38.9072" data-lon="-77.0369">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="North Conway" data-country="United States of America" data-when="Sep 2026"
+            data-lat="44.0537" data-lon="-71.1284">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Portland ME" data-country="United States of America" data-when=""
+            data-lat="43.6591" data-lon="-70.2568">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Bar Harbor" data-country="United States of America" data-when=""
+            data-lat="44.3876" data-lon="-68.2039">
+          <span class="note">Acadia</span>
+        </li>
+
+        <!-- United States — South &amp; Midwest -->
+        <li class="place" data-major data-city="Chicago" data-country="United States of America" data-when=""
+            data-lat="41.8781" data-lon="-87.6298">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="New Orleans" data-country="United States of America" data-when=""
+            data-lat="29.9511" data-lon="-90.0715">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Orlando" data-country="United States of America" data-when=""
+            data-lat="28.5383" data-lon="-81.3792">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Miami" data-country="United States of America" data-when=""
+            data-lat="25.7617" data-lon="-80.1918">
+          <span class="note"></span>
+        </li>
+
+        <!-- United States — West &amp; the parks -->
+        <li class="place" data-city="Seattle" data-country="United States of America" data-when=""
+            data-lat="47.6062" data-lon="-122.3321">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="San Francisco" data-country="United States of America" data-when=""
+            data-lat="37.7749" data-lon="-122.4194">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Los Angeles" data-country="United States of America" data-when=""
+            data-lat="34.0522" data-lon="-118.2437">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="San Diego" data-country="United States of America" data-when=""
+            data-lat="32.7157" data-lon="-117.1611">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Las Vegas" data-country="United States of America" data-when=""
+            data-lat="36.1699" data-lon="-115.1398">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Moab" data-country="United States of America" data-when=""
+            data-lat="38.5733" data-lon="-109.5498">
+          <span class="note">Arches &amp; Canyonlands</span>
+        </li>
+        <li class="place" data-city="Bryce Canyon" data-country="United States of America" data-when=""
+            data-lat="37.5930" data-lon="-112.1871">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Zion" data-country="United States of America" data-when=""
+            data-lat="37.2982" data-lon="-113.0263">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Grand Canyon" data-country="United States of America" data-when=""
+            data-lat="36.0544" data-lon="-112.1401">
+          <span class="note"></span>
+        </li>
+
+        <!-- Australia -->
+        <li class="place" data-major data-city="Sydney" data-country="Australia" data-when=""
+            data-lat="-33.8688" data-lon="151.2093">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Canberra" data-country="Australia" data-when=""
+            data-lat="-35.2809" data-lon="149.1300">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-major data-city="Melbourne" data-country="Australia" data-when=""
+            data-lat="-37.8136" data-lon="144.9631">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Brisbane" data-country="Australia" data-when=""
+            data-lat="-27.4698" data-lon="153.0251">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-city="Gold Coast" data-country="Australia" data-when=""
+            data-lat="-28.0167" data-lon="153.4000">
+          <span class="note"></span>
+        </li>
+
+      </ul>
+
+      <!-- ===== THE SECOND MAP: the US national parks =====
+           Same card, same engine, different projection: the states are drawn
+           in a composite Albers (see us-data.js), with Alaska and Hawaii in a
+           strip down the west side. Grey dot = a park not visited yet, red =
+           been there. The red ones are also the ones named first as you zoom,
+           at 2000 km, where the grey ones wait until 700 km. -->
+      <div class="map-wrap">
+        <p class="heatmap-caption" id="parks-caption">US national parks</p>
+
+        <div class="map-stage us z1" id="parks-stage">
+          <svg id="parksmap" aria-label="Map of the United States — one dot per national park"></svg>
+          <div class="map-ctrl">
+            <button type="button" id="parks-in"  aria-label="Zoom in">+</button>
+            <button type="button" id="parks-out" aria-label="Zoom out">−</button>
+            <button type="button" id="parks-reset" aria-label="Back to the whole country">⤶</button>
+          </div>
+          <div class="map-scale" id="parks-scale"><span></span></div>
+        </div>
+
+        <p class="ikb-hint" id="parks-hint">✼&nbsp; Red is one I have been to — grey is one I have not</p>
+      </div>
+
+      <!-- THE PARKS. Like the places list above, this is data, not page
+           content, so it is hidden. All 63 national parks are here except
+           American Samoa and the Virgin Islands, which are off this map.
+
+           # EDIT: BEEN THERE — add the word data-been to a park to turn its
+           dot red and have it named earlier as you zoom in; delete the word
+           to turn it grey again. The caption counts the red ones. -->
+      <ul class="place-list" id="park-list" hidden>
+        <li class="place" data-been data-park="Acadia" data-state="Maine" data-when=""
+            data-lat="44.3500" data-lon="-68.2100">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-been data-park="Arches" data-state="Utah" data-when=""
+            data-lat="38.6800" data-lon="-109.5700">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Badlands" data-state="South Dakota" data-when=""
+            data-lat="43.8500" data-lon="-102.3400">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Big Bend" data-state="Texas" data-when=""
+            data-lat="29.2500" data-lon="-103.2500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Biscayne" data-state="Florida" data-when=""
+            data-lat="25.4900" data-lon="-80.2100">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Black Canyon of the Gunnison" data-state="Colorado" data-when=""
+            data-lat="38.5700" data-lon="-107.7200">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-been data-park="Bryce Canyon" data-state="Utah" data-when=""
+            data-lat="37.5700" data-lon="-112.1800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-been data-park="Canyonlands" data-state="Utah" data-when=""
+            data-lat="38.2000" data-lon="-109.9300">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Capitol Reef" data-state="Utah" data-when=""
+            data-lat="38.2000" data-lon="-111.1700">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Carlsbad Caverns" data-state="New Mexico" data-when=""
+            data-lat="32.1700" data-lon="-104.4400">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Channel Islands" data-state="California" data-when=""
+            data-lat="34.0100" data-lon="-119.4200">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Congaree" data-state="South Carolina" data-when=""
+            data-lat="33.7800" data-lon="-80.7800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Crater Lake" data-state="Oregon" data-when=""
+            data-lat="42.9400" data-lon="-122.1000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Cuyahoga Valley" data-state="Ohio" data-when=""
+            data-lat="41.2400" data-lon="-81.5500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Death Valley" data-state="California" data-when=""
+            data-lat="36.5100" data-lon="-117.0800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Denali" data-state="Alaska" data-when=""
+            data-lat="63.3300" data-lon="-150.5000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Dry Tortugas" data-state="Florida" data-when=""
+            data-lat="24.6300" data-lon="-82.8700">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Everglades" data-state="Florida" data-when=""
+            data-lat="25.2900" data-lon="-80.9000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Gates of the Arctic" data-state="Alaska" data-when=""
+            data-lat="67.7800" data-lon="-153.3000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Gateway Arch" data-state="Missouri" data-when=""
+            data-lat="38.6300" data-lon="-90.1900">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Glacier" data-state="Montana" data-when=""
+            data-lat="48.8000" data-lon="-114.0000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Glacier Bay" data-state="Alaska" data-when=""
+            data-lat="58.5000" data-lon="-137.0000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-been data-park="Grand Canyon" data-state="Arizona" data-when=""
+            data-lat="36.0600" data-lon="-112.1400">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Grand Teton" data-state="Wyoming" data-when=""
+            data-lat="43.7900" data-lon="-110.6800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Great Basin" data-state="Nevada" data-when=""
+            data-lat="38.9800" data-lon="-114.3000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Great Sand Dunes" data-state="Colorado" data-when=""
+            data-lat="37.7900" data-lon="-105.5300">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Great Smoky Mountains" data-state="Tennessee" data-when=""
+            data-lat="35.6100" data-lon="-83.4900">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Guadalupe Mountains" data-state="Texas" data-when=""
+            data-lat="31.9200" data-lon="-104.8700">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Haleakalā" data-state="Hawaii" data-when=""
+            data-lat="20.7200" data-lon="-156.1700">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Hawaiʻi Volcanoes" data-state="Hawaii" data-when=""
+            data-lat="19.3800" data-lon="-155.2000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Hot Springs" data-state="Arkansas" data-when=""
+            data-lat="34.5100" data-lon="-93.0500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Indiana Dunes" data-state="Indiana" data-when=""
+            data-lat="41.6300" data-lon="-87.0500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Isle Royale" data-state="Michigan" data-when=""
+            data-lat="48.1000" data-lon="-88.5500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Joshua Tree" data-state="California" data-when=""
+            data-lat="33.7900" data-lon="-115.9000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Katmai" data-state="Alaska" data-when=""
+            data-lat="58.5000" data-lon="-155.0000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Kenai Fjords" data-state="Alaska" data-when=""
+            data-lat="59.9200" data-lon="-149.6500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Kings Canyon" data-state="California" data-when=""
+            data-lat="36.8900" data-lon="-118.5500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Kobuk Valley" data-state="Alaska" data-when=""
+            data-lat="67.3300" data-lon="-159.1200">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Lake Clark" data-state="Alaska" data-when=""
+            data-lat="60.9700" data-lon="-153.4200">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Lassen Volcanic" data-state="California" data-when=""
+            data-lat="40.4900" data-lon="-121.5100">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Mammoth Cave" data-state="Kentucky" data-when=""
+            data-lat="37.1800" data-lon="-86.1000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Mesa Verde" data-state="Colorado" data-when=""
+            data-lat="37.2300" data-lon="-108.4600">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Mount Rainier" data-state="Washington" data-when=""
+            data-lat="46.8500" data-lon="-121.7500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="New River Gorge" data-state="West Virginia" data-when=""
+            data-lat="37.8800" data-lon="-81.0600">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="North Cascades" data-state="Washington" data-when=""
+            data-lat="48.7000" data-lon="-121.2000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Olympic" data-state="Washington" data-when=""
+            data-lat="47.8000" data-lon="-123.6000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Petrified Forest" data-state="Arizona" data-when=""
+            data-lat="35.0700" data-lon="-109.7800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Pinnacles" data-state="California" data-when=""
+            data-lat="36.4900" data-lon="-121.1600">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Redwood" data-state="California" data-when=""
+            data-lat="41.3000" data-lon="-124.0000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Rocky Mountain" data-state="Colorado" data-when=""
+            data-lat="40.3400" data-lon="-105.6800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Saguaro" data-state="Arizona" data-when=""
+            data-lat="32.2500" data-lon="-110.5000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Sequoia" data-state="California" data-when=""
+            data-lat="36.4300" data-lon="-118.6800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Shenandoah" data-state="Virginia" data-when=""
+            data-lat="38.5300" data-lon="-78.3500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Theodore Roosevelt" data-state="North Dakota" data-when=""
+            data-lat="46.9700" data-lon="-103.5400">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Voyageurs" data-state="Minnesota" data-when=""
+            data-lat="48.5000" data-lon="-92.8800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="White Sands" data-state="New Mexico" data-when=""
+            data-lat="32.7800" data-lon="-106.1700">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Wind Cave" data-state="South Dakota" data-when=""
+            data-lat="43.5700" data-lon="-103.4800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Wrangell–St. Elias" data-state="Alaska" data-when=""
+            data-lat="61.0000" data-lon="-142.0000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Yellowstone" data-state="Wyoming" data-when=""
+            data-lat="44.6000" data-lon="-110.5000">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-park="Yosemite" data-state="California" data-when=""
+            data-lat="37.8500" data-lon="-119.5700">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-been data-park="Zion" data-state="Utah" data-when=""
+            data-lat="37.3000" data-lon="-113.0500">
+          <span class="note"></span>
+        </li>
+      </ul>
+
+      <!-- ===== THE THIRD MAP: Tokyo by neighbourhood =====
+           Same card and same engine again, on a local equirectangular grid
+           (see tokyo-data.js): the 23 special wards outlined and named, the
+           nearest Tama cities drawn but unnamed, and Saitama, Chiba and
+           Kanagawa as a quiet backdrop. Grey dot = a neighbourhood not
+           visited, red = been there. The red ones are named from 30 km out,
+           the grey ones wait until 12 km. -->
+      <div class="map-wrap">
+        <p class="heatmap-caption" id="tokyo-caption">Tokyo by neighbourhood</p>
+
+        <div class="map-stage tokyo dim z1" id="tokyo-stage">
+          <svg id="tokyomap" aria-label="Map of Tokyo — one dot per neighbourhood"></svg>
+          <div class="map-ctrl">
+            <button type="button" id="tokyo-in"  aria-label="Zoom in">+</button>
+            <button type="button" id="tokyo-out" aria-label="Zoom out">−</button>
+            <button type="button" id="tokyo-reset" aria-label="Back to the whole city">⤶</button>
+          </div>
+          <div class="map-scale" id="tokyo-scale"><span></span></div>
+        </div>
+
+        <p class="ikb-hint" id="tokyo-hint">✼&nbsp; Red is one I have been to — grey is one I have not</p>
+      </div>
+
+      <!-- THE NEIGHBOURHOODS. Data, not page content, so it is hidden.
+           data-ward is only printed next to the name; it is not matched
+           against the map, so spell it however reads best.
+
+           # EDIT: BEEN THERE â add the word data-been to turn a dot red and
+           have it named earlier as you zoom in. The caption counts them. -->
+      <ul class="place-list" id="hood-list" hidden>
+        <li class="place" data-hood="Marunouchi" data-ward="Chiyoda" data-when=""
+            data-lat="35.6812" data-lon="139.7671">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Ginza" data-ward="Chuo" data-when=""
+            data-lat="35.6717" data-lon="139.7650">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Nihonbashi" data-ward="Chuo" data-when=""
+            data-lat="35.6839" data-lon="139.7744">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Ningyocho" data-ward="Chuo" data-when=""
+            data-lat="35.6862" data-lon="139.7826">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kanda" data-ward="Chiyoda" data-when=""
+            data-lat="35.6918" data-lon="139.7708">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Akihabara" data-ward="Chiyoda" data-when=""
+            data-lat="35.6984" data-lon="139.7731">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Jimbocho" data-ward="Chiyoda" data-when=""
+            data-lat="35.6957" data-lon="139.7577">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Ochanomizu" data-ward="Chiyoda" data-when=""
+            data-lat="35.6993" data-lon="139.7650">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Hibiya" data-ward="Chiyoda" data-when=""
+            data-lat="35.6740" data-lon="139.7594">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Shimbashi" data-ward="Minato" data-when=""
+            data-lat="35.6665" data-lon="139.7583">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Tsukiji" data-ward="Chuo" data-when=""
+            data-lat="35.6654" data-lon="139.7707">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Toyosu" data-ward="Koto" data-when=""
+            data-lat="35.6548" data-lon="139.7967">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Tsukishima" data-ward="Chuo" data-when=""
+            data-lat="35.6644" data-lon="139.7840">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Monzen-Nakacho" data-ward="Koto" data-when=""
+            data-lat="35.6714" data-lon="139.7970">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kiyosumi-Shirakawa" data-ward="Koto" data-when=""
+            data-lat="35.6812" data-lon="139.7995">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Ryogoku" data-ward="Sumida" data-when=""
+            data-lat="35.6960" data-lon="139.7930">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kinshicho" data-ward="Sumida" data-when=""
+            data-lat="35.6968" data-lon="139.8140">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kameido" data-ward="Koto" data-when=""
+            data-lat="35.6975" data-lon="139.8270">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Oshiage" data-ward="Sumida" data-when=""
+            data-lat="35.7101" data-lon="139.8107">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Asakusa" data-ward="Taito" data-when=""
+            data-lat="35.7148" data-lon="139.7967">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kuramae" data-ward="Taito" data-when=""
+            data-lat="35.7053" data-lon="139.7920">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Ueno" data-ward="Taito" data-when=""
+            data-lat="35.7141" data-lon="139.7774">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Nippori" data-ward="Arakawa" data-when=""
+            data-lat="35.7280" data-lon="139.7710">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Yanaka" data-ward="Taito" data-when=""
+            data-lat="35.7270" data-lon="139.7660">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Nezu" data-ward="Bunkyo" data-when=""
+            data-lat="35.7200" data-lon="139.7650">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Hongo" data-ward="Bunkyo" data-when=""
+            data-lat="35.7085" data-lon="139.7595">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Korakuen" data-ward="Bunkyo" data-when=""
+            data-lat="35.7056" data-lon="139.7514">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kagurazaka" data-ward="Shinjuku" data-when=""
+            data-lat="35.7015" data-lon="139.7400">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Iidabashi" data-ward="Chiyoda" data-when=""
+            data-lat="35.7020" data-lon="139.7450">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Yotsuya" data-ward="Shinjuku" data-when=""
+            data-lat="35.6860" data-lon="139.7300">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Akasaka" data-ward="Minato" data-when=""
+            data-lat="35.6745" data-lon="139.7365">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Toranomon" data-ward="Minato" data-when=""
+            data-lat="35.6668" data-lon="139.7496">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Shiba-koen" data-ward="Minato" data-when=""
+            data-lat="35.6586" data-lon="139.7454">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Roppongi" data-ward="Minato" data-when=""
+            data-lat="35.6627" data-lon="139.7314">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Azabu-Juban" data-ward="Minato" data-when=""
+            data-lat="35.6552" data-lon="139.7367">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Hiroo" data-ward="Shibuya" data-when=""
+            data-lat="35.6520" data-lon="139.7220">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Shirokanedai" data-ward="Minato" data-when=""
+            data-lat="35.6390" data-lon="139.7250">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Aoyama" data-ward="Minato" data-when=""
+            data-lat="35.6656" data-lon="139.7128">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Harajuku" data-ward="Shibuya" data-when=""
+            data-lat="35.6702" data-lon="139.7027">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Shibuya" data-ward="Shibuya" data-when=""
+            data-lat="35.6595" data-lon="139.7005">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Yoyogi-Uehara" data-ward="Shibuya" data-when=""
+            data-lat="35.6690" data-lon="139.6800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Ebisu" data-ward="Shibuya" data-when=""
+            data-lat="35.6467" data-lon="139.7100">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Daikanyama" data-ward="Shibuya" data-when=""
+            data-lat="35.6485" data-lon="139.7030">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Nakameguro" data-ward="Meguro" data-when=""
+            data-lat="35.6440" data-lon="139.6990">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Meguro" data-ward="Meguro" data-when=""
+            data-lat="35.6339" data-lon="139.7160">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Gotanda" data-ward="Shinagawa" data-when=""
+            data-lat="35.6262" data-lon="139.7233">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Shinagawa" data-ward="Minato" data-when=""
+            data-lat="35.6285" data-lon="139.7387">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Odaiba" data-ward="Minato" data-when=""
+            data-lat="35.6270" data-lon="139.7750">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Shinjuku" data-ward="Shinjuku" data-when=""
+            data-lat="35.6896" data-lon="139.7006">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kabukicho" data-ward="Shinjuku" data-when=""
+            data-lat="35.6950" data-lon="139.7017">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Takadanobaba" data-ward="Shinjuku" data-when=""
+            data-lat="35.7123" data-lon="139.7038">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Waseda" data-ward="Shinjuku" data-when=""
+            data-lat="35.7090" data-lon="139.7190">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Ikebukuro" data-ward="Toshima" data-when=""
+            data-lat="35.7295" data-lon="139.7109">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Otsuka" data-ward="Toshima" data-when=""
+            data-lat="35.7318" data-lon="139.7286">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Sugamo" data-ward="Toshima" data-when=""
+            data-lat="35.7336" data-lon="139.7392">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Akabane" data-ward="Kita" data-when=""
+            data-lat="35.7777" data-lon="139.7210">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Oji" data-ward="Kita" data-when=""
+            data-lat="35.7527" data-lon="139.7380">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Nerima" data-ward="Nerima" data-when=""
+            data-lat="35.7359" data-lon="139.6516">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Nakano" data-ward="Nakano" data-when=""
+            data-lat="35.7057" data-lon="139.6657">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Koenji" data-ward="Suginami" data-when=""
+            data-lat="35.7056" data-lon="139.6497">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Asagaya" data-ward="Suginami" data-when=""
+            data-lat="35.7047" data-lon="139.6360">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Ogikubo" data-ward="Suginami" data-when=""
+            data-lat="35.7046" data-lon="139.6200">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kichijoji" data-ward="Musashino" data-when=""
+            data-lat="35.7030" data-lon="139.5800">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Shimokitazawa" data-ward="Setagaya" data-when=""
+            data-lat="35.6613" data-lon="139.6680">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Sangenjaya" data-ward="Setagaya" data-when=""
+            data-lat="35.6435" data-lon="139.6700">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Futako-Tamagawa" data-ward="Setagaya" data-when=""
+            data-lat="35.6114" data-lon="139.6265">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Jiyugaoka" data-ward="Meguro" data-when=""
+            data-lat="35.6075" data-lon="139.6690">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Todoroki" data-ward="Setagaya" data-when=""
+            data-lat="35.6035" data-lon="139.6500">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Musashi-Koyama" data-ward="Shinagawa" data-when=""
+            data-lat="35.6222" data-lon="139.7010">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Oimachi" data-ward="Shinagawa" data-when=""
+            data-lat="35.6062" data-lon="139.7340">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Omori" data-ward="Ota" data-when=""
+            data-lat="35.5880" data-lon="139.7280">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kamata" data-ward="Ota" data-when=""
+            data-lat="35.5620" data-lon="139.7160">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Haneda" data-ward="Ota" data-when=""
+            data-lat="35.5494" data-lon="139.7798">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Kasai" data-ward="Edogawa" data-when=""
+            data-lat="35.6633" data-lon="139.8722">
+          <span class="note"></span>
+        </li>
+        <li class="place" data-hood="Shibamata" data-ward="Katsushika" data-when=""
+            data-lat="35.7620" data-lon="139.8800">
+          <span class="note"></span>
+        </li>
+      </ul>
+
+    </main>
+
+    <footer>© 2026 Kelly Huilin Liang</footer>
+
+  </div>
+
+  <script src="world-data.js"></script>
+  <script src="us-data.js"></script>
+  <script src="tokyo-data.js"></script>
+  <script src="map.js"></script>
+
+  <script src="vault-nav.js"></script>
+</body>
+</html>

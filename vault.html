@@ -3,58 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KHL — Project Vault</title>
+  <title>KHL — Vault</title>
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Maps and reading collected by Kelly Huilin Liang.">
 </head>
 <body>
-
   <div class="layout">
-
-   <div class="name-block">
-    <h1 class="wordmark">Kelly Huilin Liang</h1>
-    <div class="social-row">
-      <a href="mailto:kellylianghl@gmail.com">Email</a>
-      <a href="https://github.com/hliang852">GitHub</a>
-      <a href="https://www.linkedin.com/in/kellylianghuilin">LinkedIn</a>
-    </div>
-  </div>
-
-  <div class="sidenav">
-    <a href="index.html" class="active">Home</a>
-    <a href="resume.html">Resume</a>
-    <a href="projects.html">Projects</a>
-    <a href="garden-leave.html">Garden Leave Journal</a>
-  </div>
-  <main>
-
-    <h3 class="section-title">Project: Vault</h3>
-
-    <div class="proj-entry">
-      <div class="kind">Finance</div>
-      <div> <h4>Japan Special Situations</h4>
-        <div class="clearfix">
-          <p class="desc"> Coming soon!
-          </p>
-        </div>
-
-        <div class="proj-links">
-          <a href=#>[Data Visualization]</a>
-          <a href="projects.html">[Back]</a>
-        </div>
-
-
+    <div class="name-block">
+      <h1 class="wordmark"><a class="home-link" href="index.html" aria-label="Kelly Huilin Liang — Home">Kelly Huilin Liang</a></h1>
+      <div class="social-row">
+        <a href="mailto:kellylianghl@gmail.com">Email</a>
+        <a href="https://github.com/hliang852">GitHub</a>
+        <a href="https://www.linkedin.com/in/kellylianghuilin">LinkedIn</a>
       </div>
     </div>
-
-  </main>
-
-  <footer>© 2026 Kelly Huilin Liang</footer>
-
-</div>
-
+    <nav class="sidenav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="garden-leave.html">Garden-Leave</a>
+      <div class="vault-nav">
+        <div class="vault-nav-heading">
+          <a href="vault.html" class="active" aria-current="page" aria-expanded="false" aria-controls="vault-submenu">Vault</a>
+        </div>
+        <div class="vault-submenu" id="vault-submenu">
+          <a href="map.html">Maps</a>
+          <a href="articles.html">Articles</a>
+        </div>
+      </div>
+    </nav>
+    <main class="vault-landing" aria-label="Vault">
+      <div class="chest-scene" id="chest-scene">
+        <button class="chest-trigger" type="button" aria-label="Open the treasure chest" aria-expanded="false" aria-controls="chest-contents">
+          <img class="chest-closed" src="chest.png" width="1254" height="1074" alt="A pastel treasure chest with a dusty blue ribbon">
+          <img class="chest-open" src="chest-open.png" width="1254" height="1254" alt="" aria-hidden="true">
+        </button>
+        <div class="chest-contents" id="chest-contents" inert>
+          <a class="chest-treasure treasure-articles" href="articles.html" aria-label="Read Articles" title="Articles">
+            <span class="treasure-point" aria-hidden="true"></span>
+            <span class="treasure-label">Articles</span>
+          </a>
+          <a class="chest-treasure treasure-map" href="map.html" aria-label="Explore Maps" title="Maps">
+            <span class="treasure-point" aria-hidden="true"></span>
+            <span class="treasure-label">Maps</span>
+          </a>
+        </div>
+      </div>
+      <noscript><p><a href="articles.html">Articles</a> · <a href="map.html">Maps</a></p></noscript>
+    </main>
+    <footer>© 2026 Kelly Huilin Liang</footer>
+  </div>
+  <script src="vault-nav.js"></script>
+  <script src="chest.js"></script>
 </body>
 </html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KHL — Articles</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="A daily reading log of articles, essays, and research, collected by Kelly Huilin Liang.">
+  <style>
+    .reading-intro { margin: 0 0 16px; color: var(--ink-soft); font-size: 15px; }
+    .reading-days { list-style: none; padding: 0; margin: 0; }
+    .reading-days .entry { padding: 11px 0; gap: 14px; }
+    .reading-days .when { margin: 0; font-weight: 400; }
+    .article-list { margin: 0; padding-left: 20px; min-width: 0; font-size: 15px; line-height: 1.45; }
+    .article-list li { padding-left: 3px; margin-bottom: 4px; overflow-wrap: anywhere; }
+    .article-list li:last-child { margin-bottom: 0; }
+    .article-list li::marker { color: var(--ink-soft); }
+    .source-note { display: block; color: var(--ink-soft); font-size: 12px; }
+    .sidenav { flex-wrap: wrap; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    @media (max-width: 600px) { .reading-days .entry { gap: 6px; } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="name-block">
+      <h1 class="wordmark"><a class="home-link" href="index.html" aria-label="Kelly Huilin Liang — Home">Kelly Huilin Liang</a></h1>
+      <div class="social-row">
+        <a href="mailto:kellylianghl@gmail.com">Email</a>
+        <a href="https://github.com/hliang852">GitHub</a>
+        <a href="https://www.linkedin.com/in/kellylianghuilin">LinkedIn</a>
+      </div>
+    </div>
+    <nav class="sidenav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="projects.html">Projects</a>
+      <a href="garden-leave.html">Garden-Leave</a>
+      <div class="vault-nav">
+        <div class="vault-nav-heading">
+          <a href="vault.html" class="active" aria-expanded="false" aria-controls="vault-submenu">Vault</a>
+        </div>
+        <div class="vault-submenu" id="vault-submenu">
+          <a href="map.html">Maps</a>
+          <a href="articles.html" class="active" aria-current="page">Articles</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <h3 class="section-title">Articles</h3>
+      <p class="reading-intro">Articles, essays, and research I’ve been reading.<br>Grouped by date read, newest first.</p>
+      <!-- Date read: macOS Date Added in America/New_York, not publication date.
+           Titles come from the PDFs and use consistent title case. Source URLs come from printed footers,
+           except Citrini's embedded article link. Tracking parameters are omitted.
+           PDFs without a specific source URL show their publisher (or credited author).
+           Add new dates above the existing entries, using the same nested list format. -->
+      <ol class="reading-days" aria-label="Reading log by date">
+        <li class="entry" id="read-2026-09-21">
+          <h2 class="when"><time datetime="2026-09-21">Sep 21 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 21 2026">
+            <li><a href="https://www.ft.com/content/6f0ceb7d-597d-4c83-ac8b-0fe7c8bd74f9">Why the World’s Hottest Stock Market Is a National Liability</a></li>
+            <li><a href="https://www.ft.com/content/4e7004b7-d262-40c8-b979-fdf7f237adda">SoftBank Launches One of Biggest Junk Bond Deals to Fund OpenAI Bet</a></li>
+            <li><a href="https://www.ft.com/content/a1c9d298-8af9-4cf4-9c47-e2eb50cd03d9">Trafigura to Float Supertanker Arm in First IPO of a Business</a></li>
+            <li><a href="https://www.ft.com/content/df52a49a-ab6a-4997-a609-169e830a26fa">Nik Storonsky’s Plan for Revolut: A Global Bank with ‘Effectively Zero Risk’</a></li>
+            <li><a href="https://www.ft.com/content/f1d9d398-0666-44cf-96f4-390e6c3f5173">Fed and BoE Step Up Scrutiny of Bank Exposure to Trading Firms After Jane Street Loss</a></li>
+            <li><a href="https://www.ft.com/content/01a7b883-452c-4902-b40e-e3957de5d89e">Lex in Depth: Anthropic at $2tn Isn’t Far-Fetched</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-20">
+          <h2 class="when"><time datetime="2026-09-20">Sep 20 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 20 2026">
+            <li><a href="https://www.theinformation.com/newsletters/ai-infrastructure/nvidia-trying-solve-data-center-power-bottleneck">How Nvidia Is Trying to Solve the Data Center Power Bottleneck</a></li>
+            <li><a href="https://www.theinformation.com/articles/anthropic-ipo-waiting-game-puts-wall-street-edge">Anthropic IPO Waiting Game Puts Wall Street on Edge</a></li>
+            <li><a href="https://www.theinformation.com/articles/jane-street-linked-data-center-debt-sours">Jane Street-Linked Data Center Debt Sours</a></li>
+            <li><a href="https://www.ft.com/content/3fcee89f-b69d-4f4b-a944-39fe1c214fb8">Wall Street Expects US to Issue About $1tn of Short-Term Debt as Borrowing Costs Climb</a></li>
+            <li><a href="https://www.ft.com/content/c0cd359d-df84-4208-a789-ffa864b43666">AI Chatbots Give Wrong Answers to Financial Queries ‘Most of the Time’</a></li>
+            <li><a href="https://www.ft.com/content/e560fd8c-5cc2-4743-90eb-eab71b899ce6">Novo Investors Call for Dealmaking and New Drugs</a></li>
+            <li><a href="https://www.ft.com/content/05a7292e-4931-4631-8f77-164fb727c203">AI Is a Powerful but Problematic New Collaborator in Mathematics</a></li>
+            <li><a href="https://www.ft.com/content/44433853-1d29-4b42-b13b-846abe9ffa3b">Chinese Owners Launch €2.5bn Sale of Luxembourg’s Oldest Bank</a></li>
+            <li><a href="https://www.ft.com/content/64f90ab8-5fb0-4594-a900-d03e5ca051e3">US Retailer Rations Motor Oil as Prices Quadruple and Supplies Run Dry</a></li>
+            <li><a href="https://www.ft.com/content/bfe6fc60-51b3-41f0-b6c9-32583735150e">CATL Develops Pick-Up Truck Batteries for US Despite Trade Barriers</a></li>
+            <li><a href="https://www.ft.com/content/7f11afae-c4e3-4054-a65b-873f3647f563">Big Tech Uses Guarantees to Keep $300bn of AI Exposure Off Balance Sheets</a></li>
+            <li><a href="https://www.ft.com/content/28a51284-98cc-4767-a306-0540d265687f">Jane Street Has Paid Up Large to Avoid Its Numbers Leaking Out</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-19">
+          <h2 class="when"><time datetime="2026-09-19">Sep 19 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 19 2026">
+            <li>Use and Risk Management of Generative AI by Japanese Financial Institutions<span class="source-note">Bank of Japan</span></li>
+            <li>Impact of the Bank of Japan&#x27;s Reductions in JGB Purchases on the JGB Markets<span class="source-note">Bank of Japan</span></li>
+            <li>Fast Interface for New Issuance (FINI) and the Hong Kong Dollar Interbank Market During IPOs<span class="source-note">Hong Kong Monetary Authority (HKMA)</span></li>
+            <li>Interconnections and Risk Transmission Among Private Credit, Private Equity and Insurers: An Asian Perspective<span class="source-note">Hong Kong Monetary Authority (HKMA)</span></li>
+            <li><a href="https://asia.nikkei.com/business/automobiles/yokohama-rubber-targets-byd-other-china-automakers-with-lower-cost-tire-plant">Yokohama Rubber Targets BYD, Other China Automakers with Lower-Cost Tire Plant</a></li>
+            <li><a href="https://asia.nikkei.com/business/business-trends/china-shipbuilding-orders-nearly-triple-on-iran-war-windfall">China Shipbuilding Orders Nearly Triple on Iran War Windfall</a></li>
+            <li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/examining-the-sensitivity-of-regional-banks-to-macroeconomic-shocks-20260804.html">Examining the Sensitivity of Regional Banks to Macroeconomic Shocks</a></li>
+            <li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/private-credit-and-leveraged-loan-markets-similarities-differences-and-substitution-20260811.html">Private Credit and Leveraged Loan Markets: Similarities, Differences, and Substitution</a></li>
+            <li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/why-gold-didnt-actually-overtake-treasury-securities-as-the-worlds-favorite-reserve-asset-20260903.html">Why Gold Didn&#x27;t Actually Overtake Treasury Securities as the World&#x27;s &quot;Favorite&quot; Reserve Asset</a></li>
+            <li><a href="https://www.ft.com/content/26e3749b-be69-4cd4-8db1-fa8597fb6fb3">Anthropic Brings in Accenture for AI Safety Testing</a></li>
+            <li><a href="https://www.ft.com/content/ee1b5a66-24f2-49b8-b26f-895644ebe3f1">Revolut Planning Dual Listing in New York and London, Says Storonsky</a></li>
+            <li><a href="https://www.ft.com/content/703c3f2d-c9ba-4a5e-9a56-e53ec872bbaa">US Homebuilders Under Pressure from Rising Rates</a></li>
+            <li><a href="https://www.ft.com/content/bd441859-6c94-4874-894f-9362c1703127">Oracle’s $18bn Data Centre Debt Under Strain Amid Local Pushback</a></li>
+            <li><a href="https://www.ft.com/content/e0e384b8-aa4c-4948-b4ee-7bdff414641b">Paramount in Talks to Settle Antitrust Lawsuit Blocking WBD Deal</a></li>
+            <li><a href="https://www.ft.com/content/85bb8ebe-4363-4a2c-920c-93fee2d128a7">UK’s Top Taxpayer Says He Would ‘Not Wish to Be Reborn’ in Britain</a></li>
+            <li><a href="https://www.ft.com/content/93ba41c5-d777-4733-8738-93a06e8fead1">British Data Centre Group Nscale Files for $35bn US Listing</a></li>
+            <li><a href="https://www.ft.com/content/98c6db91-44c7-487e-a733-331a58766ba1">White House Attacks Fed Official After Review of Silicon Valley Bank Collapse</a></li>
+            <li><a href="https://www.ft.com/content/6c467774-9d91-425e-a901-26db055e37ad">OpenAI’s Listing Delay Raises Stakes for SoftBank’s $50bn Data Centre IPO</a></li>
+            <li><a href="https://www.ft.com/content/e2d2b86f-4f22-477f-9578-75c72683f1e9">Anthropic and the Golden Rules of Business</a></li>
+            <li><a href="https://www.ft.com/content/09c2e11c-1632-42e3-8fc6-809468b7f87e">Five Ways the Iran Energy Shock Is Wrongfooting the World</a></li>
+            <li><a href="https://www.ft.com/content/05887f92-c777-48ab-8efa-9a39e7e18a9f">US State Department Under Pressure to Disclose Venezuelan Oil Takings</a></li>
+            <li><a href="https://www.ft.com/content/158740d1-fde7-4dbc-a282-5830c3201189">Google’s Gemini Hacked Three Companies in New AI Safety Incident</a></li>
+            <li><a href="https://www.ft.com/content/124c1cf0-4885-495c-a907-a5217d589f9d">Unpacking the Real Fiscal Costs of Immigration</a></li>
+            <li><a href="https://www.ft.com/content/129a5052-ac31-4975-8a88-91ce09740a0b">How Should Investors Position for the Robot Apocalypse?</a></li>
+            <li><a href="https://www.ft.com/content/6011d061-eee3-4193-b3b7-8ee4155f538c">OpenAI Expects to Burn $280bn by 2030</a></li>
+            <li><a href="https://www.ft.com/content/96d0a206-a37b-4166-b78d-b27ed24f7d57">Investors Warn Anthropic Could Struggle to Sustain Revenues Post-IPO</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-18">
+          <h2 class="when"><time datetime="2026-09-18">Sep 18 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 18 2026">
+            <li><a href="https://www.ft.com/content/8475dc9b-b2d4-4e10-a6b6-12796b11758a">Joining the Dots Between Big AI</a></li>
+            <li><a href="https://www.ft.com/content/0b83cb60-0d07-49a7-a46a-654077a75b39">Google DeepMind Offshoot Nears $4bn Valuation Just a Month After Founding</a></li>
+            <li><a href="https://www.ft.com/content/69f02abc-e0dc-46e5-aa6c-61d209e095d9">China’s US Treasury Holdings Fall to Lowest Level Since 2008</a></li>
+            <li><a href="https://www.ft.com/content/9934acc6-6b06-4f2e-a37a-6cf0869092cb">Trump Administration Approves $24bn Sale of F-35 Jets to Saudi Arabia</a></li>
+            <li><a href="https://www.ft.com/content/9c6fac10-9f3f-4503-9765-b9e29e18c68d">Private Equity Turns to Financial Engineering to Lure Insurance Billions</a></li>
+            <li><a href="https://www.ft.com/content/350df9ff-fa41-4984-a1ee-248d8335b213">How Glencore Became Entangled in $2bn Battle with Iron Ore Trader Radiant</a></li>
+            <li><a href="https://www.ft.com/content/cfc2c898-da5a-4387-92f4-6ae1274705b6">South Korea’s Lee Suffering ‘Sleepless Nights’ as US Pressure Grows</a></li>
+            <li><a href="https://www.ft.com/content/c4753943-5af3-4260-a655-460afcb55502">Why Tata’s Boardroom Is at War</a></li>
+            <li><a href="https://www.ft.com/content/07acddb2-9a2f-4646-b7dd-2cb4ebe0257d">Raspberry Pi Founder Eben Upton: ‘I’m an Omni-Geek’</a></li>
+            <li><a href="https://www.ft.com/content/97a0bed5-0580-4ccc-bd3c-fe9a714259e2">Yen Sinks After Bank of Japan Raises Rates to Highest Level Since 1995</a></li>
+            <li><a href="https://www.ft.com/content/34319b00-f874-4119-aa28-8376d81e7190">Medical AI Has a Proof Problem</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-17">
+          <h2 class="when"><time datetime="2026-09-17">Sep 17 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 17 2026">
+            <li>How I Think About Investing: Two Games<span class="source-note">Davidson Kahn Capital Management</span></li>
+            <li><a href="https://www.ft.com/content/8c4143c7-f846-43a0-807a-b460fff7cd75">Has AI Broken the Old VC Model?</a></li>
+            <li><a href="https://asia.nikkei.com/business/technology/artificial-intelligence/mitsubishi-heavy-to-boost-preferred-networks-ai-tie-up-with-investment">Mitsubishi Heavy to Boost Preferred Networks AI Tie-Up with Investment</a></li>
+            <li><a href="https://asia.nikkei.com/business/business-deals/bain-backed-group-raises-offer-for-japan-s-kakaku.com-challenging-eqt">Bain-Backed Group Raises Offer for Japan&#x27;s Kakaku.com, Challenging EQT</a></li>
+            <li><a href="https://www.ft.com/content/d26b5fdd-18d1-41bf-a9b9-5e2c0c12cce8">Oxbridge’s Formal Dinners Have Had a Reboot</a></li>
+            <li><a href="https://www.ft.com/content/3bb7e0e8-6aef-4b6b-a5f0-f472a2655c1f">Wall Street Warns Trading Boom Is Losing Steam</a></li>
+            <li><a href="https://www.ft.com/content/2c34414a-5381-4083-ac34-00bbe67ef8db">OpenAI Discloses New ‘Concerning’ Model Behaviour</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-16">
+          <h2 class="when"><time datetime="2026-09-16">Sep 16 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 16 2026">
+            <li><a href="https://www.ft.com/content/1b95b8c0-3563-4c3d-93f2-9d4d9fe3bc2e">This Is Good for AI!!!! Aaargh!!!!</a></li>
+            <li><a href="https://www.citriniresearch.com/p/robotics-tipping-point-a-citrini">Robotics Tipping Point: A Citrini Field Trip</a></li>
+            <li><a href="https://tokyobrief.com/articles/oasis-raises-nidec-stake-delisting-board-proposals">Oasis Lifts Nidec Stake to 7.97% and Puts Delisting, Board Control on the Table</a></li>
+            <li><a href="https://www.ft.com/content/7cc04edd-2897-4655-99d4-ede1ccfcd91c">Scott Bessent to Meet He Lifeng in New York Ahead of Trump-Xi Summit</a></li>
+            <li><a href="https://www.ft.com/content/6b6a27bd-2725-4591-be8a-fda643c2ac5c">World’s Best-Performing Sovereign Wealth Fund Expects Equities Pullback</a></li>
+            <li><a href="https://www.ft.com/content/27509db8-b032-4437-9b2a-e909f466022f">OpenAI Weighs Funding Round at $1.2tn Valuation Before IPO</a></li>
+            <li><a href="https://www.ft.com/content/29f0dac0-0523-46c4-a573-cd681a69b445">Anthropic’s Mother of All Risk Factors</a></li>
+            <li><a href="https://www.ft.com/content/d085adc5-977b-4c7e-9641-9824d1d345d3">AI Bosses’ Safety Push Sparks Rift Inside OpenAI and Anthropic</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-15">
+          <h2 class="when"><time datetime="2026-09-15">Sep 15 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 15 2026">
+            <li><a href="https://asia.nikkei.com/business/business-deals/hikari-tsushin-mbk-nec-unit-launch-1.7bn-buyout-for-japan-s-leopalace212">Hikari Tsushin, MBK, NEC Unit Launch $1.7bn Buyout for Japan&#x27;s Leopalace21</a></li>
+            <li><a href="https://www.ft.com/content/6d169ac7-0d3a-4f21-91ee-b8119fc63e65">China’s AI Listings Glut Drags Hong Kong Stocks Lower</a></li>
+            <li><a href="https://www.ft.com/content/b132d848-7d0b-4938-81ee-3683ef2004db">Time for a Pause on Cutting-Edge AI</a></li>
+            <li><a href="https://www.ft.com/content/76795dfc-2d44-421b-9665-5d86346af328">Sullivan &amp; Cromwell Hires Team of Kirkland Partners in Private Equity Push</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-14">
+          <h2 class="when"><time datetime="2026-09-14">Sep 14 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 14 2026">
+            <li><a href="https://www.ft.com/content/183569b4-8102-4b38-8a20-a3597a442f26">Boom-Era PE Funds Will Fall Short on Promises, Executives Warn</a></li>
+            <li><a href="https://www.ft.com/content/b223f2d9-a4bf-43c3-9fc9-06d6c333bf6b">Trial Breakthrough for Weight-Loss Drug with Fewer Side Effects</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-13">
+          <h2 class="when"><time datetime="2026-09-13">Sep 13 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 13 2026">
+            <li><a href="https://www.ft.com/content/b275be74-6841-4f84-ac24-f2b121f5b9ea">The Civil War in Data Centre Alley</a></li>
+            <li><a href="https://www.ft.com/content/aac6e759-0bb0-4af5-a471-94c1bb63da4d">Is the Soul of New York’s West Village in Peril?</a></li>
+            <li><a href="https://www.ft.com/content/05e61eb8-9273-4b9a-a356-47f525b7d506">Larry Ellison Cancels $7.5bn Oracle Share Sale</a></li>
+            <li><a href="https://www.ft.com/content/3204d65e-ae34-4ab3-a73f-a55d354f40ab">Texas Puts a Brake on Its Data Centre Boom</a></li>
+            <li><a href="https://www.ft.com/content/a4a22443-2082-409b-96e1-650c44a40f44">CVC Faces Shareholder Revolt over €10.7bn Recordati Take-Private</a></li>
+            <li><a href="https://www.ft.com/content/21b663e4-60ee-4937-a561-5b0f505676a2">GE HealthCare in Talks over $1bn Deal for Maker of Cancer Scan Chemicals</a></li>
+            <li><a href="https://www.ft.com/content/00e3c084-06e3-47b4-8230-185760216e60">Swedish Election on a Knife-Edge</a></li>
+            <li><a href="https://www.ft.com/content/4564e6a5-69e9-40a6-bf0f-a888f2f4f002">Anthropic Tells Investors It Will Be Profitable for Second Straight Quarter</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-11">
+          <h2 class="when"><time datetime="2026-09-11">Sep 11 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 11 2026">
+            <li><a href="https://www.ft.com/content/9df99d0b-6ef6-4530-8771-8b220f740e74">Oracle’s Data Centre Revenue Surges as AI Strategy Accelerates</a></li>
+            <li><a href="https://www.ft.com/content/a441ea66-329a-4f42-8e50-3ff140958e53">America Is Losing Its Captive Creditors</a></li>
+            <li><a href="https://www.ft.com/content/916eea1b-d483-49e1-9a70-53b4df8f9870">Situational Awareness Builds Relationships with New Brokers as It Attempts Rebound</a></li>
+            <li><a href="https://www.ft.com/content/dd4cc4a0-844e-486a-b99c-b379d457019b">Scott Bessent Fails to Break ‘Fever’ in US Bond Market</a></li>
+            <li><a href="https://www.ft.com/content/f7ca7904-b0d8-428b-9bf7-883740ba9922">Scott Bessent’s Intervention Risks Damaging BoJ’s Credibility, Bankers Warn</a></li>
+            <li><a href="https://www.ft.com/content/8d387f65-cdd2-4c6d-8897-ff0db5211cc3">Starbucks Bets $1bn on Coffee House Antidote to Lonely Digital Lives</a></li>
+            <li><a href="https://www.ft.com/content/0c440134-686f-4b55-ab35-2afe4e6a3f91">Moonshot Capitalism: AI Rewrites the Venture Capital Playbook</a></li>
+            <li><a href="https://www.ft.com/content/ab6f6433-1f23-4153-a02b-7984d14734c6">IEA Warns of ‘Lost Period’ in Global Oil Demand</a></li>
+            <li><a href="https://www.ft.com/content/41fb2ff1-fb84-4ae4-8668-59d46842dcdb">Citadel Hands International Equities Leadership to Elliott Veteran Nabeel Bhanji</a></li>
+            <li><a href="https://www.ft.com/content/48588acb-8026-4c8e-aac7-8b5588294dbf">How Big Is the Open-Model Threat to AI Hyperscalers?</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-10">
+          <h2 class="when"><time datetime="2026-09-10">Sep 10 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 10 2026">
+            <li><a href="https://www.ft.com/content/a2dcd05d-2bcd-40a4-adc6-cbbff016222f">Jane Street Becomes Leading Block Trader in Asia After Segantii Demise</a></li>
+            <li><a href="https://www.ft.com/content/7410c56e-5350-48f8-a5e6-24f37c1581e9">Stanley Druckenmiller Says US Borrowing Costs Still ‘a Little Low’ Despite Surge in Yields</a></li>
+            <li><a href="https://www.ft.com/content/38d718f6-110b-4822-9403-f7d12a48cfa8">‘I Am the House Now’: Bessent Warns Currency Traders Not to Bet Against Yen</a></li>
+            <li><a href="https://www.ft.com/content/5816292b-c36b-4c22-aa50-2680b9970382">Meta Unveils AI Personal Assistant Linked to WhatsApp and Instagram</a></li>
+            <li><a href="https://www.ft.com/content/49e8c693-0064-4ef9-917f-5f2be97458fc">Global Bond Sell-Off Reignites as Oil Jumps Above $105</a></li>
+            <li><a href="https://www.ft.com/content/a2aaa848-92c3-4f7a-b758-5858bfb29e70">Latham &amp; Watkins Buys Nvidia Servers to Set Up In-House AI Systems</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-09">
+          <h2 class="when"><time datetime="2026-09-09">Sep 9 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 9 2026">
+            <li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/repo-markets-and-the-feds-balance-sheet-implications-for-monetary-policy-implementation-20260826.html">Repo Markets and the Fed’s Balance Sheet: Implications for Monetary Policy Implementation</a></li>
+            <li><a href="https://www.meta.com/thefutureisforeveryone/">The Future Is for Everyone</a></li>
+            <li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/decomposing-hedge-funds-u-s-treasury-exposures-20260622.html">Decomposing Hedge Funds’ U.S. Treasury Exposures</a></li>
+            <li>Antigone (ca. 441 B.C.E.)<span class="source-note">Sophocles · Translated by Robert Fagles</span></li>
+            <li><a href="https://www.ft.com/content/5e23e1bc-e340-4c51-bcce-77cf2ec5ebe0">DeepSeek Fundraising Frenzy Spawns Shadow Market</a></li>
+            <li><a href="https://www.ft.com/content/2b171670-c0ce-442f-85a0-2d475369ffa3">CVC Hires TPG’s Second-in-Command Todd Sisitsky as Co-CEO</a></li>
+            <li><a href="https://www.ft.com/content/a60fe9fe-3905-44c0-ad32-07762cf44786">How Greece Is Wooing Hedge Funds</a></li>
+            <li><a href="https://www.ft.com/content/bce40838-6b08-4a04-9937-627bdf64a1a9">Millennium to Open Office in Greece After Investor Charm Offensive</a></li>
+            <li><a href="https://www.ft.com/content/4f28ef6c-f727-4d36-88a3-bbdbd13ddfbf">The World’s $2tn Interest Bill</a></li>
+            <li><a href="https://www.ft.com/content/dea481e8-d30b-4cbb-b535-5ff219c4e546">Foldable iPhone Duo Will Cost $1,999 as Apple Raises Smartphone Prices</a></li>
+            <li><a href="https://www.ft.com/content/2476992f-c9fe-4992-887d-f34c81c100ab">Treasury Yields Jump as Bessent’s $6bn Buyback Plan Disappoints Investors</a></li>
+            <li><a href="https://www.ft.com/content/e58008a5-d757-4570-af08-d2396f46f03f">Warsh Might Yet Be a Good Fed Chair</a></li>
+            <li><a href="https://www.ft.com/content/f394d4ca-d035-4753-b7a0-f21eefa08252">Japan’s Borrowing Costs Hit 30-Year High: What Does It Mean for Global Markets?</a></li>
+          </ul>
+        </li>
+        <li class="entry" id="read-2026-09-01">
+          <h2 class="when"><time datetime="2026-09-01">Sep 1 2026</time></h2>
+          <ul class="article-list" aria-label="Articles read Sep 1 2026">
+            <li><a href="https://www.ft.com/content/5240a6ac-b2e8-4897-a0a4-cbc7fc283bc9">Wall Street Banks Push Big Law to Cut Fees Because of AI</a></li>
+            <li><a href="https://www.ft.com/content/b359c765-29e2-4f5f-b72c-cd36668621e1">Disasters to Cost World $450bn a Year from Climate Change and Development</a></li>
+            <li><a href="https://www.ft.com/content/f9f240f9-4077-421f-b320-6dc895d65fd1">Revolut’s Mission to Dominate Banking</a></li>
+            <li>IPOs Have Underperformed the Market Since 2019<span class="source-note">Apollo</span></li>
+          </ul>
+        </li>
+      </ol>
+    </main>
+    <footer>© 2026 Kelly Huilin Liang</footer>
+  </div>
+  <script src="vault-nav.js"></script>
+</body>
+</html>

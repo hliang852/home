@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KHL — Garden Leave Journal</title>
+  <title>KHL — Garden-Leave</title>
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
   <div class="layout">
 
     <div class="name-block">
-      <h1 class="wordmark">Kelly Huilin Liang</h1>
+      <h1 class="wordmark"><a class="home-link" href="index.html" aria-label="Kelly Huilin Liang — Home">Kelly Huilin Liang</a></h1>
       <div class="social-row">
         <a href="mailto:kellylianghl@gmail.com">Email</a>
         <a href="https://github.com/hliang852">GitHub</a>
@@ -24,10 +24,19 @@
     </div>
 
     <div class="sidenav">
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html">Home</a>
       <a href="resume.html">Resume</a>
       <a href="projects.html">Projects</a>
-      <a href="garden-leave.html">Garden Leave Journal</a>
+      <a href="garden-leave.html" class="active" aria-current="page">Garden-Leave</a>
+      <div class="vault-nav">
+        <div class="vault-nav-heading">
+          <a href="vault.html" aria-expanded="false" aria-controls="vault-submenu">Vault</a>
+        </div>
+        <div class="vault-submenu" id="vault-submenu">
+          <a href="map.html">Maps</a>
+          <a href="articles.html">Articles</a>
+        </div>
+      </div>
     </div>
 
     <main>
@@ -561,5 +570,6 @@
 
   <script src="heatmap.js"></script>
 
+  <script src="vault-nav.js"></script>
 </body>
 </html>

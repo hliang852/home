@@ -14,6 +14,12 @@
   --rule:#DDDCD2;        /* # EDIT: hairline divider color */
   --accent:#7A2E1F;      /* # EDIT: link / accent color */
   --stamp:#4B5A45;       /* # EDIT: tag / skill chip color */
+
+  --map-sea:#ECEBE3;     /* # EDIT: map water */
+  --map-land:#DBD8CA;    /* # EDIT: map land */
+  --map-edge:#C3BFAE;    /* # EDIT: map coastline / borders */
+  --map-on:#C9CFBB;      /* # EDIT: countries with a pin in them */
+  --map-dot-off:#95907F;  /* # EDIT: a national park not visited yet */
 }
 
 *{box-sizing:border-box;}
@@ -58,11 +64,11 @@ footer{grid-area:foot;}
   color:var(--ink-soft);
   font-family:'Space Mono', monospace; font-size:12px;
   letter-spacing:0.1em; text-transform:uppercase;
-  border-right:2px solid transparent;
+  border-bottom:3px solid transparent;
   padding:4px 0;
 }
 .sidenav a:hover{color:var(--ink); text-decoration:none;}
-.sidenav a.active{color:var(--ink); border-right-color:var(--accent);}
+.sidenav a.active{color:var(--ink); border-bottom-color:var(--accent);}
 
 /* ---------- name + social links header ---------- */
 /* # EDIT: NAME AND LINKS — see the comment above the markup in each
@@ -433,6 +439,149 @@ h3.section-title:first-of-type{margin-top:0;}
 }
 .to-top:hover{color:var(--accent); text-decoration:none;}
 
+/* ---------- map page: the travel map ---------- */
+/* Same boxed card family as the journal heatmap and the projects ikebana.
+   The map itself is drawn by map.js; everything about how it LOOKS at each
+   zoom tier (.z1 .. .z4 on .map-stage) is set here. */
+.map-wrap{
+  margin:0 0 28px;
+  padding:14px 16px 12px;
+  background:var(--paper-deep);
+  border:1px solid var(--rule);
+  border-radius:3px;
+}
+.map-wrap .heatmap-caption{margin:0 0 8px;}
+.map-stage{
+  position:relative; width:100%; aspect-ratio:1000/396;
+  overflow:hidden; border:1px solid var(--rule); border-radius:2px;
+  background:var(--map-sea);
+}
+/* the US parks map is a squarer drawing than the world band, and Tokyo
+   squarer still — each matches the shape of what it draws */
+.map-stage.us{aspect-ratio:1000/500;}
+.map-stage.tokyo{aspect-ratio:1000/714;}
+.map-stage svg{
+  display:block; width:100%; height:100%;
+  cursor:grab;
+  touch-action:pan-y;   /* one finger still scrolls the page; two fingers are ours */
+}
+.map-stage.grabbing svg{cursor:grabbing;}
+.map-stage svg:focus-visible{outline:2px solid var(--accent); outline-offset:-2px;}
+
+.wm-sea{fill:var(--map-sea);}
+.wm-c{fill:var(--map-land); stroke:var(--map-edge); stroke-width:0.6;}
+.wm-c.on{fill:var(--map-on);}
+.wm-grat line{stroke:var(--map-edge); stroke-width:0.5; opacity:0;}
+.wm-clabel text{
+  font-family:'Space Mono', monospace; font-size:9px;
+  letter-spacing:0.14em; text-transform:uppercase;
+  fill:var(--ink-soft); opacity:0;
+}
+.wm-clabel, .wm-grat line, .wm-plabel, .wm-pdetail, .wm-pnote{transition:opacity .45s;}
+
+/* pins: one flat dot at world zoom, a labelled pin once you're in close.
+   No halo, no outline — at this density anything around the dot reads as
+   smudge rather than as a second mark. */
+.wm-dot{fill:var(--accent);}
+.wm-hit{fill:transparent; cursor:pointer;}
+.wm-pin:focus{outline:none;}
+/* the picked pin changes colour (and grows a touch where `r` is animatable) */
+.wm-pin.on .wm-dot{fill:var(--ink); r:4px;}
+
+/* on the parks map a dot means "a national park", and the colour says
+   whether it has been visited: grey for not yet, accent for been there.
+   (On that map the "named early" flag IS data-been, hence .major.) */
+.map-stage.us .wm-dot{fill:var(--map-dot-off);}
+.map-stage.us .wm-pin.major .wm-dot{fill:var(--accent);}
+.map-stage.us .wm-pin.on .wm-dot{fill:var(--ink); r:4px;}
+/* the only ring on a pin, and only for keyboard focus */
+.wm-pin:focus-visible .wm-dot{stroke:var(--ink); stroke-width:2px;}
+.wm-plabel{opacity:0; pointer-events:none;}
+.wm-city{
+  font-family:'Space Mono', monospace; font-size:10.5px;
+  fill:var(--ink); paint-order:stroke; stroke:var(--paper);
+  stroke-width:3px; stroke-linejoin:round;
+}
+.wm-pdetail, .wm-pnote{
+  font-family:'Space Mono', monospace; font-size:9px;
+  fill:var(--ink-soft); paint-order:stroke; stroke:var(--paper);
+  stroke-width:3px; stroke-linejoin:round; opacity:0;
+}
+
+/* The five zoom tiers — the "more detail as you get closer" ladder. The
+   tier classes are set by map.js from how many kilometres the view spans:
+     z1 wider than 6000 km · z2 6000 · z3 2500 · z4 500 · z5 250 */
+
+/* z2 — the grid and the country names */
+.map-stage.z2 .wm-grat line,
+.map-stage.z3 .wm-grat line,
+.map-stage.z4 .wm-grat line,
+.map-stage.z5 .wm-grat line{opacity:0.55;}
+.map-stage.z2 .wm-clabel text,
+.map-stage.z3 .wm-clabel text{opacity:1;}
+/* once cities are named the country name is noise behind them — it fades,
+   then goes; the readout line under the map still names the country */
+.map-stage.z4 .wm-clabel text{opacity:0.4;}
+.map-stage.z5 .wm-clabel text{opacity:0;}
+
+/* z3 — capitals and world cities only (the data-major places) */
+.map-stage.z3 .wm-pin.major .wm-plabel{opacity:1;}
+/* z4 — every city, at 500 km across */
+.map-stage.z4 .wm-plabel,
+.map-stage.z5 .wm-plabel{opacity:1;}
+/* z5 — the date under the name */
+.map-stage.z5 .wm-pdetail{opacity:1;}
+/* the note is the last thing to appear, and only for the pin you picked —
+   every pin's note at once would be a wall of text across the map */
+.map-stage.z4 .wm-pin.on .wm-pnote,
+.map-stage.z5 .wm-pin.on .wm-pnote{opacity:1;}
+/* a selected pin always shows its label, whatever the zoom */
+.wm-pin.on .wm-plabel{opacity:1;}
+
+/* zoom buttons + distance bar, sitting on the map */
+.map-ctrl{position:absolute; top:8px; right:8px; display:flex; flex-direction:column; gap:4px;}
+/* on the US map the top-right corner is Maine (and Acadia) — drop the
+   buttons to the bottom-right, which is open Atlantic */
+.map-stage.us .map-ctrl{top:auto; bottom:8px;}
+.map-ctrl button{
+  width:26px; height:26px; padding:0; cursor:pointer;
+  font-family:'Space Mono', monospace; font-size:13px; line-height:1;
+  color:var(--ink-soft); background:var(--paper);
+  border:1px solid var(--rule); border-radius:2px;
+}
+.map-ctrl button:hover{color:var(--ink); border-color:var(--ink-soft);}
+.map-scale{
+  position:absolute; left:10px; bottom:10px; min-width:24px; height:5px;
+  border:1px solid var(--ink-soft); border-top:none;
+}
+.map-scale span{
+  position:absolute; left:0; bottom:7px; white-space:nowrap;
+  font-family:'Space Mono', monospace; font-size:9px; line-height:1;
+  letter-spacing:0.04em; color:var(--ink-soft);
+}
+
+/* ---------- map page: the list of places ----------
+   The list is `hidden` in map.html — it is the map's data, not page content.
+   These rules are what it looks like if that `hidden` is ever taken off. */
+.place-list{list-style:none; margin:0; padding:0;}
+.place{
+  display:grid; grid-template-columns:150px 150px 1fr; gap:18px;
+  padding:12px 0; border-bottom:1px solid var(--rule);
+  cursor:pointer;
+}
+.place:last-child{border-bottom:none;}
+.place .p-city{font-family:'Fraunces', serif; font-weight:600; font-size:16px;}
+.place .p-meta{
+  font-family:'Space Mono', monospace; font-size:11.5px;
+  letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft);
+  padding-top:3px;
+}
+.place .note{font-size:15.5px;}
+.place:hover .p-city{color:var(--accent);}
+.place.on{box-shadow:inset 2px 0 0 var(--accent);}
+.place.on .p-city{color:var(--accent);}
+.place.flash{animation:entryFlash 1.6s ease-out;}
+
 footer{
   border-top:1px solid var(--rule); padding:20px 0 50px;
   font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft);
@@ -453,7 +602,7 @@ footer{
     text-align:left; border-bottom:1px solid var(--rule);
     padding:18px 0;
   }
-  .sidenav a{border-right:none; border-bottom:2px solid transparent;}
+  .sidenav a{border-right:none; border-bottom:3px solid transparent;}
   .sidenav a.active{border-bottom-color:var(--accent);}
   .name-block{padding:34px 0 8px;}
   h1.wordmark{font-size:34px;}
@@ -462,6 +611,12 @@ footer{
   .entry, .proj-entry{grid-template-columns:1fr;}
   .entry .when, .proj-entry .kind{padding-top:0;}
   .ai-cards{grid-template-columns:repeat(2, 1fr); gap:14px 12px;}
+  .place{grid-template-columns:1fr; gap:2px;}
+  .place .p-meta{padding-top:0;}
+  /* a 2.5:1 band is a letterbox slit on a phone — give the map a real box
+     and let the world sit in the middle of it */
+  .map-stage{aspect-ratio:auto; height:240px;}
+  .map-ctrl button{width:32px; height:32px; font-size:15px;}
 }
 
 #my-tight-div {
@@ -475,4 +630,50 @@ footer{
 #my-tight-div p {
   /* Tightens spacing between paragraphs inside the div */
   margin-bottom: 1px; 
+}
+/* Vault: shared navigation and illustration-only landing page. */
+.vault-nav{position:relative;}
+.vault-nav-heading{display:flex;align-items:center;justify-content:flex-end;gap:6px;}
+.vault-nav-heading > a{flex:1;}
+.vault-submenu{display:none;position:absolute;z-index:20;right:0;top:100%;min-width:140px;padding:12px 14px;background:var(--paper);border:1px solid var(--rule);box-shadow:0 5px 12px #2a241c0a;text-align:left;}
+.vault-submenu a{display:block;position:relative;padding:7px 0;}
+.sidenav .vault-submenu a{border-bottom:0;}
+.vault-submenu a.active::after{content:"";position:absolute;left:0;bottom:2px;width:22px;height:1px;background:var(--accent);}
+.vault-nav.is-open .vault-submenu{display:block;}
+.vault-nav a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.vault-landing{display:flex;align-items:center;justify-content:center;min-height:60vh;padding:24px 0 60px;}
+.vault-chest{display:block;width:100%;max-width:560px;height:auto;}
+@media(max-width:760px){
+  .sidenav{flex-wrap:wrap;}
+  .vault-nav-heading{justify-content:flex-start;}
+  .vault-submenu{right:auto;left:0;}
+  .vault-landing{min-height:50vh;}
+}
+
+/* Broad home target around the wordmark, keeping social links independent. */
+.wordmark .home-link{display:block;color:inherit;text-decoration:none;padding:12px 16px;margin:-12px -16px;}
+.wordmark .home-link:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
+
+/* One-time chest opening: the revealed links remain still and clickable. */
+.chest-scene{position:relative;width:100%;max-width:560px;aspect-ratio:1 / 1.15;isolation:isolate;}
+.chest-trigger{position:absolute;left:0;bottom:0;width:100%;aspect-ratio:1;border:0;padding:0;background:transparent;cursor:pointer;}
+.chest-trigger img{position:absolute;inset:0;display:block;width:100%;height:auto;pointer-events:none;}
+.chest-trigger .chest-closed{top:auto;bottom:0;opacity:1;transition:opacity 350ms ease;}
+.chest-open{opacity:0;transform:scaleY(.84);transform-origin:50% 78%;transition:opacity 450ms ease,transform 600ms ease;}
+.chest-scene.is-open .chest-closed{opacity:0;}
+.chest-scene.is-open .chest-open{opacity:1;transform:scaleY(1);}
+.chest-scene.is-open .chest-trigger{cursor:default;}
+/* White beacons sit within the open chest's dark interior. */
+.chest-treasure{position:absolute;top:46%;width:30%;min-height:44px;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;opacity:0;visibility:hidden;transform:translateY(-50%);color:#fff;transition:opacity 450ms ease 350ms,visibility 0s linear 350ms;text-align:center;}
+.treasure-articles{left:20%;}
+.treasure-map{right:20%;}
+.chest-scene.is-open .chest-treasure{opacity:1;visibility:visible;}
+.treasure-point{display:block;width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 7px 3px #ffffffb3,0 0 20px 7px #ffffff40;}
+.treasure-label{display:inline-block;font-family:'Space Mono',monospace;font-size:clamp(9px,2vw,11px);letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 3px #000;}
+.chest-treasure:hover{color:#fff;text-decoration:none;}
+.chest-treasure:hover .treasure-label{text-decoration:underline;text-underline-offset:3px;}
+.chest-treasure:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:4px;}
+.chest-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
+@media(prefers-reduced-motion:reduce){
+  .chest-closed,.chest-open,.chest-treasure{transition:none;}
 }
