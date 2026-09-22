@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <meta name="description" content="Maps and reading collected by Kelly Huilin Liang.">
 </head>
@@ -38,19 +38,21 @@
     </nav>
     <main class="vault-landing" aria-label="Vault">
       <div class="chest-scene" id="chest-scene">
-        <button class="chest-trigger" type="button" aria-label="Open the treasure chest" aria-expanded="false" aria-controls="chest-contents">
-          <img class="chest-closed" src="chest.png" width="1254" height="1074" alt="A pastel treasure chest with a dusty blue ribbon">
-          <img class="chest-open" src="chest-open.png" width="1254" height="1254" alt="" aria-hidden="true">
-        </button>
-        <div class="chest-contents" id="chest-contents" inert>
-          <a class="chest-treasure treasure-articles" href="articles.html" aria-label="Read Articles" title="Articles">
-            <span class="treasure-point" aria-hidden="true"></span>
-            <span class="treasure-label">Articles</span>
-          </a>
-          <a class="chest-treasure treasure-map" href="map.html" aria-label="Explore Maps" title="Maps">
-            <span class="treasure-point" aria-hidden="true"></span>
-            <span class="treasure-label">Maps</span>
-          </a>
+        <div class="chest-artwork">
+          <button class="chest-trigger" type="button" aria-label="Open the treasure chest" aria-expanded="false" aria-controls="chest-contents">
+            <img class="chest-closed" src="chest.png" width="1254" height="1074" alt="A pastel treasure chest with a dusty blue ribbon">
+            <img class="chest-open" src="chest-open.png" width="1254" height="1254" alt="" aria-hidden="true">
+          </button>
+          <div class="chest-contents" id="chest-contents" inert>
+            <a class="chest-treasure treasure-articles" href="articles.html" aria-label="Read Articles" title="Articles">
+              <span class="treasure-point" aria-hidden="true"></span>
+              <span class="treasure-label">Articles</span>
+            </a>
+            <a class="chest-treasure treasure-map" href="map.html" aria-label="Explore Maps" title="Maps">
+              <span class="treasure-point" aria-hidden="true"></span>
+              <span class="treasure-label">Maps</span>
+            </a>
+          </div>
         </div>
       </div>
       <noscript><p><a href="articles.html">Articles</a> · <a href="map.html">Maps</a></p></noscript>

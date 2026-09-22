@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -720,7 +720,7 @@
             data-lat="38.2000" data-lon="-109.9300">
           <span class="note"></span>
         </li>
-        <li class="place" data-park="Capitol Reef" data-state="Utah" data-when=""
+        <li class="place" data-been data-park="Capitol Reef" data-state="Utah" data-when=""
             data-lat="38.2000" data-lon="-111.1700">
           <span class="note"></span>
         </li>
@@ -744,7 +744,7 @@
             data-lat="41.2400" data-lon="-81.5500">
           <span class="note"></span>
         </li>
-        <li class="place" data-park="Death Valley" data-state="California" data-when=""
+        <li class="place" data-been data-park="Death Valley" data-state="California" data-when=""
             data-lat="36.5100" data-lon="-117.0800">
           <span class="note"></span>
         </li>
@@ -776,7 +776,7 @@
             data-lat="58.5000" data-lon="-137.0000">
           <span class="note"></span>
         </li>
-        <li class="place" data-been data-park="Grand Canyon" data-state="Arizona" data-when=""
+        <li class="place" data-park="Grand Canyon" data-state="Arizona" data-when=""
             data-lat="36.0600" data-lon="-112.1400">
           <span class="note"></span>
         </li>
@@ -856,7 +856,7 @@
             data-lat="37.2300" data-lon="-108.4600">
           <span class="note"></span>
         </li>
-        <li class="place" data-park="Mount Rainier" data-state="Washington" data-when=""
+        <li class="place" data-been data-park="Mount Rainier" data-state="Washington" data-when=""
             data-lat="46.8500" data-lon="-121.7500">
           <span class="note"></span>
         </li>
@@ -864,11 +864,11 @@
             data-lat="37.8800" data-lon="-81.0600">
           <span class="note"></span>
         </li>
-        <li class="place" data-park="North Cascades" data-state="Washington" data-when=""
+        <li class="place" data-been data-park="North Cascades" data-state="Washington" data-when=""
             data-lat="48.7000" data-lon="-121.2000">
           <span class="note"></span>
         </li>
-        <li class="place" data-park="Olympic" data-state="Washington" data-when=""
+        <li class="place" data-been data-park="Olympic" data-state="Washington" data-when=""
             data-lat="47.8000" data-lon="-123.6000">
           <span class="note"></span>
         </li>
@@ -934,6 +934,9 @@
         </li>
       </ul>
 
+      <!-- Paused: inert markup keeps the Tokyo map and its data available
+           for restoration without rendering or initializing it. -->
+      <template id="tokyo-map-archive">
       <!-- ===== THE THIRD MAP: Tokyo by neighbourhood =====
            Same card and same engine again, on a local equirectangular grid
            (see tokyo-data.js): the 23 special wards outlined and named, the
@@ -1266,6 +1269,7 @@
         </li>
       </ul>
 
+      </template>
     </main>
 
     <footer>© 2026 Kelly Huilin Liang</footer>
@@ -1274,7 +1278,6 @@
 
   <script src="world-data.js"></script>
   <script src="us-data.js"></script>
-  <script src="tokyo-data.js"></script>
   <script src="map.js"></script>
 
   <script src="vault-nav.js"></script>

@@ -1,25 +1,31 @@
 /* =====================================================================
-   STYLE.CSS — shared styles for index.html, resume.html, projects.html
+   STYLE.CSS — shared Soft Ink theme for all site pages
    ---------------------------------------------------------------------
    # EDIT: COLORS
    All colors live in the :root block right below. Change a value here
-   and it updates everywhere on the site (all three pages share this file).
+   and it updates everywhere on the site.
    ===================================================================== */
 
 :root{
   --paper:#FAFAF6;       /* # EDIT: page background (off-white) */
   --paper-deep:#F1F1EC;  /* # EDIT: card / portrait background */
-  --ink:#2A241C;         /* # EDIT: main text color */
-  --ink-soft:#6B6051;    /* # EDIT: secondary / muted text color */
-  --rule:#DDDCD2;        /* # EDIT: hairline divider color */
-  --accent:#7A2E1F;      /* # EDIT: link / accent color */
+  --ink:#34372F;         /* # EDIT: main text color */
+  --ink-soft:#626857;    /* # EDIT: secondary / muted text color */
+  --rule:#DEDFD5;        /* # EDIT: hairline divider color */
+  --accent:#526349;      /* # EDIT: link / accent color */
   --stamp:#4B5A45;       /* # EDIT: tag / skill chip color */
+
+  --font-body:'Source Serif 4', serif;
+  --font-display:'Fraunces', serif;
+  --font-ui:'Hanken Grotesk', Arial, sans-serif;
+  --font-mono:'Space Mono', monospace; /* generated reports and code */
 
   --map-sea:#ECEBE3;     /* # EDIT: map water */
   --map-land:#DBD8CA;    /* # EDIT: map land */
   --map-edge:#C3BFAE;    /* # EDIT: map coastline / borders */
   --map-on:#C9CFBB;      /* # EDIT: countries with a pin in them */
   --map-dot-off:#95907F;  /* # EDIT: a national park not visited yet */
+  --map-dot-on:#7A2E1F;   /* visited places: red, matching the map legends */
 }
 
 *{box-sizing:border-box;}
@@ -27,12 +33,12 @@ html,body{margin:0;padding:0;}
 body{
   background:var(--paper);
   color:var(--ink);
-  font-family:'Source Serif 4', serif;
+  font-family:var(--font-body);
   font-size:17px;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
-.mono{font-family:'Space Mono', monospace;}
+.mono{font-family:var(--font-mono);}
 a{color:var(--accent); text-decoration:none;}
 a:hover{text-decoration:underline;}
 
@@ -49,7 +55,7 @@ a:hover{text-decoration:underline;}
   padding:0 28px;
 }
 .name-block{grid-area:name; padding:54px 0 8px;}
-main{grid-area:main; padding:18px 0 80px;}
+main{grid-area:main; min-width:0; padding:18px 0 80px;}
 footer{grid-area:foot;}
 
 .sidenav{
@@ -62,36 +68,44 @@ footer{grid-area:foot;}
 }
 .sidenav a{
   color:var(--ink-soft);
-  font-family:'Space Mono', monospace; font-size:12px;
-  letter-spacing:0.1em; text-transform:uppercase;
+  font-family:var(--font-ui); font-size:13px;
+  letter-spacing:0; text-transform:none;
   border-bottom:3px solid transparent;
   padding:4px 0;
 }
 .sidenav a:hover{color:var(--ink); text-decoration:none;}
-.sidenav a.active{color:var(--ink); border-bottom-color:var(--accent);}
+.sidenav a.active{
+  color:var(--ink);
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:7px;
+  text-decoration-color:var(--accent);
+}
 
 /* ---------- name + social links header ---------- */
 /* # EDIT: NAME AND LINKS — see the comment above the markup in each
    HTML file for exactly which lines to change. */
 h1.wordmark{
-  font-family:'Fraunces', serif; font-weight:600; font-size:44px;
-  letter-spacing:0.005em; margin:0 0 14px; line-height:1.05;
+  font-family:var(--font-display); font-weight:300; font-size:42px;
+  letter-spacing:-0.035em; margin:0 0 14px; line-height:1.05;
 }
 .social-row{
-  display:flex; gap:18px; font-family:'Space Mono', monospace; font-size:12px;
-  letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;
+  display:flex; gap:18px; font-family:var(--font-ui); font-size:13px;
+  letter-spacing:0; text-transform:none; margin-bottom:8px;
 }
-.social-row a{color:var(--ink-soft); border-bottom:1px solid var(--rule);}
+.social-row a{color:var(--ink-soft); border-bottom:1px solid transparent;}
 .social-row a:hover{color:var(--accent); border-bottom-color:var(--accent); text-decoration:none;}
 
 /* ---------- home / about page ---------- */
 h2.hero{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-family:var(--font-display); font-weight:500; font-style:italic;
   font-size:28px; line-height:1.3; margin:18px 0 26px; max-width:520px;
 }
 .home-meta{display:flex; gap:50px; flex-wrap:wrap; margin:30px 0;}
-.home-meta div{font-family:'Space Mono', monospace; font-size:12px; color:var(--ink-soft);}
-.home-meta strong{display:block; color:var(--ink); font-size:13px; margin-bottom:5px;}
+.home-meta div{font-family:var(--font-ui); font-size:13px; color:var(--ink-soft);}
+.home-meta strong{display:block; color:var(--accent); font-size:12px; font-weight:500; margin-bottom:5px;}
+.intro strong{font-style:italic; font-weight:400;}
+.about-text > p:first-child{font-size:15px; font-style:italic; color:var(--ink-soft);}
 
 /* ---------- portrait + basic facts, side by side ---------- */
 .profile-row{
@@ -111,7 +125,7 @@ h2.hero{
   min-width:0;
   flex-direction:column;
   flex-wrap:nowrap;
-  gap:16px;
+  gap:14px;
   margin:0;
 }
 
@@ -125,14 +139,14 @@ h2.hero{
   width:130px; height:130px; flex-shrink:0;
   background:var(--paper-deep); border:1px solid var(--rule);
   display:flex; align-items:center; justify-content:center;
-  font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft);
-  text-align:center; text-transform:uppercase; letter-spacing:0.05em;
+  font-family:var(--font-ui); font-size:11px; color:var(--ink-soft);
+  text-align:center; text-transform:none; letter-spacing:0;
   overflow:hidden;
 }
 .portrait img{width:100%; height:100%; object-fit:cover;}
 .about-text{flex:1; min-width:240px;}
 blockquote{
-  font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+  font-family:var(--font-display); font-style:italic; font-weight:500;
   font-size:21px; line-height:1.4; margin:30px 0; padding-left:18px;
   border-left:2px solid var(--accent); color:var(--ink);
 }
@@ -141,15 +155,15 @@ blockquote{
 .resume-head{display:flex; justify-content:space-between; align-items:flex-end;
   flex-wrap:wrap; gap:14px; margin-bottom:18px;}
 .btn-ghost{
-  font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.08em;
-  text-transform:uppercase; border:1px solid var(--ink); color:var(--ink);
+  font-family:var(--font-ui); font-size:12px; letter-spacing:0;
+  text-transform:none; border:1px solid var(--ink); color:var(--ink);
   background:var(--ink); color:var(--paper); padding:8px 16px; cursor:pointer; border-radius:2px;
   display:inline-block;
 }
 .btn-ghost:hover{text-decoration:none;}
 h3.section-title{
-  font-family:'Fraunces', serif; font-weight:600; font-size:13px;
-  letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);
+  font-family:var(--font-ui); font-weight:500; font-size:14px;
+  letter-spacing:0; text-transform:none; color:var(--ink-soft);
   margin:40px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--rule);
 }
 h3.section-title:first-of-type{margin-top:0;}
@@ -158,24 +172,24 @@ h3.section-title:first-of-type{margin-top:0;}
   padding:16px 0; border-bottom:1px solid var(--rule);
 }
 .entry:last-child{border-bottom:none;}
-.entry .when{font-family:'Space Mono', monospace; font-size:12px; color:var(--ink-soft); padding-top:3px;}
+.entry .when{font-family:var(--font-ui); font-size:12px; color:var(--ink-soft); padding-top:3px;}
 .entry .role{font-weight:600; margin:0 0 2px; font-size:17px;}
 .entry .org{color:var(--ink-soft); font-size:14px; margin:0 0 8px;}
 .entry p.desc{margin:0 0 10px; font-size:15.5px;}
 .tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;}
 .tag{
-  font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:0.05em;
-  text-transform:uppercase; color:var(--stamp); border:1px solid var(--stamp);
+  font-family:var(--font-ui); font-size:10.5px; letter-spacing:0;
+  text-transform:none; color:var(--stamp); border:1px solid var(--stamp);
   padding:2px 8px; border-radius:2px;
 }
 
-/* per-role skills under each experience entry: quiet inline mono list
+/* per-role skills under each experience entry: quiet inline list
    separated by middle dots (replaces the old .tags chips) */
 .skill-list{
   list-style:none; margin:0 0 10px; padding:0;
   display:flex; flex-wrap:wrap; align-items:baseline; row-gap:4px;
-  font-family:'Space Mono', monospace; font-size:11.5px;
-  letter-spacing:0.06em; text-transform:uppercase;
+  font-family:var(--font-ui); font-size:11.5px;
+  letter-spacing:0; text-transform:none;
   color:var(--stamp);
 }
 .skill-list li:not(:last-child)::after{
@@ -196,12 +210,12 @@ h3.section-title:first-of-type{margin-top:0;}
   padding:16px 0; border-bottom:1px solid var(--rule);
 }
 .proj-entry:last-child{border-bottom:none;}
-.proj-entry .kind{font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft); padding-top:3px;}
+.proj-entry .kind{font-family:var(--font-ui); font-size:12px; letter-spacing:0; text-transform:none; color:var(--ink-soft); padding-top:3px;}
 .proj-entry h4{
-  font-family:'Fraunces', serif; font-weight:600; font-size:17px; margin:0 0 6px;
+  font-family:var(--font-display); font-weight:500; font-size:17px; margin:0 0 6px;
 }
 .proj-entry p.desc{font-size:15.5px; margin:0 0 10px;}
-.proj-links a{font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; margin-right:14px;}
+.proj-links a{font-family:var(--font-ui); font-size:11px; letter-spacing:0; text-transform:none; margin-right:14px;}
 
 /* ---------- garden leave journal: the grade strip ----------
    No card, no fill: this is a bare scoreboard for the heatmap directly above
@@ -217,7 +231,7 @@ h3.section-title:first-of-type{margin-top:0;}
   border-bottom:1px solid var(--ai-rule);
 }
 .ai-grade-strip h4{
-  font-family:'Space Mono', monospace; font-size:11px; font-weight:400;
+  font-family:var(--font-mono); font-size:11px; font-weight:400;
   letter-spacing:0.06em; text-transform:uppercase;
   color:var(--ai-muted); margin:0 0 14px;
 }
@@ -226,12 +240,12 @@ h3.section-title:first-of-type{margin-top:0;}
    that doesn't exist. Letters carry the meaning, so nothing is color-coded. */
 .ai-grade{display:flex; align-items:baseline; gap:16px; margin:0 0 16px;}
 .ai-grade .mark{
-  font-family:'Space Mono', monospace;      /* mono, not the page's serif — machine-written */
+  font-family:var(--font-mono);      /* mono, not the page's serif — machine-written */
   font-size:52px; font-weight:700; line-height:0.85;
   letter-spacing:-0.03em; color:var(--ai-mark);
 }
 .ai-grade .verdict{
-  font-family:'Space Mono', monospace;
+  font-family:var(--font-mono);
   font-size:12.5px; line-height:1.7; color:var(--ai-muted); margin:0;
 }
 .ai-cards{
@@ -239,12 +253,12 @@ h3.section-title:first-of-type{margin-top:0;}
   margin:0; padding:14px 0 0; border-top:1px solid var(--ai-rule);
 }
 .ai-cards .g{
-  display:block; font-family:'Space Mono', monospace;
+  display:block; font-family:var(--font-mono);
   font-size:20px; font-weight:700; line-height:1.2; color:var(--ink);
 }
 .ai-cards .l{
   display:block; margin-top:1px;
-  font-family:'Space Mono', monospace; font-size:9.5px;
+  font-family:var(--font-mono); font-size:9.5px;
   letter-spacing:0.05em; text-transform:uppercase; color:var(--ai-muted);
 }
 
@@ -253,20 +267,20 @@ h3.section-title:first-of-type{margin-top:0;}
    "Top ↑" link like any other), but set in mono so it still reads as
    machine-written rather than as Kelly's own prose. */
 .ai-entry .ai-head{
-  font-family:'Space Mono', monospace; font-size:11px;
+  font-family:var(--font-mono); font-size:11px;
   letter-spacing:0.06em; text-transform:uppercase;
   color:var(--ink-soft); margin:0 0 12px;
 }
 .ai-entry ul{margin:0; padding:0 0 0 18px;}
 .ai-entry li{
-  font-family:'Space Mono', monospace;
+  font-family:var(--font-mono);
   font-size:12.5px; line-height:1.75;
   margin:0 0 12px;
 }
 .ai-entry li::marker{color:var(--stamp);}
 .ai-entry li:last-child{margin-bottom:0;}
 .ai-entry .ai-note{
-  font-family:'Space Mono', monospace; font-size:10px; line-height:1.6;
+  font-family:var(--font-mono); font-size:10px; line-height:1.6;
   color:var(--ink-soft); margin:14px 0 0;
 }
 
@@ -279,8 +293,8 @@ h3.section-title:first-of-type{margin-top:0;}
   border-radius:3px;
 }
 .heatmap-caption{
-  font-family:'Space Mono', monospace; font-size:11px;
-  letter-spacing:0.06em; text-transform:uppercase;
+  font-family:var(--font-ui); font-size:11px;
+  letter-spacing:0; text-transform:none;
   color:var(--ink-soft); margin:0 0 12px;
 }
 .heatmap-scroll{overflow-x:auto;}
@@ -329,7 +343,7 @@ h3.section-title:first-of-type{margin-top:0;}
   outline-offset:1px;
 }
 .hm-month{
-  font-family:'Space Mono', monospace; font-size:10px;
+  font-family:var(--font-ui); font-size:10px;
   color:var(--ink-soft); height:14px; line-height:14px;
   white-space:nowrap;
 }
@@ -339,12 +353,12 @@ h3.section-title:first-of-type{margin-top:0;}
   gap:3px; margin-right:6px; float:left;
 }
 .hm-daylabels span{
-  font-family:'Space Mono', monospace; font-size:9px;
+  font-family:var(--font-ui); font-size:9px;
   color:var(--ink-soft); line-height:12px;
 }
 .heatmap-legend{
   display:flex; align-items:center; gap:6px; margin-top:10px;
-  font-family:'Space Mono', monospace; font-size:10px; color:var(--ink-soft);
+  font-family:var(--font-ui); font-size:10px; color:var(--ink-soft);
 }
 .heatmap-legend .hm-cell{cursor:default;}
 .heatmap-legend .hm-cell.books{cursor:pointer;}
@@ -357,7 +371,7 @@ h3.section-title:first-of-type{margin-top:0;}
 /* heatmap hover tooltip */
 .hm-tip{
   position:fixed; z-index:10; pointer-events:none;
-  font-family:'Space Mono', monospace; font-size:11px;
+  font-family:var(--font-ui); font-size:11px;
   background:var(--ink); color:var(--paper);
   padding:4px 8px; border-radius:2px;
   transform:translate(-50%, -130%);
@@ -395,36 +409,36 @@ h3.section-title:first-of-type{margin-top:0;}
   transform-box:fill-box; transform-origin:center;}
 .show-hints .ikb-ring{animation:ikbPulse 2.6s ease-out infinite;}
 @keyframes ikbPulse{0%{opacity:.5; transform:scale(.8);}70%{opacity:0; transform:scale(1.5);}100%{opacity:0;}}
-.ikb-olabel{font-family:'Space Mono',monospace; font-size:8.5px; letter-spacing:0.12em;
-  text-transform:uppercase; fill:var(--ink-soft); transition:opacity .4s;}
+.ikb-olabel{font-family:var(--font-ui); font-size:8.5px; letter-spacing:0;
+  text-transform:none; fill:var(--ink-soft); transition:opacity .4s;}
 /* the "Others" label printed onto the vase surface */
-.ikb-vaselabel{fill:#F2EFE6; font-size:9px; letter-spacing:0.16em;}
+.ikb-vaselabel{fill:#F2EFE6; font-size:9px; letter-spacing:0;}
 .flower, .ikb-olabel, .ikb-ring, .ikb-spot{transition:opacity .5s;}
 
 .ikb-node{opacity:0; pointer-events:none; transition:opacity .5s;}
 .ikb-node.on{opacity:1; pointer-events:auto; cursor:pointer;}
-.ikb-node text{font-family:'Space Mono',monospace; font-size:6.5px; letter-spacing:0.06em;
-  text-transform:uppercase; fill:var(--ink);}
+.ikb-node text{font-family:var(--font-ui); font-size:6.5px; letter-spacing:0;
+  text-transform:none; fill:var(--ink);}
 .ikb-node .plate{fill:var(--paper); opacity:.9;}
 
 /* chrome that appears once a field is open */
 /* bottom-right so it never sits under the bloom labels on small screens */
 .ikb-back{position:absolute; bottom:10px; right:10px;
-  font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:0.06em;
-  text-transform:uppercase; color:var(--ink-soft);
+  font-family:var(--font-ui); font-size:9.5px; letter-spacing:0;
+  text-transform:none; color:var(--ink-soft);
   background:var(--paper); border:1px solid var(--rule); border-radius:2px;
   padding:4px 9px; cursor:pointer; opacity:0; visibility:hidden; transition:opacity .4s;}
 .ikb-back:hover{color:var(--ink); border-color:var(--ink-soft);}
 .ikb-gtitle{position:absolute; top:10px; right:12px; text-align:right;
   opacity:0; visibility:hidden; transition:opacity .4s;}
-.ikb-gtitle .g{font-family:'Fraunces',serif; font-weight:600; font-size:18px; line-height:1;}
-.ikb-gtitle .c{font-family:'Space Mono',monospace; font-size:9px; color:var(--ink-soft);
-  letter-spacing:0.08em; text-transform:uppercase;}
+.ikb-gtitle .g{font-family:var(--font-display); font-weight:500; font-size:18px; line-height:1;}
+.ikb-gtitle .c{font-family:var(--font-ui); font-size:9px; color:var(--ink-soft);
+  letter-spacing:0; text-transform:none;}
 .stage-wrap.zoomed .ikb-back,
 .stage-wrap.zoomed .ikb-gtitle{opacity:1; visibility:visible;}
 
 /* the guide / readout line sits BELOW the arrangement, never over the vase */
-.ikb-hint{font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:0.04em;
+.ikb-hint{font-family:var(--font-ui); font-size:10.5px; letter-spacing:0;
   color:var(--ink-soft); text-align:center; margin:10px 0 2px; transition:color .3s;}
 .ikb-hint.readout{color:var(--accent);}
 
@@ -434,8 +448,8 @@ h3.section-title:first-of-type{margin-top:0;}
 /* "Top ↑" return link appended to each project by ikebana.js */
 .to-top{
   display:block; text-align:right; margin-top:2px;
-  font-family:'Space Mono', monospace; font-size:11px;
-  letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft);
+  font-family:var(--font-ui); font-size:11px;
+  letter-spacing:0; text-transform:none; color:var(--ink-soft);
 }
 .to-top:hover{color:var(--accent); text-decoration:none;}
 
@@ -473,8 +487,8 @@ h3.section-title:first-of-type{margin-top:0;}
 .wm-c.on{fill:var(--map-on);}
 .wm-grat line{stroke:var(--map-edge); stroke-width:0.5; opacity:0;}
 .wm-clabel text{
-  font-family:'Space Mono', monospace; font-size:9px;
-  letter-spacing:0.14em; text-transform:uppercase;
+  font-family:var(--font-ui); font-size:9px;
+  letter-spacing:0; text-transform:none;
   fill:var(--ink-soft); opacity:0;
 }
 .wm-clabel, .wm-grat line, .wm-plabel, .wm-pdetail, .wm-pnote{transition:opacity .45s;}
@@ -482,7 +496,7 @@ h3.section-title:first-of-type{margin-top:0;}
 /* pins: one flat dot at world zoom, a labelled pin once you're in close.
    No halo, no outline — at this density anything around the dot reads as
    smudge rather than as a second mark. */
-.wm-dot{fill:var(--accent);}
+.wm-dot{fill:var(--map-dot-on);}
 .wm-hit{fill:transparent; cursor:pointer;}
 .wm-pin:focus{outline:none;}
 /* the picked pin changes colour (and grows a touch where `r` is animatable) */
@@ -492,18 +506,18 @@ h3.section-title:first-of-type{margin-top:0;}
    whether it has been visited: grey for not yet, accent for been there.
    (On that map the "named early" flag IS data-been, hence .major.) */
 .map-stage.us .wm-dot{fill:var(--map-dot-off);}
-.map-stage.us .wm-pin.major .wm-dot{fill:var(--accent);}
+.map-stage.us .wm-pin.major .wm-dot{fill:var(--map-dot-on);}
 .map-stage.us .wm-pin.on .wm-dot{fill:var(--ink); r:4px;}
 /* the only ring on a pin, and only for keyboard focus */
 .wm-pin:focus-visible .wm-dot{stroke:var(--ink); stroke-width:2px;}
 .wm-plabel{opacity:0; pointer-events:none;}
 .wm-city{
-  font-family:'Space Mono', monospace; font-size:10.5px;
+  font-family:var(--font-ui); font-size:10.5px;
   fill:var(--ink); paint-order:stroke; stroke:var(--paper);
   stroke-width:3px; stroke-linejoin:round;
 }
 .wm-pdetail, .wm-pnote{
-  font-family:'Space Mono', monospace; font-size:9px;
+  font-family:var(--font-ui); font-size:9px;
   fill:var(--ink-soft); paint-order:stroke; stroke:var(--paper);
   stroke-width:3px; stroke-linejoin:round; opacity:0;
 }
@@ -545,7 +559,7 @@ h3.section-title:first-of-type{margin-top:0;}
 .map-stage.us .map-ctrl{top:auto; bottom:8px;}
 .map-ctrl button{
   width:26px; height:26px; padding:0; cursor:pointer;
-  font-family:'Space Mono', monospace; font-size:13px; line-height:1;
+  font-family:var(--font-ui); font-size:13px; line-height:1;
   color:var(--ink-soft); background:var(--paper);
   border:1px solid var(--rule); border-radius:2px;
 }
@@ -556,8 +570,8 @@ h3.section-title:first-of-type{margin-top:0;}
 }
 .map-scale span{
   position:absolute; left:0; bottom:7px; white-space:nowrap;
-  font-family:'Space Mono', monospace; font-size:9px; line-height:1;
-  letter-spacing:0.04em; color:var(--ink-soft);
+  font-family:var(--font-ui); font-size:9px; line-height:1;
+  letter-spacing:0; color:var(--ink-soft);
 }
 
 /* ---------- map page: the list of places ----------
@@ -570,10 +584,10 @@ h3.section-title:first-of-type{margin-top:0;}
   cursor:pointer;
 }
 .place:last-child{border-bottom:none;}
-.place .p-city{font-family:'Fraunces', serif; font-weight:600; font-size:16px;}
+.place .p-city{font-family:var(--font-display); font-weight:500; font-size:16px;}
 .place .p-meta{
-  font-family:'Space Mono', monospace; font-size:11.5px;
-  letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft);
+  font-family:var(--font-ui); font-size:11.5px;
+  letter-spacing:0; text-transform:none; color:var(--ink-soft);
   padding-top:3px;
 }
 .place .note{font-size:15.5px;}
@@ -584,7 +598,7 @@ h3.section-title:first-of-type{margin-top:0;}
 
 footer{
   border-top:1px solid var(--rule); padding:20px 0 50px;
-  font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft);
+  font-family:var(--font-ui); font-size:11px; color:var(--ink-soft);
 }
 
 @media (max-width:760px){
@@ -603,7 +617,6 @@ footer{
     padding:18px 0;
   }
   .sidenav a{border-right:none; border-bottom:3px solid transparent;}
-  .sidenav a.active{border-bottom-color:var(--accent);}
   .name-block{padding:34px 0 8px;}
   h1.wordmark{font-size:34px;}
 }
@@ -637,17 +650,16 @@ footer{
 .vault-nav-heading > a{flex:1;}
 .vault-submenu{display:none;position:absolute;z-index:20;right:0;top:100%;min-width:140px;padding:12px 14px;background:var(--paper);border:1px solid var(--rule);box-shadow:0 5px 12px #2a241c0a;text-align:left;}
 .vault-submenu a{display:block;position:relative;padding:7px 0;}
-.sidenav .vault-submenu a{border-bottom:0;}
+.sidenav .vault-submenu a{border-bottom:0; text-decoration:none;}
 .vault-submenu a.active::after{content:"";position:absolute;left:0;bottom:2px;width:22px;height:1px;background:var(--accent);}
 .vault-nav.is-open .vault-submenu{display:block;}
 .vault-nav a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-.vault-landing{display:flex;align-items:center;justify-content:center;min-height:60vh;padding:24px 0 60px;}
+.vault-landing{display:flex;align-items:flex-start;justify-content:center;padding:54px 0 36px;}
 .vault-chest{display:block;width:100%;max-width:560px;height:auto;}
 @media(max-width:760px){
   .sidenav{flex-wrap:wrap;}
   .vault-nav-heading{justify-content:flex-start;}
   .vault-submenu{right:auto;left:0;}
-  .vault-landing{min-height:50vh;}
 }
 
 /* Broad home target around the wordmark, keeping social links independent. */
@@ -655,7 +667,10 @@ footer{
 .wordmark .home-link:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
 
 /* One-time chest opening: the revealed links remain still and clickable. */
-.chest-scene{position:relative;width:100%;max-width:560px;aspect-ratio:1 / 1.15;isolation:isolate;}
+.chest-scene{position:relative;width:100%;max-width:560px;aspect-ratio:1 / .85;isolation:isolate;overflow:hidden;}
+/* Keep the original coordinate space for both images and their links, but
+   trim its empty upper area so the artwork starts just below the header. */
+.chest-artwork{position:absolute;top:0;left:0;width:100%;aspect-ratio:1 / 1.15;transform:translateY(-28%);}
 .chest-trigger{position:absolute;left:0;bottom:0;width:100%;aspect-ratio:1;border:0;padding:0;background:transparent;cursor:pointer;}
 .chest-trigger img{position:absolute;inset:0;display:block;width:100%;height:auto;pointer-events:none;}
 .chest-trigger .chest-closed{top:auto;bottom:0;opacity:1;transition:opacity 350ms ease;}
@@ -669,11 +684,12 @@ footer{
 .treasure-map{right:20%;}
 .chest-scene.is-open .chest-treasure{opacity:1;visibility:visible;}
 .treasure-point{display:block;width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 7px 3px #ffffffb3,0 0 20px 7px #ffffff40;}
-.treasure-label{display:inline-block;font-family:'Space Mono',monospace;font-size:clamp(9px,2vw,11px);letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 3px #000;}
+.treasure-label{display:inline-block;font-family:var(--font-ui);font-size:clamp(9px,2vw,11px);letter-spacing:0;text-transform:none;text-shadow:0 1px 3px #000;}
 .chest-treasure:hover{color:#fff;text-decoration:none;}
 .chest-treasure:hover .treasure-label{text-decoration:underline;text-underline-offset:3px;}
 .chest-treasure:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:4px;}
-.chest-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
+.chest-trigger:focus-visible{outline:none;}
+.chest-scene:has(.chest-trigger:focus-visible){outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
 @media(prefers-reduced-motion:reduce){
   .chest-closed,.chest-open,.chest-treasure{transition:none;}
 }
