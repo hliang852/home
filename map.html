@@ -662,13 +662,24 @@
            Same card, same engine, different projection: the states are drawn
            in a composite Albers (see us-data.js), with Alaska and Hawaii in a
            strip down the west side. Grey dot = a park not visited yet, red =
-           been there. The red ones are also the ones named first as you zoom,
+           been there. Green fill marks a visited state, independently of park visits.
+           The red ones are also the ones named first as you zoom,
            at 2000 km, where the grey ones wait until 700 km. -->
+      <!-- # EDIT: States visited. Use full state names matching us-data.js.
+           Visiting a state does not mark its national parks as visited. -->
+      <script type="application/json" id="visited-us-states">
+        [
+          "Arizona", "California", "Connecticut", "Delaware", "Florida",
+          "Illinois", "Louisiana", "Maine", "Maryland", "Massachusetts",
+          "New Hampshire", "New Jersey", "New York", "Pennsylvania",
+          "Rhode Island", "Utah", "Vermont", "Virginia", "Washington"
+        ]
+      </script>
       <div class="map-wrap">
-        <p class="heatmap-caption" id="parks-caption">US national parks</p>
+        <p class="heatmap-caption" id="parks-caption">US states &amp; national parks</p>
 
         <div class="map-stage us z1" id="parks-stage">
-          <svg id="parksmap" aria-label="Map of the United States — one dot per national park"></svg>
+          <svg id="parksmap" aria-label="Map of the United States — green states are visited; red dots are visited national parks, grey dots are parks not yet visited"></svg>
           <div class="map-ctrl">
             <button type="button" id="parks-in"  aria-label="Zoom in">+</button>
             <button type="button" id="parks-out" aria-label="Zoom out">−</button>
@@ -677,7 +688,7 @@
           <div class="map-scale" id="parks-scale"><span></span></div>
         </div>
 
-        <p class="ikb-hint" id="parks-hint">✼&nbsp; Red is one I have been to — grey is one I have not</p>
+        <p class="ikb-hint" id="parks-hint">Green states = visited · Red dots = parks visited · Grey dots = parks not yet visited</p>
       </div>
 
       <!-- THE PARKS. Like the places list above, this is data, not page

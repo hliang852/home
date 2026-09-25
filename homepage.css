@@ -1,0 +1,66 @@
+/* Balanced profile content — the shared header/navigation lives in style.css. */
+.balanced-home{line-height:1.7;}
+.balanced-home main{
+  display:grid;
+  grid-template-columns:260px minmax(0,1fr);
+  grid-template-rows:auto 1fr auto auto;
+  grid-template-areas:"photo intro" "photo ps" "facts facts" "about about";
+  column-gap:58px;
+  align-items:start;
+  margin-top:58px;
+  padding:0;
+}
+.balanced-home main p{margin:0;}
+.balanced-home .intro,
+.balanced-home .profile-row{display:contents;}
+.balanced-home .intro-copy{grid-area:intro;font-size:23px;line-height:1.6;letter-spacing:-.015em;}
+.balanced-home .postscript{grid-area:ps;font-size:15px;line-height:1.8;color:var(--accent);margin-top:26px;}
+.balanced-home .profile-row .img{grid-area:photo;min-width:0;}
+.balanced-home .profile-row .img img{width:100%;height:auto;max-width:none;aspect-ratio:260/334;object-fit:cover;}
+.balanced-home .home-meta{
+  grid-area:facts;
+  display:grid;
+  grid-template-columns:1fr 1.45fr 1.65fr;
+  grid-template-areas:"current gig languages" "home longings languages";
+  gap:22px 32px;
+  border-top:1px solid var(--rule);
+  margin:40px 0 0;
+  padding-top:24px;
+}
+.balanced-home .home-meta div{min-width:0;line-height:1.7;}
+.balanced-home .current{grid-area:current;}
+.balanced-home .home{grid-area:home;}
+.balanced-home .gig{grid-area:gig;}
+.balanced-home .longings{grid-area:longings;}
+.balanced-home .languages{grid-area:languages;}
+.balanced-home .about-text{grid-area:about;min-width:0;max-width:660px;margin-top:48px;font-size:17px;line-height:1.75;}
+.balanced-home .about-text > p:first-child{margin-bottom:17px;}
+.balanced-home footer{padding:20px 0 0;margin-top:48px;line-height:1.65;}
+.balanced-home a:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
+
+@media(max-width:880px){
+  .balanced-home main{margin-top:35px;column-gap:36px;grid-template-columns:230px minmax(0,1fr);}
+  .balanced-home .intro-copy{font-size:21px;}
+}
+@media(max-width:650px){
+  .balanced-home main{
+    margin-top:30px;
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto;
+    grid-template-areas:"intro" "ps" "photo" "facts" "about";
+    gap:0;
+  }
+  .balanced-home .intro-copy{font-size:19px;line-height:1.7;letter-spacing:0;}
+  .balanced-home .postscript{font-size:14px;margin-top:20px;margin-bottom:28px;}
+  .balanced-home .profile-row .img{width:220px;max-width:100%;}
+  .balanced-home .home-meta{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-areas:"current home" "gig longings" "languages languages";
+    gap:21px 23px;
+    margin-top:28px;
+    padding-top:22px;
+  }
+  .balanced-home .about-text{margin-top:36px;font-size:16px;line-height:1.8;}
+  .balanced-home .about-text > p:first-child{font-size:14px;margin-bottom:15px;}
+  .balanced-home footer{margin-top:35px;padding-top:18px;}
+}

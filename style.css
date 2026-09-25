@@ -42,29 +42,32 @@ body{
 a{color:var(--accent); text-decoration:none;}
 a:hover{text-decoration:underline;}
 
-/* ---------- overall layout: content + right-hand nav rail ---------- */
+/* ---------- shared header: aligned with the Balanced profile homepage ---------- */
 .layout{
-  max-width:920px; margin:0 auto;
+  max-width:960px; margin:0 auto;
   display:grid;
-  grid-template-columns:1fr 120px;
+  grid-template-columns:minmax(0,1fr) auto;
   grid-template-areas:
     "name nav"
-    "main nav"
-    "foot nav";
-  column-gap:48px;
-  padding:0 28px;
+    "main main"
+    "foot foot";
+  column-gap:28px;
+  padding:48px 48px 32px;
 }
-.name-block{grid-area:name; padding:54px 0 8px;}
+.name-block{grid-area:name; min-width:0; padding:0;}
 main{grid-area:main; min-width:0; padding:18px 0 80px;}
 footer{grid-area:foot;}
 
 .sidenav{
   grid-area:nav;
-  width:120px;
-  position:sticky; top:54px; align-self:start;
-  padding-top:54px;
-  display:flex; flex-direction:column; gap:14px;
-  text-align:right;
+  width:auto;
+  position:static; align-self:start;
+  padding:5px 0 0;
+  display:flex; flex-direction:row; flex-wrap:wrap; gap:22px;
+  align-items:start;
+  text-align:left;
+  border:0;
+  line-height:1.65;
 }
 .sidenav a{
   color:var(--ink-soft);
@@ -73,6 +76,8 @@ footer{grid-area:foot;}
   border-bottom:3px solid transparent;
   padding:4px 0;
 }
+.sidenav > a,
+.vault-nav-heading > a{display:block;padding:5px 0;border:0;}
 .sidenav a:hover{color:var(--ink); text-decoration:none;}
 .sidenav a.active{
   color:var(--ink);
@@ -86,12 +91,12 @@ footer{grid-area:foot;}
 /* # EDIT: NAME AND LINKS — see the comment above the markup in each
    HTML file for exactly which lines to change. */
 h1.wordmark{
-  font-family:var(--font-display); font-weight:300; font-size:42px;
-  letter-spacing:-0.035em; margin:0 0 14px; line-height:1.05;
+  font-family:var(--font-display); font-weight:300; font-size:40px;
+  letter-spacing:-0.035em; margin:0 0 13px; line-height:1.1;
 }
 .social-row{
-  display:flex; gap:18px; font-family:var(--font-ui); font-size:13px;
-  letter-spacing:0; text-transform:none; margin-bottom:8px;
+  display:flex; gap:19px; flex-wrap:wrap; font-family:var(--font-ui); font-size:13px;
+  letter-spacing:0; text-transform:none; margin:0; line-height:1.65;
 }
 .social-row a{color:var(--ink-soft); border-bottom:1px solid transparent;}
 .social-row a:hover{color:var(--accent); border-bottom-color:var(--accent); text-decoration:none;}
@@ -601,9 +606,9 @@ footer{
   font-family:var(--font-ui); font-size:11px; color:var(--ink-soft);
 }
 
-@media (max-width:760px){
+@media (max-width:880px){
   .layout{
-    grid-template-columns:1fr;
+    grid-template-columns:minmax(0,1fr);
     grid-template-areas:
       "name"
       "nav"
@@ -611,14 +616,21 @@ footer{
       "foot";
   }
   .sidenav{
-    position:static; width:100%; padding-top:0;
-    flex-direction:row; justify-content:flex-start; gap:20px;
-    text-align:left; border-bottom:1px solid var(--rule);
-    padding:18px 0;
+    margin-top:25px;
+    padding:0 0 17px;
+    border-bottom:1px solid var(--rule);
   }
-  .sidenav a{border-right:none; border-bottom:3px solid transparent;}
-  .name-block{padding:34px 0 8px;}
-  h1.wordmark{font-size:34px;}
+}
+@media (max-width:650px){
+  .layout{padding:30px 28px 26px;}
+  h1.wordmark{font-size:34px;line-height:1.12;}
+  .sidenav{gap:0 19px;margin-top:22px;padding-bottom:15px;}
+  .sidenav > a,
+  .vault-nav-heading > a{padding:10px 0;min-height:44px;}
+}
+@media (max-width:340px){
+  .layout{padding-inline:22px;}
+  h1.wordmark{font-size:30px;}
 }
 @media (max-width:600px){
   .entry, .proj-entry{grid-template-columns:1fr;}
@@ -646,7 +658,7 @@ footer{
 }
 /* Vault: shared navigation and illustration-only landing page. */
 .vault-nav{position:relative;}
-.vault-nav-heading{display:flex;align-items:center;justify-content:flex-end;gap:6px;}
+.vault-nav-heading{display:flex;align-items:center;justify-content:flex-start;gap:6px;}
 .vault-nav-heading > a{flex:1;}
 .vault-submenu{display:none;position:absolute;z-index:20;right:0;top:100%;min-width:140px;padding:12px 14px;background:var(--paper);border:1px solid var(--rule);box-shadow:0 5px 12px #2a241c0a;text-align:left;}
 .vault-submenu a{display:block;position:relative;padding:7px 0;}
@@ -656,10 +668,11 @@ footer{
 .vault-nav a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 .vault-landing{display:flex;align-items:flex-start;justify-content:center;padding:54px 0 36px;}
 .vault-chest{display:block;width:100%;max-width:560px;height:auto;}
-@media(max-width:760px){
-  .sidenav{flex-wrap:wrap;}
-  .vault-nav-heading{justify-content:flex-start;}
-  .vault-submenu{right:auto;left:0;}
+/* Anchor the mobile dropdown to the whole navigation row so it stays
+   within the page even when Vault wraps onto a second line. */
+@media(max-width:650px){
+  .sidenav{position:relative;}
+  .vault-nav{position:static;}
 }
 
 /* Broad home target around the wordmark, keeping social links independent. */

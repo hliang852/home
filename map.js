@@ -130,12 +130,13 @@
     var labelG = el('g', { class: 'wm-clabels' });
     var regionLabels = [];
     cfg.regions.forEach(function (c) {
-      var tint = cfg.tint && onRegion[c.n];
+      // An explicit visit list can shade regions independently of their pins.
+      var tint = cfg.tint && (cfg.visitedRegions ? cfg.visitedRegions.indexOf(c.n) !== -1 : onRegion[c.n]);
       var path = el('path', {
         class: 'wm-c' + (tint ? ' on' : ''), d: c.d, 'vector-effect': 'non-scaling-stroke'
       });
       var t = el('title', {});
-      t.textContent = c.n;
+      t.textContent = c.n + (cfg.visitedRegions ? (tint ? ' — visited' : ' — not yet visited') : '');
       path.appendChild(t);
       landG.appendChild(path);
 
@@ -576,6 +577,8 @@
      2. THE US MAP — national parks
      =================================================================== */
   if (typeof US_STATES !== 'undefined') {
+    var visitedStates = id('visited-us-states');
+    visitedStates = visitedStates ? JSON.parse(visitedStates.textContent) : [];
     createMap({
       stage: 'parks-stage', svg: 'parksmap', list: 'park-list',
       hint: 'parks-hint', caption: 'parks-caption', scale: 'parks-scale',
@@ -586,7 +589,8 @@
       flyK: 10, flyBelowK: 4,
       fields: { name: 'park', sub: 'state' },
       regions: US_STATES,
-      tint: false,
+      tint: true,
+      visitedRegions: visitedStates,
       project: US_PROJECT,
       // Albers is a conic: its scale barely drifts across the country, so one
       // number measured in Kansas is honest everywhere on this map
@@ -601,7 +605,7 @@
       ],
       majorAttr: 'data-been',                   // been there = red, and named first
       caption2: function (n) {
-        return n.majors + ' of ' + n.places + ' national parks';
+        return visitedStates.length + ' states visited · ' + n.majors + ' of ' + n.places + ' national parks';
       }
     });
   }
