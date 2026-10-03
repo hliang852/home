@@ -44,14 +44,22 @@
       </div>
     </nav>
 
-      <main>
+      <main class="home-scroll">
+      <nav class="panel-switch" aria-label="Homepage sections">
+        <a class="panel-jump is-active" href="#hello" aria-label="Show introduction" aria-current="true"><span aria-hidden="true"></span></a>
+        <a class="panel-jump" href="#about" aria-label="Show profile details"><span aria-hidden="true"></span></a>
+        <a class="panel-jump" href="#explore" aria-label="Explore projects, reading, books, and journals"><span aria-hidden="true"></span></a>
+      </nav>
+      <section class="home-screen home-screen-intro is-active" id="hello" aria-label="Introduction" aria-hidden="false">
+      <div class="home-first-main">
         <!-- <h2 class="hero">Markets, Engineering, Philosophy</h2> -->
 
         <!-- # EDIT: Intro Paragraph -->
         <div class="intro">
-          <p class="intro-copy">I trade <strong>risk</strong> for a living, <strong>build</strong> tools as a side-hustle, and rest of my time
-            asking <strong>questions</strong>. This site records what I've
-          worked on, built, and written. Welcome!</p>
+          <p class="intro-copy">I trade <strong>risk</strong> for a living, <strong>build</strong> tools as a side hustle, and spend the rest of my time
+            asking <strong>questions</strong>. This site records what I’ve
+          worked on, built, and written.</p>
+          <p class="welcome-line">Welcome.</p>
           <p class="postscript">(<span style="font-family: 'Zapfino', cursive;">p.s. </span><a href="garden-leave.html">weekly updates on my utter negligence of botanical pursuits &#x1FAB4;</a>)
           </p>
 
@@ -60,32 +68,89 @@
         <!-- # EDIT: Portrait beside the intro; basic facts below -->
         <div class="profile-row">
           <div class="img"><img src="portrait.jpg" alt="Kelly Liang" width="350" height="450"></div>
-          <div class="home-meta">
-            <div class="current"><strong>Current</strong>Boston, MA</div>
-            <div class="home"><strong>Home</strong>Hong Kong SAR </div>
-            <div class="gig"><strong>Last Gig</strong>Event-driven Trader, Platform HF</div>
-            <div class="longings"><strong>Longings</strong>Long walks, Long runs, History</div>
-            <div class="languages"><strong>Languages</strong>Fluent English, Mandarin & Cantonese
-              <br>Conversational French & Japanese
-              <br>... and I read some German
-            </div>
+        </div>
+      </div>
+
+      <a class="scroll-nudge scroll-nudge-down" href="#about" aria-label="Scroll to profile details">
+        <span>More</span><span class="scroll-arrow" aria-hidden="true">↓</span>
+      </a>
+      </section>
+
+      <section class="home-screen home-screen-about" id="about" aria-label="Profile details" aria-hidden="true" inert>
+      <div class="home-second-main">
+
+        <div class="about-text">
+          <h2>A trader with an engineer’s habits and a philosopher’s curiosity.</h2>
+          <p>I studied political thought and computer science before drifting into equities trading, though my philosophy and engineering sides never quite left me. Nowadays, I split my time musing about markets, working with Claude Code, and reading “unnecessary” German political thought.</p>
+        </div>
+
+        <div class="home-meta">
+          <div class="current"><strong>Current</strong>Boston, MA</div>
+          <div class="home"><strong>Home</strong>Hong Kong SAR </div>
+          <div class="gig"><strong>Last Gig</strong>Event-driven Trader, Platform HF</div>
+          <div class="longings"><strong>Longings</strong>Long walks, Long runs, History</div>
+          <div class="languages"><strong>Languages</strong>Fluent English, Mandarin &amp; Cantonese
+            <br>Conversational French &amp; Japanese
+            <br>... and I read some German
           </div>
         </div>
 
-        <!-- # Longer intro -->
-        <div class="about-text">
-          <p>(oh... you scrolled down...)</p>
-          <p>I studied political thoughts and computer science before drifting into equities trading, though my philosophy and engineering sides never quite left me. Nowadays, I split my time musing about markets, working with claude code, and reading "unecessary" German political thoughts. </p>
+      </div>
+
+      <a class="scroll-nudge scroll-nudge-down" href="#explore" aria-label="Continue to site guide">
+        <span>Explore</span><span class="scroll-arrow" aria-hidden="true">↓</span>
+      </a>
+
+      </section>
+
+      <section class="home-screen home-screen-explore" id="explore" aria-label="Explore the site" aria-hidden="true" inert>
+      <div class="home-explore-main">
+        <header class="explore-intro">
+          <h2>Follow a thread.</h2>
+          <p>A working shelf of things I build, read, and think about.</p>
+        </header>
+
+        <div class="explore-grid">
+          <a class="explore-card" href="projects.html">
+            <h3>Projects</h3>
+            <p>Markets, agentic AI, engineering, and political thought.</p>
+            <ul><li>Featured: Agent Daikoku</li></ul>
+            <strong>Open <i aria-hidden="true">↗</i></strong>
+          </a>
+
+          <a class="explore-card" href="articles.html">
+            <h3>Reading list</h3>
+            <p>Articles, essays, and research passing across my desk.</p>
+            <ul><li>Latest: China’s Bigger, Better Batteries</li></ul>
+            <strong>Open <i aria-hidden="true">↗</i></strong>
+          </a>
+
+          <a class="explore-card" href="garden-leave.html#books-read">
+            <h3>Books</h3>
+            <p>Fiction, philosophy, markets, memoir, and useful interruptions.</p>
+            <ul><li>Recent: The White Album — Joan Didion</li></ul>
+            <strong>Open <i aria-hidden="true">↗</i></strong>
+          </a>
+
+          <a class="explore-card" href="garden-leave.html">
+            <h3>Journal</h3>
+            <p>Weekly notes on what moved, what lingered, and what comes next.</p>
+            <ul><li>Latest: September 25, 2026</li></ul>
+            <strong>Open <i aria-hidden="true">↗</i></strong>
+          </a>
         </div>
 
+        <footer>© 2026 Kelly Liang</footer>
+      </div>
 
-</main>
-
-<!-- # EDIT: footer year/name — identical block in all three files -->
-<footer>© 2026 Kelly Liang</footer>
-
-</div>
+      <a class="scroll-nudge scroll-nudge-up" href="#about" aria-label="Return to profile details">
+        <span class="scroll-arrow" aria-hidden="true">↑</span><span>Back</span>
+      </a>
+      </section>
+      </main>
+    </div>
 
   <script src="vault-nav.js"></script>
+  <script src="homepage-transition.js"></script>
 </body>
 </html>
