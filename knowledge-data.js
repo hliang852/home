@@ -3,90 +3,878 @@ window.KNOWLEDGE_DATA = {
   "topics": [
     {
       "id": "ai",
-      "label": "AI & automation",
+      "label": "Artificial Intelligence",
       "summary": "Model competition, adoption, robotics, and the economics of AI.",
       "color": "#667a62"
     },
     {
       "id": "credit",
-      "label": "Credit & borrowing",
+      "label": "Credit",
       "summary": "Corporate funding, private credit, insurance capital, and debt-market stress.",
       "color": "#9b7963"
     },
     {
       "id": "japan",
-      "label": "Japan & its companies",
+      "label": "Japan",
       "summary": "Trading houses, corporate restructuring, governance, and Japanese markets.",
       "color": "#a18c4b"
     },
     {
       "id": "deals",
-      "label": "Deals & ownership",
+      "label": "Deals",
       "summary": "Takeovers, listings, shareholder control, and corporate governance.",
       "color": "#99889f"
     },
     {
       "id": "investing",
-      "label": "Investing & funds",
+      "label": "Investment & Funds",
       "summary": "Portfolio construction, equity valuations, fund strategies, and capital allocation.",
       "color": "#687f90"
     },
     {
       "id": "macro",
-      "label": "Rates & macroeconomics",
+      "label": "Macro",
       "summary": "Sovereign debt, interest rates, monetary policy, currencies, and economic shocks.",
       "color": "#88834f"
     },
     {
       "id": "infrastructure",
-      "label": "Chips & infrastructure",
+      "label": "Hardware",
       "summary": "Compute capacity, semiconductor supply, data centres, and physical constraints.",
       "color": "#628e8a"
     },
     {
       "id": "geopolitics",
-      "label": "Trade & geopolitics",
+      "label": "Geopolitics",
       "summary": "Cross-border tensions, conflict, elections, and the policy environment for business.",
       "color": "#b18174"
     },
     {
       "id": "energy",
-      "label": "Energy & resources",
+      "label": "Commodities",
       "summary": "Oil, shipping, mining, batteries, and resource constraints.",
       "color": "#a1936d"
     },
     {
       "id": "consumer",
-      "label": "Consumers & retail",
+      "label": "Consumers",
       "summary": "Retail competition, luxury, brands, and changing consumer demand.",
       "color": "#b18a9a"
     },
     {
       "id": "banking",
-      "label": "Banking & markets",
+      "label": "Financials",
       "summary": "Bank business models, fintech, trading, and financial-system resilience.",
       "color": "#728796"
     },
     {
       "id": "society",
-      "label": "Work & society",
+      "label": "Work & daily life",
       "summary": "Employment, demographic change, housing, culture, and everyday life.",
       "color": "#9a927e"
     },
     {
       "id": "health",
-      "label": "Health & medicine",
+      "label": "Healthcare",
       "summary": "Drug development, healthcare businesses, and medical uses of AI.",
       "color": "#8b9c81"
     },
     {
       "id": "safety",
-      "label": "AI safety & technology",
+      "label": "AI Safety",
       "summary": "Reliability, safety, security, and technical foundations.",
       "color": "#94868b"
+    },
+    {
+      "id": "other",
+      "label": "Further reading",
+      "summary": "Titles needing full-text review before more precise classification.",
+      "color": "#92958e"
     }
   ],
   "articles": [
+    {
+      "title": "Anglo American Chief Says Tech Giants Show ‘Deep Interest’ in Mining Stakes",
+      "url": "https://www.ft.com/content/15d18ed4-543d-4004-ae38-f429a118daab",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "deals",
+        "energy"
+      ]
+    },
+    {
+      "title": "Anthropic Secured Highest Junk Credit Rating in June",
+      "url": "https://www.ft.com/content/5a310aee-f555-4266-874c-b1b4db20186d",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "ai",
+        "credit",
+        "deals"
+      ]
+    },
+    {
+      "title": "China to Add AI, Biopharma and Solar Tech to Export Control List",
+      "url": "https://asia.nikkei.com/business/technology/artificial-intelligence/china-to-add-ai-biopharma-and-solar-tech-to-export-control-list",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "ai",
+        "geopolitics",
+        "health"
+      ]
+    },
+    {
+      "title": "China Unveils Draft Export Controls on AI Technologies and Chips",
+      "url": "https://www.ft.com/content/e0a1295c-4492-4fdd-aaf5-55678a9ef9bf",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "ai",
+        "geopolitics",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Fed's Warsh Warns of Financial Stability Risk as Investment Rises",
+      "url": "https://asia.nikkei.com/business/markets/fed-s-warsh-warns-of-financial-stability-risk-as-investment-rises",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "investing",
+        "macro"
+      ]
+    },
+    {
+      "title": "Global Pharma Firms Walk Back Innovative Drug Investments in Japan",
+      "url": "https://asia.nikkei.com/business/pharmaceuticals/global-pharma-firms-walk-back-innovative-drug-investments-in-japan",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "health",
+        "investing",
+        "japan"
+      ]
+    },
+    {
+      "title": "Nvidia's Biggest Customer Is Leaving",
+      "url": "",
+      "source": "AlphaMunch",
+      "date": "2026-10-16",
+      "topics": [
+        "ai",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Indonesia Stocks Post Largest Drop in 28 Years After MSCI Warns of Downgrade",
+      "url": "https://asia.nikkei.com/business/markets/indonesia-stocks-post-largest-drop-in-28-years-after-msci-warns-of-downgrade",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "investing"
+      ]
+    },
+    {
+      "title": "Japan's Mitsui to Spend $1.5bn on Bid to Take Penske Automotive Private",
+      "url": "https://asia.nikkei.com/business/business-deals/japan-s-mitsui-to-spend-1.5bn-on-bid-to-take-penske-automotive-private",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "deals",
+        "japan"
+      ]
+    },
+    {
+      "title": "Mexican Peso Drops While Aussie Dollar Resilient in Flight to Quality",
+      "url": "https://asia.nikkei.com/business/markets/currencies/mexican-peso-drops-while-aussie-dollar-resilient-in-flight-to-quality",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "Netflix Replaces Chief Content Officer in Effort to Arrest Declining Share Price",
+      "url": "https://www.ft.com/content/9187726d-0f4c-4f05-b421-b5fc656522b9",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "investing"
+      ]
+    },
+    {
+      "title": "Sizing CoreWeave’s ‘Unlimited’ Insurance Capital",
+      "url": "https://www.ft.com/content/6b9b0cb6-2d47-46e4-bc00-febb182a5af7",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "ai",
+        "credit",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "So. About Next Year’s Earnings . . .",
+      "url": "https://www.ft.com/content/d36787c1-f0b0-4445-8237-90eb4d521081",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "Treasuries Head for Best Week Since February as AI Jitters Halt Bond Rout",
+      "url": "https://www.ft.com/content/4c4f03f4-f878-4bd6-8128-5be7e3bb8ca1",
+      "source": "",
+      "date": "2026-10-16",
+      "topics": [
+        "ai",
+        "credit",
+        "macro"
+      ]
+    },
+    {
+      "title": "Too Good to Be True? The Dream of Arbitrage",
+      "url": "",
+      "source": "Aswath Damodaran",
+      "date": "2026-10-16",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "AeroEdge (7409 JP): A Japanese Version of Precision Castparts at 12x 2027e P/E",
+      "url": "",
+      "source": "Delante Media",
+      "date": "2026-10-15",
+      "topics": [
+        "japan"
+      ]
+    },
+    {
+      "title": "CoreWeave’s Bonds Scream Financial Distress",
+      "url": "https://www.ft.com/content/8171ef4a-b291-4375-bc85-87bee0f8bf7b",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "ai",
+        "credit",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "EQT to Acquire US Real Estate Group Stockbridge",
+      "url": "https://www.ft.com/content/179f6911-cf9b-4fea-98e4-f635e8e8c563",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "deals",
+        "investing"
+      ]
+    },
+    {
+      "title": "Eight Odd Things in CoreWeave’s IPO Prospectus",
+      "url": "https://www.ft.com/content/a96d65c1-8ba7-4055-b952-61c5b5d500fc",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "ai",
+        "deals",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "French Debt Worries Spill into Stocks, Driving Biggest Underperformance Since 2010",
+      "url": "https://www.ft.com/content/69bfdf93-cbba-477c-9fb0-5978d1d4f506",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "credit",
+        "investing"
+      ]
+    },
+    {
+      "title": "Hong Kong IPOs on Track for Record 2026, but Momentum Slows",
+      "url": "https://asia.nikkei.com/business/markets/ipo/hong-kong-ipos-on-track-for-record-2026-but-momentum-slows",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "deals"
+      ]
+    },
+    {
+      "title": "India Approves Biggest Foreign Takeover of Domestic Bank",
+      "url": "https://www.ft.com/content/bbffeec4-c491-45a3-8df9-7339ddb020e3",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "banking",
+        "deals"
+      ]
+    },
+    {
+      "title": "Investors Dump Data Centre Bonds as AI Borrowers Face ‘Darwin Moment’",
+      "url": "https://www.ft.com/content/678bcd31-6c2a-447b-a68c-ce6dec220bbc",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "ai",
+        "credit",
+        "infrastructure",
+        "investing"
+      ]
+    },
+    {
+      "title": "TSMC Eyes Texas and Musk Terafab Project for US Expansion",
+      "url": "https://asia.nikkei.com/business/tech/semiconductors/tsmc-eyes-texas-and-musk-terafab-project-for-us-expansion",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "The Battle over the AI-Led Future of Banking Has Begun",
+      "url": "https://www.ft.com/content/8c6a7595-9403-44f3-81ac-a2e5ceb37459",
+      "source": "",
+      "date": "2026-10-15",
+      "topics": [
+        "ai",
+        "banking"
+      ]
+    },
+    {
+      "title": "Anthropic Revenue Jumps to $16.8bn in Third Quarter",
+      "url": "https://www.ft.com/content/11632d03-358c-454b-af95-d06d4072932b",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "ai"
+      ]
+    },
+    {
+      "title": "Bank of America Profits Drop 17% After $1.2bn Money Laundering Fine",
+      "url": "https://www.ft.com/content/a82b4275-6519-4142-b1df-e74c66ead877",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "banking"
+      ]
+    },
+    {
+      "title": "Berkshire Hathaway Adds $330mn to Stake in Tech Group Bending Spoons",
+      "url": "https://www.ft.com/content/3f821be4-f137-4cc9-b0b0-b2014f2607c2",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "deals",
+        "investing"
+      ]
+    },
+    {
+      "title": "CoreWeave Targets ‘Unlimited’ Insurance Money to Fund AI Build-Out",
+      "url": "https://www.ft.com/content/4ffa1853-0e2c-424f-b941-88c6bcac5765",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "ai",
+        "credit",
+        "infrastructure",
+        "investing"
+      ]
+    },
+    {
+      "title": "General Atlantic Plans Early 2027 IPO at Up to $10bn Valuation",
+      "url": "https://www.ft.com/content/0f7511ee-efb1-4bf0-8f87-67f572193fd3",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "deals",
+        "investing"
+      ]
+    },
+    {
+      "title": "Glencore Shares Make Australia Debut to Mine Base of ‘Smart Investors’",
+      "url": "https://www.ft.com/content/4c62b2e1-1c41-4340-9979-d378b879fe1f",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "energy",
+        "investing"
+      ]
+    },
+    {
+      "title": "Gold Fields Mounts Charm Offensive to Woo Northern Star Investors",
+      "url": "https://www.ft.com/content/3cad49d9-4c88-46bc-bddd-7b237a399a7b",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "energy",
+        "investing"
+      ]
+    },
+    {
+      "title": "How TDK Plans to Save Its Factories from Japan’s Population Crisis",
+      "url": "https://www.ft.com/content/d759c35e-102f-4b07-88f9-aebd99ea313a",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "japan",
+        "society"
+      ]
+    },
+    {
+      "title": "James Packer Says Australia ‘Tends to Tear Down’ Entrepreneurs After Firmus Fiasco",
+      "url": "https://www.ft.com/content/fccaa841-ffdb-4e59-b947-8ff1e1b40a7f",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "Japanese Banks and Insurers Return to Domestic Bonds as Yields Surge",
+      "url": "https://www.ft.com/content/8c7ded63-6232-44df-98ba-25a46422e56f",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "banking",
+        "credit",
+        "japan",
+        "macro"
+      ]
+    },
+    {
+      "title": "Marine Le Pen: ‘All the Warning Signs Are Flashing Red’",
+      "url": "https://www.ft.com/content/73cfaf41-d3ea-4202-bd9b-f355c9e5b504",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "Olympus Shares Suffer Biggest Drop Since 2011 After FDA Warning",
+      "url": "https://www.ft.com/content/dd316a64-cdf8-4bcb-bbc7-81dcb18243e5",
+      "source": "",
+      "date": "2026-10-14",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "Asia Warned over Zombie Companies",
+      "url": "https://www.ft.com/content/ee4105fc-aa85-47ef-aa64-1fc3f344d740",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "Asian Tech Shares Plunge After Chinese Chipmaker Reports Key Advance",
+      "url": "https://asia.nikkei.com/business/markets/asian-tech-shares-plunge-after-chinese-chipmaker-reports-key-advance",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "geopolitics",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Biotech Start-Ups Turn to Reverse Mergers to Fast-Track Listings",
+      "url": "https://www.ft.com/content/987c9d16-f77c-4307-a9a8-66d67da5f658",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "deals"
+      ]
+    },
+    {
+      "title": "Businesses Still Don’t See AI Returns, Consulting Exec Says",
+      "url": "https://www.theinformation.com/newsletters/applied-ai/businesses-still-see-ai-returns-consulting-exec-says",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "ai"
+      ]
+    },
+    {
+      "title": "China Faces Uphill Battle to Wean Tech Firms Off Nvidia Chips",
+      "url": "https://www.ft.com/content/9dbd99db-6b0c-43bd-b7be-849f129df098",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "ai",
+        "geopolitics",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Chip Stocks Slide in Wake of ‘Casino’ Comment by Broadcom Boss",
+      "url": "https://www.ft.com/content/e16f0422-cf75-4cc9-962d-4605e421dc63",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "infrastructure",
+        "investing"
+      ]
+    },
+    {
+      "title": "Hong Kong Watchdog Investigates IPO Rigging, Suspends ChaPanda Shares",
+      "url": "https://asia.nikkei.com/business/markets/equities/hong-kong-watchdog-investigates-ipo-rigging-suspends-chapanda-shares",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "deals"
+      ]
+    },
+    {
+      "title": "Investors Bet on Japan, Australia Rental Housing as Rates, Home Prices Rise",
+      "url": "https://asia.nikkei.com/business/markets/trading-asia/investors-bet-on-japan-australia-rental-housing-as-rates-home-prices-rise",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "investing",
+        "japan",
+        "macro",
+        "society"
+      ]
+    },
+    {
+      "title": "Japan M&A Deals Reach All-Time High on Foreign Buyers",
+      "url": "https://asia.nikkei.com/business/business-deals/japan-m-a-deals-reach-all-time-high-on-foreign-buyers2",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "deals",
+        "japan"
+      ]
+    },
+    {
+      "title": "Mitsui & Co.: Investing in the Infrastructure of the Global Economy",
+      "url": "",
+      "source": "Oakridge Capital Research",
+      "date": "2026-10-13",
+      "topics": [
+        "investing",
+        "japan",
+        "macro"
+      ]
+    },
+    {
+      "title": "The Elections That Could Remake Europe",
+      "url": "https://www.ft.com/content/ec433e1f-bdb4-4a1c-868e-e1c7c4121f45",
+      "source": "",
+      "date": "2026-10-13",
+      "topics": [
+        "geopolitics"
+      ]
+    },
+    {
+      "title": "AI Building vs. AI Buying: The Transatlantic Split",
+      "url": "",
+      "source": "Apollo",
+      "date": "2026-10-12",
+      "topics": [
+        "ai",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "How Sega's Business Went from Selling Games to Building Ecosystems",
+      "url": "",
+      "source": "Nikkei Asia",
+      "date": "2026-10-12",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "Japan's Omron to Buy US-Based OnLogic for $675m in Physical AI Push",
+      "url": "https://asia.nikkei.com/business/business-deals/japan-s-omron-to-buy-us-based-onlogic-for-675m-in-physical-ai-push",
+      "source": "",
+      "date": "2026-10-12",
+      "topics": [
+        "ai",
+        "deals",
+        "japan"
+      ]
+    },
+    {
+      "title": "LVMH’s Fashion and Leather Sales Fall in Luxury Setback",
+      "url": "",
+      "source": "Financial Times",
+      "date": "2026-10-12",
+      "topics": [
+        "consumer"
+      ]
+    },
+    {
+      "title": "Leading-Edge AI Models Are Losing Their Allure with Developers",
+      "url": "",
+      "source": "The Information",
+      "date": "2026-10-12",
+      "topics": [
+        "ai"
+      ]
+    },
+    {
+      "title": "Mark Zuckerberg Says Meta Has Reached AI ‘Frontier’ and Rejects Calls for Slowdown",
+      "url": "",
+      "source": "Financial Times",
+      "date": "2026-10-12",
+      "topics": [
+        "ai"
+      ]
+    },
+    {
+      "title": "NTT to Build First Data Center for Anthropic in Japan",
+      "url": "https://asia.nikkei.com/business/technology/artificial-intelligence/ntt-to-build-first-data-center-for-anthropic-in-japan",
+      "source": "",
+      "date": "2026-10-12",
+      "topics": [
+        "ai",
+        "infrastructure",
+        "japan"
+      ]
+    },
+    {
+      "title": "Two Economists Who Transformed Crisis Management Win Nobel Prize",
+      "url": "",
+      "source": "Financial Times",
+      "date": "2026-10-12",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "What a $30bn Aussie Data Centre IPO Debacle Actually Means",
+      "url": "",
+      "source": "Financial Times",
+      "date": "2026-10-12",
+      "topics": [
+        "ai",
+        "deals",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Transformative AI and Demand Bottlenecks",
+      "url": "",
+      "source": "Bank for International Settlements (BIS)",
+      "date": "2026-10-12",
+      "topics": [
+        "ai"
+      ]
+    },
+    {
+      "title": "The Second Derivative: Why No One Understands the AI Boom",
+      "url": "",
+      "source": "Groundbreaker Research",
+      "date": "2026-10-11",
+      "topics": [
+        "ai",
+        "deals"
+      ]
+    },
+    {
+      "title": "Chart of the Week: The US Productivity-Pay Gap",
+      "url": "https://www.ft.com/content/abaab361-8714-422f-b2eb-9eb447e4d8c3",
+      "source": "",
+      "date": "2026-10-11",
+      "topics": [
+        "macro"
+      ]
+    },
+    {
+      "title": "JPMorgan Bets on European Asset Management Growth",
+      "url": "https://www.ft.com/content/bad44d91-2324-444c-9070-ea5beb406593",
+      "source": "",
+      "date": "2026-10-11",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "AI Borrowing Slows as Investors Grow Wary of Debt Binge",
+      "url": "https://www.ft.com/content/9c13d40e-d2b2-45d5-921c-a68cd4b308f9",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "ai",
+        "credit",
+        "investing"
+      ]
+    },
+    {
+      "title": "China’s AI Model Race Is Just Getting More Crowded",
+      "url": "https://www.theinformation.com/articles/chinas-ai-model-race-just-getting-crowded",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "ai",
+        "geopolitics"
+      ]
+    },
+    {
+      "title": "Japan Machine Tool Order Backlog Hits All-Time High on AI Demand",
+      "url": "https://asia.nikkei.com/business/business-trends/japan-machine-tool-order-backlog-hits-all-time-high-on-ai-demand",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "ai",
+        "japan"
+      ]
+    },
+    {
+      "title": "Microsoft Slashes Internal Claude Spending by a Third",
+      "url": "https://www.theinformation.com/articles/meta-microsoft-work-wean-staff-anthropics-claude",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "ai"
+      ]
+    },
+    {
+      "title": "Nvidia in Talks to Acquire US ‘Open’ Model Start-Up Reflection AI",
+      "url": "https://www.ft.com/content/052610c5-22b4-4dd4-932e-b7f9f0628b6a",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "ai",
+        "deals",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Once China's Most Valuable Stock, Liquor Maker Kweichow Moutai Down 43% from Peak",
+      "url": "https://asia.nikkei.com/business/food-beverage/once-china-s-most-valuable-stock-liquor-maker-kweichow-moutai-down-43-from-peak",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "geopolitics",
+        "investing"
+      ]
+    },
+    {
+      "title": "TDK Weighs Sale of Hard-Drive Head Unit, but Regulatory OK Uncertain",
+      "url": "https://asia.nikkei.com/business/business-deals/tdk-weighs-sale-of-hard-drive-head-unit-but-regulatory-ok-uncertain",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "deals"
+      ]
+    },
+    {
+      "title": "Trump Agrees Deal with Putin for Russia to Release Diesel on to Global Market",
+      "url": "https://www.ft.com/content/84ca76fd-0eed-4fb6-aea4-f72638a9d9c8",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "deals",
+        "energy",
+        "geopolitics"
+      ]
+    },
+    {
+      "title": "US Telcos Shed $60bn in Value After SpaceX Announces Spectrum Purchase",
+      "url": "https://www.ft.com/content/8c3f95ec-2428-4102-9f67-b707f1264c69",
+      "source": "",
+      "date": "2026-10-10",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "7-Eleven Owner Eyes European Expansion After India Exit",
+      "url": "https://asia.nikkei.com/business/retail/7-eleven-owner-eyes-european-expansion-after-india-exit",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "consumer"
+      ]
+    },
+    {
+      "title": "Australian Data Centre Operator Pulls $5bn IPO",
+      "url": "https://www.ft.com/content/205ef7a5-321f-46e3-8097-d055bf1f6b3b",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "ai",
+        "deals",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Computer Scientist David Silver: ‘Where Are We Going Without AI?’",
+      "url": "https://www.ft.com/content/462c303b-b96c-4262-a7ca-e9ae7e440828",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "ai",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Exclusive: Apple Cuts iPhone 18 Pro Orders Due to Soft Demand",
+      "url": "https://asia.nikkei.com/business/technology/exclusive-apple-cuts-iphone-18-pro-orders-due-to-soft-demand",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "consumer"
+      ]
+    },
+    {
+      "title": "Goldman Sachs to Pay Top Executives $500mn in Special Bonuses",
+      "url": "https://www.ft.com/content/212f15c8-a897-4db0-bacf-d1556a11b9ed",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "Institutional Investors Challenge PE Fund Model with Direct Deals",
+      "url": "https://www.ft.com/content/2f320dca-b1a0-4451-ab8f-73640edd06c0",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "investing"
+      ]
+    },
+    {
+      "title": "Maersk Goes on Shopping Spree for Ships in Strategy U-Turn",
+      "url": "https://www.ft.com/content/bcf1ad86-8529-4c5b-a850-cd663120782d",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "other"
+      ]
+    },
+    {
+      "title": "SoftBank Seeks $100bn from Gulf Investors to Expand AI Bet",
+      "url": "https://www.ft.com/content/3bc0eaa5-a8d4-47e8-903c-7dd762d947dd",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "ai",
+        "investing"
+      ]
+    },
+    {
+      "title": "Taiyo Holdings Buyout Offer Slips to Late November as China and Japan Clearances Lag",
+      "url": "https://tokyobrief.com/articles/taiyo-holdings-tender-offer-slips-late-november-china-japan-clearances",
+      "source": "",
+      "date": "2026-10-09",
+      "topics": [
+        "deals",
+        "geopolitics",
+        "japan"
+      ]
+    },
     {
       "title": "Big Investors ‘Bottom Fish’ in Eurozone Bond Markets After France Sell-Off",
       "url": "https://www.ft.com/content/9cf103ed-548e-4b06-baed-71632abca961",
@@ -191,6 +979,26 @@ window.KNOWLEDGE_DATA = {
       "date": "2026-10-08",
       "topics": [
         "society"
+      ]
+    },
+    {
+      "title": "OpenAI Annualised Revenues $20bn Less than Previously Signalled",
+      "url": "https://www.ft.com/content/b66a9858-f8fb-46cb-b506-44bfe26fca2a",
+      "source": "",
+      "date": "2026-10-08",
+      "topics": [
+        "ai"
+      ]
+    },
+    {
+      "title": "Starbucks Has Explored Takeover of Chipotle in Restaurant Megadeal",
+      "url": "https://www.ft.com/content/79cef26a-e5e9-41d0-9af2-876dc23a9a7d",
+      "source": "",
+      "date": "2026-10-08",
+      "topics": [
+        "consumer",
+        "deals",
+        "infrastructure"
       ]
     },
     {

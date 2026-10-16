@@ -1,3 +1,60 @@
-.knowledge-map{margin:10px 0 56px;font-family:var(--font-ui);line-height:1.5}.km-kicker{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}.km-title{font-family:var(--font-display);font-size:38px;line-height:1.15;font-weight:400;margin:10px 0}.km-intro{max-width:680px;color:var(--ink-soft);font-size:15px}.km-stats{display:flex;gap:28px;padding:18px 0;border-block:1px solid var(--rule);margin:24px 0}.km-stats strong{font-size:25px;font-family:var(--font-display);font-weight:400}.km-stats span{display:block;font-size:11px;color:var(--ink-soft)}.km-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0 10px;font-size:12px}.km-toolbar input,.km-toolbar select,.km-toolbar button{font:inherit;color:var(--ink);padding:8px;border:1px solid var(--rule);border-radius:4px;background:var(--paper)}.km-toolbar input{width:190px}.km-graph-frame{overflow:auto;border:1px solid var(--rule);border-radius:8px;background:radial-gradient(circle at 45% 40%,#fffef9,var(--paper-deep));position:relative}.km-graph{display:block;width:100%;min-width:650px;height:auto}.km-edge{cursor:pointer}.km-edge line{stroke:#9a9c8b;stroke-opacity:.35}.km-edge:hover line,.km-edge:focus line{stroke:var(--accent);stroke-opacity:1}.km-edge .km-hit{stroke:transparent;stroke-width:16;stroke-opacity:1}.km-node{cursor:pointer;outline:none}.km-node circle{stroke:var(--paper);stroke-width:3}.km-node:hover circle,.km-node:focus circle,.km-node.selected circle{stroke:var(--ink);stroke-width:2}.km-node text{font-size:12px;fill:#fff;pointer-events:none;text-anchor:middle;font-weight:600}.km-node .km-count{font-size:19px;font-family:var(--font-display);font-weight:400}.km-dim{opacity:.14}.km-legend{font-size:12px;color:var(--ink-soft);margin:10px 0 22px}.km-bottom{display:grid;grid-template-columns:1fr 1.35fr;gap:28px}.km-bottom h3{font-family:var(--font-display);font-size:22px;font-weight:400;margin:0 0 12px}.km-topics{display:flex;flex-direction:column;gap:5px}.km-topic{border:0;border-bottom:1px solid var(--rule);padding:9px 0;background:none;color:var(--ink);text-align:left;cursor:pointer;display:flex;align-items:center;gap:8px;font:13px var(--font-ui)}.km-topic b{margin-left:auto}.km-topic i{width:8px;height:8px;border-radius:50%}.km-topic[aria-pressed=true]{font-weight:bold}.km-detail{border-left:1px solid var(--rule);padding-left:25px;font-size:14px;min-width:0}.km-detail p{margin:0 0 14px}.km-articles{max-height:330px;overflow:auto;padding-left:20px;font-size:13px}.km-articles li{margin:0 0 12px}.km-articles small{display:block;color:var(--ink-soft)}.km-related{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:15px}.km-related button{font:12px var(--font-ui);padding:5px 8px;border:1px solid var(--rule);border-radius:15px;background:none;color:var(--accent);cursor:pointer}.km-method{margin-top:26px;border-block:1px solid var(--rule);padding:15px 0;font-size:13px;color:var(--ink-soft)}.km-method summary{cursor:pointer;color:var(--ink)}.km-method table{border-collapse:collapse;width:100%;margin:12px 0}.km-method td,.km-method th{text-align:left;padding:7px;border-bottom:1px solid var(--rule)}.knowledge-map :focus-visible{outline:2px solid var(--accent);outline-offset:3px}@media(max-width:600px){.km-title{font-size:31px}.km-bottom{grid-template-columns:1fr}.km-detail{border-left:0;border-top:1px solid var(--rule);padding:20px 0}.km-stats{gap:18px}.km-toolbar input{width:100%}.km-legend:after{content:' Swipe horizontally to explore the graph.'}}
-
-.km-node .km-label{fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round}.km-node .km-count{font-size:22px}
+/* Same paper panel and restrained typography as the Projects field index. */
+.knowledge-map {
+  margin: 0 0 28px;
+  padding: 14px 16px 12px;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--font-ui);
+  line-height: 1.5;
+}
+.km-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.km-heading .heatmap-caption { margin: 0 0 8px; font-weight: 400; }
+.km-skip, .km-meta { font-size: 11px; color: var(--ink-soft); }
+.km-intro { margin: 0 0 10px; color: var(--ink-soft); font-size: 13px; }
+.km-meta { margin: 0 0 14px; }
+.km-toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 12px 0; border-block: 1px solid var(--rule); font-size: 11px; color: var(--ink-soft); }
+.km-toolbar button { font: inherit; color: var(--ink); padding: 7px 8px; border: 1px solid var(--rule); border-radius: 2px; background: var(--paper); max-width: 100%; }
+.km-toolbar button { cursor: pointer; }
+.km-graph-frame { overflow: hidden; position: relative; border-block: 1px solid var(--rule); }
+.km-graph { display: block; width: 100%; height: 320px; touch-action: none; cursor: grab; }
+.km-graph:active { cursor: grabbing; }
+.km-zoom { position: absolute; right: 6px; bottom: 6px; display: flex; gap: 4px; }
+.km-zoom button { width: 32px; height: 32px; border: 1px solid var(--rule); border-radius: 2px; background: var(--paper); color: var(--ink); font: 16px var(--font-ui); cursor: pointer; }
+.km-zoom button:disabled { opacity: .4; cursor: default; }
+.km-edge { cursor: pointer; }
+.km-edge line { stroke: #999B8B; stroke-opacity: .19; }
+.km-edge:hover line, .km-edge:focus line { stroke: var(--accent); stroke-opacity: .65; }
+.km-edge .km-hit { stroke: transparent; stroke-width: 16; stroke-opacity: 1; }
+.km-node { cursor: pointer; }
+.km-node circle { stroke: var(--paper-deep); stroke-width: 3; fill-opacity: 1; }
+.km-node:hover circle, .km-node:focus circle, .km-node.selected circle { stroke: var(--ink); stroke-width: 2; }
+.km-node text { font-size: 12px; fill: var(--paper); pointer-events: none; text-anchor: middle; }
+.km-node .km-label { fill: var(--ink); font-family: var(--font-display); font-weight: 500; }
+.km-dim { opacity: .4; }
+.km-legend { font-size: 11px; color: var(--ink-soft); margin: 8px 0 16px; text-align: center; }
+.km-explore, .km-method { border-top: 1px solid var(--rule); padding: 12px 0 0; margin-top: 12px; font-size: 12px; }
+.km-explore summary, .km-method summary { cursor: pointer; color: var(--ink-soft); }
+.km-explore[open] summary, .km-method[open] summary { margin-bottom: 16px; }
+.km-method p { color: var(--ink-soft); margin: 0; }
+.km-bottom { display: grid; grid-template-columns: 1fr 1.35fr; gap: 24px; }
+.km-bottom h3 { font-family: var(--font-display); font-size: 20px; font-weight: 400; margin: 0 0 12px; }
+.km-topics { display: flex; flex-direction: column; gap: 5px; }
+.km-topic { border: 0; border-bottom: 1px solid var(--rule); padding: 9px 0; background: none; color: var(--ink); text-align: left; cursor: pointer; display: flex; align-items: center; gap: 8px; font: 12px var(--font-ui); }
+.km-topic b { margin-left: auto; }
+.km-topic i { width: 8px; height: 8px; flex-shrink: 0; border-radius: 50%; }
+.km-topic[aria-pressed=true] { font-weight: bold; }
+.km-detail { border-left: 1px solid var(--rule); padding-left: 24px; font-size: 13px; min-width: 0; }
+.km-detail p { margin: 0 0 14px; }
+.km-articles { max-height: 330px; overflow: auto; padding-left: 20px; font-size: 13px; }
+.km-articles li { margin-bottom: 12px; overflow-wrap: anywhere; }
+.km-articles small { display: block; color: var(--ink-soft); }
+.km-related { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+.km-related button { font: 11px var(--font-ui); padding: 5px 8px; border: 1px solid var(--rule); border-radius: 2px; background: none; color: var(--accent); cursor: pointer; }
+.knowledge-map :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 600px) {
+  .km-heading { flex-wrap: wrap; gap: 0 12px; margin-bottom: 10px; }
+  .km-bottom { grid-template-columns: 1fr; }
+  .km-detail { border-left: 0; border-top: 1px solid var(--rule); padding: 20px 0 0; }
+  .km-graph { height: 300px; }
+}

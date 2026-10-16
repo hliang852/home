@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="knowledge-map.css">
   <meta name="description" content="A daily reading log of articles, essays, and research, collected by Kelly Huilin Liang.">
   <style>
     .reading-intro { margin: 0 0 16px; color: var(--ink-soft); font-size: 15px; }
@@ -51,7 +52,30 @@
       </div>
     </nav>
     <main>
-      <h3 class="section-title">Articles, essays, and research I’ve been reading...</h3>
+      <section class="knowledge-map" id="knowledge-map" aria-labelledby="knowledge-title">
+        <div class="km-heading">
+          <!-- <h2 class="heatmap-caption" id="knowledge-title">Explore by topic</h2> -->
+          <a class="km-skip" href="#reading-log">Jump to reading log ↓</a>
+        </div>
+        <!-- <p class="km-intro">A knowledge map of my reading — follow a topic or a connection to find the articles behind it.</p> -->
+        <p class="km-meta">
+          <span id="knowledge-total"></span> articles · <span id="knowledge-topic-count"></span> topics · <span id="knowledge-dates"></span>
+        </p>
+        <!-- <div class="km-toolbar">
+          <label for="knowledge-strength">Links</label><select id="knowledge-strength"><option value="3">3+ shared articles</option><option value="1">All connections</option><option value="10">10+ shared articles</option></select>
+          <button type="button" id="knowledge-reset">Reset</button><span id="knowledge-visible"></span>
+        </div> -->
+        <div class="km-graph-frame"><svg id="knowledge-graph" class="km-graph" viewBox="0 0 1000 400" role="group" aria-label="Reading knowledge map. Select a topic or connection, or browse the topic list below. Pinch to zoom and drag to pan."></svg><div class="km-zoom" role="group" aria-label="Map zoom"><button type="button" id="knowledge-zoom-in" aria-label="Zoom in">+</button><button type="button" id="knowledge-zoom-out" aria-label="Zoom out">−</button><button type="button" id="knowledge-home" aria-label="Reset map view">↺</button></div></div>
+        <!-- <p class="km-legend">Pinch to zoom · Drag to explore · Select a topic or connection for sources.</p> -->
+        <details class="km-explore" id="knowledge-explore"><summary>Browse topics &amp; sources</summary>
+          <p class="km-intro" id="knowledge-overview"></p>
+          <div class="km-bottom"><div><h3>Reading themes</h3><div class="km-topics" id="knowledge-topics"></div></div><div class="km-detail" id="knowledge-detail" aria-live="polite"></div></div>
+        </details>
+        <!-- <details class="km-method"><summary>About this map</summary><p>Topics are inferred from article titles, not full texts. An article can appear in several topics; connections indicate shared titles, not causal relationships. Larger circles indicate more articles, with a minimum size to keep labels readable. Related themes are grouped spatially for browsing; distances are editorial, not a statistical measure. Ambiguous titles may be misclassified.</p></details> -->
+        <noscript><p>Enable JavaScript to explore the map, or continue to the reading log below.</p></noscript>
+      </section>
+
+      <!-- <h3 class="section-title" id="reading-log">Articles, essays, and research I’ve been reading...</h3> -->
       <!-- <p class="reading-intro">Articles, essays, and research I’ve been reading...</p> -->
       <!-- Date read: macOS Date Added in America/New_York, not publication date.
            Titles come from the PDFs and use consistent title case. Source URLs come from printed footers,
@@ -687,6 +711,8 @@
     </main>
     <footer>© 2026 Kelly Huilin Liang</footer>
   </div>
+  <script src="knowledge-data.js"></script>
+  <script src="knowledge-map.js"></script>
   <script src="vault-nav.js"></script>
 </body>
 </html>
