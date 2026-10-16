@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Knowledge map prototype paused; uncomment this stylesheet, the section, and scripts to restore.
+  <link rel="stylesheet" href="knowledge-map.css">
+  -->
 </head>
 <body>
 
@@ -40,6 +43,28 @@
     </div>
 
     <main>
+
+
+      <!-- Knowledge map prototype (paused)
+      <section class="knowledge-map" id="knowledge-map" aria-labelledby="knowledge-title">
+        <div class="km-kicker">Reading atlas / 01 · Prototype</div>
+        <h2 class="km-title" id="knowledge-title">Where my curiosity connects.</h2>
+        <p class="km-intro" id="knowledge-overview"></p>
+        <div class="km-stats"><div><strong id="knowledge-total">358</strong><span>ARTICLES IN THE LOG</span></div><div><strong id="knowledge-topic-count">14</strong><span>CONNECTED TOPICS</span></div><div><strong>Sep–Oct</strong><span>1 SEP – 8 OCT 2026</span></div></div>
+        <p class="km-intro"><strong>Title-based preview.</strong> Topics and links are inferred from the reading log’s titles. Full article text has not yet been analyzed.</p>
+        <div class="km-toolbar"><label for="knowledge-search">Find</label><input id="knowledge-search" type="search" placeholder="Topic or article title…"><label for="knowledge-strength">Links</label><select id="knowledge-strength"><option value="3">3+ shared articles</option><option value="1">All connections</option><option value="10">10+ shared articles</option></select><button type="button" id="knowledge-reset">Reset</button><span id="knowledge-visible"></span><span id="knowledge-search-status" role="status"></span></div>
+        <div class="km-graph-frame"><svg id="knowledge-graph" class="km-graph" viewBox="0 0 850 700" role="group" aria-label="Reading knowledge graph. Select topics or connections, or use the topic list below."></svg></div>
+        <p class="km-legend">Circle area = articles on a topic · Line weight = shared articles · Select a circle or line for sources. Topic counts overlap.</p>
+        <div class="km-bottom"><div><h3>Your reading landscape</h3><div class="km-topics" id="knowledge-topics"></div></div><div class="km-detail" id="knowledge-detail" aria-live="polite"></div></div>
+        <details class="km-method"><summary>How this prototype works &amp; full-analysis token estimate</summary>
+          <p>This snapshot covers every entry in <a href="articles.html">the reading log</a> through October 8, 2026. A title can belong to several topics. Counts represent logged entries, not reading time. A link requires both topics in the same title’s classification; geography alone does not imply causation. Positions are arranged for legibility and carry no statistical meaning. Short or ambiguous titles may be misclassified.</p>
+          <p>A full analysis would read each available article, extract topics and explicit relationships with evidence passages, then consolidate duplicate concepts and review ambiguous connections. Missing or inaccessible articles would remain marked as unverified.</p>
+          <table><thead><tr><th>Future full-text analysis</th><th>Estimated tokens</th></tr></thead><tbody><tr><td>358 texts × 1,500–3,500 tokens</td><td>537,000–1,253,000 input</td></tr><tr><td>Extraction instructions: 500 × 358</td><td>179,000 input</td></tr><tr><td>Article-level extraction: 250–400 × 358</td><td>89,500–143,200 output</td></tr><tr><td>Final grouping and evidence review</td><td>90,000–150,000 input + 10,000–30,000 output</td></tr><tr><th>Total, rounded</th><th>0.9–1.8 million tokens</th></tr></tbody></table>
+          <p>Planning estimate only: about 0.8–1.6M input and 0.1–0.2M output tokens. Actual lengths have not been measured. Long research papers, OCR, retries, and extra review passes can increase usage. This excludes prototype development. Dollar cost depends on the chosen model, input/output rates, and caching.</p>
+        </details>
+        <noscript><p>Enable JavaScript to explore the knowledge graph. The complete <a href="articles.html">reading log</a> remains available.</p></noscript>
+      </section>
+      -->
 
       <h3 class="section-title">Maps</h3>
 
@@ -1287,6 +1312,10 @@
 
   </div>
 
+  <!-- Knowledge map prototype scripts (paused)
+  <script src="knowledge-data.js"></script>
+  <script src="knowledge-map.js"></script>
+  -->
   <script src="world-data.js"></script>
   <script src="us-data.js"></script>
   <script src="map.js"></script>
