@@ -69,9 +69,18 @@
   });
 
   const jumpTo=card=>{
+    if(document.body.classList.contains('balanced-home')){
+      window.location.href = 'projects.html#' + card.id;
+      return;
+    }
     card.scrollIntoView({behavior:'smooth',block:'start'});
     card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
   };
+
+  if(location.hash){
+    const linked = document.getElementById(location.hash.slice(1));
+    if(linked?.classList.contains('proj-entry')) requestAnimationFrame(() => jumpTo(linked));
+  }
 
   // ---- 2. painters (layered translucent watercolor) ----
   function blob(p,cx,cy,rx,ry,fill,op){p.appendChild(mk('ellipse',{cx,cy,rx,ry,fill,'fill-opacity':op}));}

@@ -45,12 +45,8 @@
     </nav>
 
       <main class="home-scroll">
-      <nav class="panel-switch" aria-label="Homepage sections">
-        <a class="panel-jump is-active" href="#hello" aria-label="Show introduction" aria-current="true"><span aria-hidden="true"></span></a>
-        <a class="panel-jump" href="#about" aria-label="Show profile details"><span aria-hidden="true"></span></a>
-        <a class="panel-jump" href="#explore" aria-label="Explore projects, reading, books, and journals"><span aria-hidden="true"></span></a>
-      </nav>
-      <section class="home-screen home-screen-intro is-active" id="hello" aria-label="Introduction" aria-hidden="false">
+
+      <section class="home-screen home-screen-intro is-active" id="hello" aria-label="Introduction">
       <div class="home-first-main">
 
         <!-- # EDIT: Intro Paragraph -->
@@ -82,7 +78,8 @@
       </a>
       </section>
 
-      <section class="home-screen home-screen-about" id="about" aria-label="Profile details" aria-hidden="true" inert>
+      <div class="home-continuous" id="home-continuous">
+      <section class="home-screen home-screen-about" id="about" aria-label="Profile details">
       <div class="home-second-main">
 
         <div class="about-text">
@@ -113,41 +110,45 @@
 
       </section>
 
-      <section class="home-screen home-screen-explore" id="explore" aria-label="Explore the site" aria-hidden="true" inert>
+      <section class="home-screen home-screen-explore" id="explore" aria-label="Explore the site">
       <div class="home-explore-main">
-        <!-- <header class="explore-intro">
-          <h2>Follow a thread.</h2>
-          <p>A working shelf of things I build, read, and think about.</p>
-        </header> -->
-
-        <div class="explore-grid">
-          <a class="explore-card" href="projects.html">
-            <h3>Projects</h3>
-            <p>Markets, agentic AI, engineering, and political thought.</p>
-            <ul><li>Featured: Agent Daikoku</li></ul>
-            <strong>Open <i aria-hidden="true">↗</i></strong>
-          </a>
-
-          <a class="explore-card" href="articles.html">
-            <h3>Reading list</h3>
-            <p>Articles, essays, and research passing across my desk.</p>
-            <ul><li>Latest: China’s Bigger, Better Batteries</li></ul>
-            <strong>Open <i aria-hidden="true">↗</i></strong>
-          </a>
-
-          <a class="explore-card" href="garden-leave.html#books-read">
-            <h3>Books</h3>
-            <p>Fiction, philosophy, markets, memoir, and useful interruptions.</p>
-            <ul><li>Recent: The White Album — Joan Didion</li></ul>
-            <strong>Open <i aria-hidden="true">↗</i></strong>
-          </a>
-
-          <!-- <a class="explore-card" href="garden-leave.html">
-            <h3>Journal</h3>
-            <p>Weekly notes on what moved, what lingered, and what comes next.</p>
-            <ul><li>Latest: September 25, 2026</li></ul>
-            <strong>Open <i aria-hidden="true">↗</i></strong>
-          </a> -->
+        <div class="home-indexes">
+          <section class="home-index" id="home-projects" aria-labelledby="home-projects-title">
+            <h2 id="home-projects-title"><a href="projects.html">Projects <span aria-hidden="true">↗</span></a></h2>
+            <div class="home-widget" data-source="projects.html" aria-busy="true">
+              <p><a href="projects.html">Explore projects</a></p>
+            </div>
+          </section>
+          <section class="home-index" id="home-journal" aria-labelledby="home-journal-title">
+            <h2 id="home-journal-title"><a href="garden-leave.html">Garden-Leave <span aria-hidden="true">↗</span></a></h2>
+            <div class="home-widget" data-source="garden-leave.html" aria-busy="true">
+              <p><a href="garden-leave.html">Open the journal dashboard</a></p>
+            </div>
+            <section class="home-vault" aria-labelledby="home-vault-title">
+              <h2 id="home-vault-title"><a href="vault.html">Vault <span aria-hidden="true">↗</span></a></h2>
+              <div class="home-chest-card">
+                <div class="chest-scene" id="chest-scene">
+                  <div class="chest-artwork">
+                    <button class="chest-trigger" type="button" aria-label="Open the treasure chest" aria-expanded="false" aria-controls="chest-contents">
+                      <img class="chest-closed" src="chest.png" width="1254" height="1074" alt="A pastel treasure chest with a dusty blue ribbon">
+                      <img class="chest-open" src="chest-open.png" width="1254" height="1254" alt="" aria-hidden="true">
+                    </button>
+                    <div class="chest-contents" id="chest-contents" inert>
+                      <a class="chest-treasure treasure-articles" href="articles.html" aria-label="Read Articles" title="Articles">
+                        <span class="treasure-point" aria-hidden="true"></span>
+                        <span class="treasure-label">Articles</span>
+                      </a>
+                      <a class="chest-treasure treasure-map" href="map.html" aria-label="Explore Maps" title="Maps">
+                        <span class="treasure-point" aria-hidden="true"></span>
+                        <span class="treasure-label">Maps</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <noscript><p><a href="articles.html">Articles</a> · <a href="map.html">Maps</a></p></noscript>
+              </div>
+            </section>
+          </section>
         </div>
 
         <footer>© 2026 Kelly Liang</footer>
@@ -157,10 +158,13 @@
         <span class="scroll-arrow" aria-hidden="true">↑</span><span>Back</span>
       </a>
       </section>
+      </div>
       </main>
     </div>
 
   <script src="vault-nav.js"></script>
   <script src="homepage-transition.js"></script>
+  <script src="homepage-indexes.js"></script>
+  <script src="chest.js"></script>
 </body>
 </html>

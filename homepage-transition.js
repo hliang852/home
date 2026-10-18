@@ -1,87 +1,107 @@
+/* One introduction panel, followed by a continuous profile + explore area. */
 (() => {
-  const container = document.querySelector('.home-scroll');
-  const panels = [...document.querySelectorAll('.home-screen')];
-  const panelJumps = [...document.querySelectorAll('.panel-jump')];
-  if (!container || panels.length < 2) return;
+  const intro = document.getElementById('hello');
+  const rest = document.getElementById('home-continuous');
+  if(!intro || !rest) return;
+  document.body.classList.add('home-panels');
+  let introVisible = true;
+  let lockedUntil = 0;
+  let transitioning = false;
+  let initialized = false;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let activeIndex = 0;
-  let locked = false;
-  let touchStartY = null;
+  const show = async (id, updateHash = true) => {
+    if(transitioning) return;
+    const switching = introVisible !== (id === 'hello');
+    const animate = initialized && switching && !reducedMotion;
+    introVisible = id === 'hello';
+    const incoming = introVisible ? intro : rest;
+    const outgoing = introVisible ? rest : intro;
+    incoming.hidden = false;
+    incoming.inert = false;
+    outgoing.inert = true;
+    outgoing.hidden = !animate;
+    if(!introVisible){
+      const target = document.getElementById(id);
+      const top = rest.scrollTop + target.getBoundingClientRect().top - rest.getBoundingClientRect().top;
+      rest.scrollTo({top, behavior:switching || reducedMotion ? 'instant' : 'smooth'});
+    }
+    if(updateHash) history.replaceState(null, '', '#' + id);
+    initialized = true;
 
-  const applyState = (updateHash = true) => {
-    panels.forEach((panel, index) => {
-      const active = index === activeIndex;
-      panel.classList.toggle('is-active', active);
-      panel.classList.toggle('is-before', index < activeIndex);
-      panel.classList.toggle('is-after', index > activeIndex);
-      panel.setAttribute('aria-hidden', String(!active));
-      panel.inert = !active;
-      if (active) panel.scrollTop = 0;
-    });
-    panelJumps.forEach((link, index) => {
-      const active = index === activeIndex;
-      link.classList.toggle('is-active', active);
-      if (active) link.setAttribute('aria-current', 'true');
-      else link.removeAttribute('aria-current');
-    });
-
-    if (updateHash) history.replaceState(null, '', `#${panels[activeIndex].id}`);
+    if(animate){
+      transitioning = true;
+      const direction = introVisible ? -1 : 1;
+      const timing = {duration:700, easing:'cubic-bezier(0.22, 1, 0.36, 1)', fill:'both'};
+      const animations = [
+        outgoing.animate([
+          {opacity:1, transform:'translateY(0)'},
+          {opacity:0, transform:`translateY(${-direction * 36}px)`}
+        ], timing),
+        incoming.animate([
+          {opacity:0, transform:`translateY(${direction * 48}px)`},
+          {opacity:1, transform:'translateY(0)'}
+        ], timing)
+      ];
+      await Promise.allSettled(animations.map(animation => animation.finished));
+      outgoing.hidden = true;
+      animations.forEach(animation => animation.cancel());
+      transitioning = false;
+    }
+    if(switching){
+      const target = introVisible ? intro : document.getElementById(id);
+      target.tabIndex = -1;
+      target.focus({preventScroll:true});
+      lockedUntil = performance.now() + 180;
+    }
   };
 
-  const showPanel = (nextIndex, updateHash = true) => {
-    if (nextIndex === activeIndex || nextIndex < 0 || nextIndex >= panels.length || locked) return;
-    locked = true;
-    activeIndex = nextIndex;
-    applyState(updateHash);
-    window.setTimeout(() => { locked = false; }, 650);
+  const step = direction => {
+    if(transitioning || performance.now() < lockedUntil) return;
+    if(introVisible && direction > 0 && intro.scrollTop + intro.clientHeight >= intro.scrollHeight - 2) show('about');
+    else if(!introVisible && direction < 0 && rest.scrollTop <= 0) show('hello');
   };
-
-  container.addEventListener('wheel', (event) => {
-    if (Math.abs(event.deltaY) < 12) return;
-    const panel = panels[activeIndex];
-    const maxScroll = panel.scrollHeight - panel.clientHeight;
-    if (event.deltaY > 0 && panel.scrollTop < maxScroll - 2) return;
-    if (event.deltaY < 0 && panel.scrollTop > 2) return;
-    event.preventDefault();
-    showPanel(activeIndex + (event.deltaY > 0 ? 1 : -1));
-  }, { passive: false });
-
-  container.addEventListener('touchstart', (event) => {
-    touchStartY = event.touches[0]?.clientY ?? null;
-  }, { passive: true });
-
-  container.addEventListener('touchend', (event) => {
-    if (touchStartY === null) return;
-    const endY = event.changedTouches[0]?.clientY ?? touchStartY;
-    const distance = touchStartY - endY;
-    touchStartY = null;
-    if (Math.abs(distance) <= 45) return;
-    const panel = panels[activeIndex];
-    const maxScroll = panel.scrollHeight - panel.clientHeight;
-    if (distance > 0 && panel.scrollTop >= maxScroll - 2) showPanel(activeIndex + 1);
-    if (distance < 0 && panel.scrollTop <= 2) showPanel(activeIndex - 1);
-  }, { passive: true });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.target.closest('a, button, input, textarea, select, [contenteditable="true"]')) return;
-    if (['ArrowDown', 'PageDown', ' '].includes(event.key)) {
+  document.querySelector('.home-scroll').addEventListener('wheel', event => {
+    if(transitioning){
       event.preventDefault();
-      showPanel(activeIndex + 1);
-    } else if (['ArrowUp', 'PageUp'].includes(event.key)) {
+      return;
+    }
+    if(Math.abs(event.deltaY) < 12) return;
+    const atBoundary = introVisible
+      ? event.deltaY > 0 && intro.scrollTop + intro.clientHeight >= intro.scrollHeight - 2
+      : event.deltaY < 0 && rest.scrollTop <= 0;
+    if(atBoundary){
       event.preventDefault();
-      showPanel(activeIndex - 1);
+      step(Math.sign(event.deltaY));
+    }
+  }, {passive:false});
+
+  let startY = null;
+  let startedAtEdge = false;
+  document.querySelector('.home-scroll').addEventListener('touchstart', event => {
+    startY = event.touches[0]?.clientY;
+    startedAtEdge = introVisible ? intro.scrollTop + intro.clientHeight >= intro.scrollHeight - 2 : rest.scrollTop <= 0;
+  }, {passive:true});
+  document.querySelector('.home-scroll').addEventListener('touchend', event => {
+    const distance = startY - event.changedTouches[0]?.clientY;
+    if(startedAtEdge && Math.abs(distance) > 45) step(Math.sign(distance));
+    startY = null;
+  }, {passive:true});
+
+  document.addEventListener('keydown', event => {
+    if(event.target.closest('a, button, input, textarea, select, [contenteditable], [role="button"]')) return;
+    if(introVisible && ['ArrowDown', 'PageDown', ' '].includes(event.key) && intro.scrollTop + intro.clientHeight >= intro.scrollHeight - 2){
+      event.preventDefault();
+      step(1);
     }
   });
-
-  document.querySelectorAll('.scroll-nudge, .panel-jump').forEach((link) => {
-    link.addEventListener('click', (event) => {
+  document.querySelectorAll('.scroll-nudge').forEach(link => {
+    link.addEventListener('click', event => {
       event.preventDefault();
-      const targetIndex = panels.findIndex((panel) => `#${panel.id}` === link.getAttribute('href'));
-      showPanel(targetIndex);
+      show(link.hash.slice(1));
     });
   });
-
-  const hashIndex = panels.findIndex((panel) => `#${panel.id}` === window.location.hash);
-  activeIndex = hashIndex >= 0 ? hashIndex : 0;
-  applyState(false);
+  const fromHash = () => show(['#about', '#explore'].includes(location.hash) ? location.hash.slice(1) : 'hello', false);
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 })();

@@ -7,8 +7,8 @@
    date in the left-hand column — never from today's date. The rolling
    book list gets a yellow square, also on the date written in its .when
    label. Entries with no readable date get no square. Clicking any
-   colored square smooth-scrolls to its entry. Each entry also gets a
-   "Top ↑" link back to the heatmap.
+   colored square expands and smooth-scrolls to its entry. Each entry also gets a
+   "Top ↑" link that collapses it and returns to the heatmap.
    ===================================================================== */
 (function(){
   const MONTHS = {january:0,february:1,march:2,april:3,may:4,june:5,july:6,
@@ -88,28 +88,157 @@
     entryByDay.set(d.toDateString(), entry);
     if(!earliest || d < earliest) earliest = d;
   });
-  // append a "Top ↑" link to every entry that returns to the heatmap
-  // (mirrors the same link on the projects page — see ikebana.js)
-  const indexEl = document.querySelector('.heatmap-wrap'); // scroll target for "Top ↑"
-  document.querySelectorAll('.entry').forEach(entry => {
+  // Build a compact archive without changing the source entry markup.
+  const indexEl = document.querySelector('.heatmap-wrap');
+  const entries = [...document.querySelectorAll('.entry')];
+  const archive = document.createElement('section');
+  archive.className = 'journal-archive';
+  archive.setAttribute('aria-label', 'Journal by year and month');
+  const toggleAll = document.createElement('button');
+  toggleAll.type = 'button';
+  toggleAll.className = 'journal-toggle-all';
+  toggleAll.textContent = 'Expand all';
+  archive.appendChild(toggleAll);
+  entries[0]?.before(archive);
+  const groups = new Map();
+  const bodies = new Map();
+  const monthGroups = [];
+  const entryMonths = new Map();
+  let activeSquare = null;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+
+  const updateToggleAll = () => {
+    toggleAll.textContent = entries.every(entry => !bodies.get(entry)?.hidden) && monthGroups.every(month => month.open) ? 'Collapse all' : 'Expand all';
+  };
+  const setExpanded = (entry, expanded) => {
+    const body = bodies.get(entry);
+    body.hidden = !expanded;
+    if(expanded) entryMonths.get(entry).open = true;
+    entry.classList.toggle('is-expanded', expanded);
+    entry.classList.remove('flash');
+    entry.querySelector('.journal-arrow').textContent = expanded ? '▾' : '▸';
+    document.querySelectorAll('[aria-controls]').forEach(control => {
+      if([entry.id, body.id].includes(control.getAttribute('aria-controls'))){
+        control.setAttribute('aria-expanded', String(expanded));
+      }
+    });
+    updateToggleAll();
+  };
+  toggleAll.addEventListener('click', () => {
+    const expand = entries.some(entry => bodies.get(entry).hidden) || monthGroups.some(month => !month.open);
+    entries.forEach(entry => setExpanded(entry, expand));
+    monthGroups.forEach(month => { month.open = expand; });
+    updateToggleAll();
+  });
+
+  entries.sort((a, b) => (parseWhen(b.querySelector('.when')?.textContent) || 0) -
+                          (parseWhen(a.querySelector('.when')?.textContent) || 0));
+  entries.forEach((entry, i) => {
+    const when = entry.querySelector('.when');
+    const date = parseWhen(when?.textContent);
+    const year = date ? String(date.getFullYear()) : 'Undated';
+    const month = date ? date.toLocaleString('en-US', {month:'long'}) : 'Entries';
+    if(!groups.has(year)){
+      const section = document.createElement('section');
+      const heading = document.createElement('h2');
+      heading.textContent = year;
+      section.appendChild(heading);
+      archive.appendChild(section);
+      groups.set(year, {section, months:new Map()});
+    }
+    const group = groups.get(year);
+    if(!group.months.has(month)){
+      const section = document.createElement('details');
+      section.className = 'journal-month';
+      section.open = false;
+      const summary = document.createElement('summary');
+      const heading = document.createElement('h3');
+      heading.textContent = month;
+      summary.appendChild(heading);
+      section.appendChild(summary);
+      section.addEventListener('toggle', updateToggleAll);
+      group.section.appendChild(section);
+      group.months.set(month, section);
+      monthGroups.push(section);
+    }
+    entryMonths.set(entry, group.months.get(month));
+    entry.id ||= 'journal-entry-' + i;
+    entry.tabIndex = -1;
     const body = entry.lastElementChild;
-    if(!body || body.querySelector('.to-top')) return;
+    bodies.set(entry, body);
+    body.classList.add('journal-body');
+    body.id ||= entry.id + '-body';
+    body.hidden = true;
+    const row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'journal-row';
+    row.setAttribute('aria-controls', body.id);
+    row.setAttribute('aria-expanded', 'false');
+    row.addEventListener('click', () => setExpanded(entry, body.hidden));
+    const arrow = document.createElement('span');
+    arrow.className = 'journal-arrow';
+    arrow.textContent = '▸';
+    arrow.setAttribute('aria-hidden', 'true');
+    row.appendChild(arrow);
+    if(when){
+      when.querySelectorAll('br').forEach(br => br.replaceWith(' '));
+      const label = document.createElement('span');
+      label.className = 'when';
+      label.textContent = when.textContent;
+      when.remove();
+      row.appendChild(label);
+    }
+    entry.prepend(row);
     const top = document.createElement('a');
-    top.className = 'to-top'; top.href = '#'; top.textContent = 'Top ↑';
-    top.addEventListener('click', ev => { ev.preventDefault();
-      (indexEl || document.body).scrollIntoView({behavior:'smooth', block:'start'}); });
+    top.className = 'to-top';
+    top.href = '#log-dashboard';
+    top.textContent = 'Top ↑';
+    top.addEventListener('click', ev => {
+      ev.preventDefault();
+      setExpanded(entry, false);
+      (activeSquare || indexEl)?.focus({preventScroll:true});
+      (indexEl || document.body).scrollIntoView({behavior:motion, block:'start'});
+    });
     body.appendChild(top);
+    group.months.get(month).appendChild(entry);
   });
 
   if(!earliest) return;
 
-  const jumpTo = el => {
+  const jumpTo = (el, square) => {
+    if(document.body.classList.contains('balanced-home')){
+      window.location.href = 'garden-leave.html#' + el.id;
+      return;
+    }
     const t = document.getElementById('hm-tip');
-    if(t) t.style.display = 'none';    // never leave the tooltip stuck after a tap
-    el.scrollIntoView({behavior:'smooth', block:'start'});
+    if(t) t.style.display = 'none';
+    activeSquare = square;
+    setExpanded(el, true);
+    el.focus({preventScroll:true});
+    el.scrollIntoView({behavior:motion, block:'start'});
     el.classList.remove('flash');
-    void el.offsetWidth;               // restart animation
+    void el.offsetWidth;
     el.classList.add('flash');
+  };
+
+  if(location.hash && !document.body.classList.contains('balanced-home')){
+    const linked = document.getElementById(location.hash.slice(1));
+    if(bodies.has(linked)) requestAnimationFrame(() => jumpTo(linked, null));
+  }
+
+  const wireSquare = (cell, entry) => {
+    cell.setAttribute('role', 'button');
+    cell.tabIndex = 0;
+    cell.setAttribute('aria-label', cell.dataset.tip);
+    cell.setAttribute('aria-controls', entry.id);
+    cell.setAttribute('aria-expanded', 'false');
+    cell.addEventListener('click', () => jumpTo(entry, cell));
+    cell.addEventListener('keydown', event => {
+      if(event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        cell.click();
+      }
+    });
   };
 
   // ---- 2. build the grid: from the Sunday before the first entry through today ----
@@ -151,12 +280,12 @@
           cell.classList.add('filled');
           cell.dataset.tip = dateStr + ' — click to read';
         }
-        cell.addEventListener('click', () => jumpTo(entry));
+        wireSquare(cell, entry);
       } else if(booksEntry && booksDays.has(key)){
         // one square per book-list update, all pointing at the current list
         cell.classList.add('books');
         cell.dataset.tip = dateStr + ' — book list, click to read';
-        cell.addEventListener('click', () => jumpTo(booksEntry));
+        wireSquare(cell, booksEntry);
       } else {
         cell.dataset.tip = dateStr;
       }
@@ -193,7 +322,7 @@
       return;
     }
     cell.dataset.tip = tipText;
-    cell.addEventListener('click', () => jumpTo(entry));
+    wireSquare(cell, entry);
     if(canHover){
       cell.addEventListener('mousemove', e => {
         tip.textContent = cell.dataset.tip;

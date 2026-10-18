@@ -1,16 +1,15 @@
-/* Two-screen homepage. Shared type, color, header, and navigation styles live in style.css. */
+/* Continuously scrolling homepage. Shared type, color, header, and navigation styles live in style.css. */
 html{scroll-behavior:smooth;}
 .balanced-home{
-  height:100vh;height:100svh;overflow:hidden;line-height:1.7;
+  min-height:100svh;line-height:1.7;
   background:
     radial-gradient(circle at 82% 18%,rgba(82,99,73,.055),transparent 31%),
     radial-gradient(circle at 12% 86%,rgba(98,104,87,.035),transparent 27%),
     var(--paper);
 }
 .balanced-home .layout{
-  height:100vh;
-  height:100svh;
-  grid-template-rows:auto minmax(0,1fr);
+  min-height:100svh;
+  grid-template-rows:auto auto;
   grid-template-areas:"name nav" "main main";
   padding-bottom:0;
 }
@@ -18,38 +17,23 @@ html{scroll-behavior:smooth;}
   grid-area:main;
   position:relative;
   min-height:0;
-  overflow:hidden;
+  overflow:visible;
   padding:0;
 }
 .home-screen{
-  position:absolute;
-  inset:0;
+  position:relative;
   display:flex;
   align-items:center;
   width:100%;
-  overflow-y:auto;
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transform:translateY(22px) scale(.992);
-  transition:opacity 520ms ease,transform 620ms cubic-bezier(.22,.7,.2,1),visibility 0s linear 620ms;
-  will-change:opacity,transform;
-}
-.home-screen.is-before:not(.is-active){transform:translateY(-22px) scale(.992);}
-.home-screen.is-after:not(.is-active){transform:translateY(22px) scale(.992);}
-.home-screen.is-active{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-  transform:translateY(0) scale(1);
-  transition-delay:0s;
+  min-height:calc(100svh - 180px);
+  scroll-margin-top:24px;
 }
 .balanced-home main p{margin:0;}
 
 .panel-switch{
-  position:absolute;
+  position:fixed;
   z-index:8;
-  right:0;
+  right:20px;
   top:50%;
   display:flex;
   flex-direction:column;
@@ -175,7 +159,7 @@ html{scroll-behavior:smooth;}
 
 @media(max-width:880px){
   .balanced-home .layout{
-    grid-template-rows:auto auto minmax(0,1fr);
+    grid-template-rows:auto auto auto;
     grid-template-areas:"name" "nav" "main";
   }
   .balanced-home .home-first-main{column-gap:36px;grid-template-columns:230px minmax(0,1fr);margin-top:32px;}
@@ -217,7 +201,7 @@ html{scroll-behavior:smooth;}
   .explore-card:nth-child(3){margin-left:4%;}
   .explore-card:nth-child(4){margin-left:6%;}
   .explore-card ul{gap:8px;}
-  .panel-switch{right:-3px;}
+  .panel-switch{right:8px;}
   .scroll-nudge-down{bottom:20px;}
   .scroll-nudge-up{bottom:54px;}
 }
@@ -235,7 +219,54 @@ html{scroll-behavior:smooth;}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
-  .home-screen{transition:opacity 140ms linear,visibility 0s linear 140ms;transform:none;}
-  .home-screen.is-active{transform:none;}
   .scroll-arrow{animation:none;}
 }
+
+/* Live navigation from the Projects and Garden-Leave pages. */
+.home-screen-explore{align-items:safe center;}
+.home-indexes{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;}
+.home-index{min-width:0;}
+.home-index h2{font-family:var(--font-display);font-weight:400;font-size:24px;margin:0 0 10px;}
+.home-index h2 a{color:var(--ink);}
+.home-index h2 span{font-family:var(--font-ui);font-size:15px;color:var(--accent);}
+.home-index .ikebana-wrap,.home-index .heatmap-wrap{margin:0;}
+.home-index .ikebana-wrap{padding:12px 18px;}
+.home-index .stage-wrap{max-width:620px;margin-inline:auto;}
+.home-index .heatmap-wrap{padding:16px 18px;}
+.home-index .heatmap-caption{margin-bottom:12px;}
+.home-index .heatmap-legend{flex-wrap:wrap;}
+.home-index [hidden]{display:none;}
+@media(min-width:1100px){
+  .home-indexes{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;align-items:center;}
+}
+
+/* The introduction is one panel; the remaining sections share a scroll area. */
+.balanced-home.home-panels{height:100svh;overflow:hidden;}
+.home-panels .layout{height:100svh;grid-template-rows:auto minmax(0,1fr);}
+.home-panels .home-scroll{overflow:hidden;}
+.home-panels .home-screen-intro,
+.home-panels .home-continuous{position:absolute;inset:0;overflow-y:auto;}
+.home-panels .home-screen-intro{min-height:0;align-items:safe center;}
+.home-panels .home-continuous{overscroll-behavior-y:contain;scroll-behavior:smooth;}
+.home-panels .home-continuous .home-screen{min-height:100%;}
+.home-panels .panel-switch{position:absolute;right:0;}
+.home-panels .home-continuous{padding-right:10px;}
+.home-panels [hidden]{display:none !important;}
+@media(max-width:880px){
+  .home-panels .layout{grid-template-rows:auto auto minmax(0,1fr);}
+}
+@media(prefers-reduced-motion:reduce){
+  .home-panels .home-continuous{scroll-behavior:auto;}
+}
+
+/* Vault sits below the journal in the same shaded card family as the vase. */
+.home-vault{margin-top:22px;}
+.home-chest-card{
+  padding:12px 18px;
+  background:var(--paper-deep);
+  border:1px solid var(--rule);
+  border-radius:3px;
+}
+.home-chest-card .chest-scene{max-width:360px;margin-inline:auto;}
+/* Account for the transparent margins shared by both chest images. */
+.home-chest-card .chest-artwork{transform:translateY(-20%);}
