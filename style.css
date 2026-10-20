@@ -688,6 +688,20 @@ footer{
 .chest-trigger{position:absolute;left:0;bottom:0;width:100%;aspect-ratio:1;border:0;padding:0;background:transparent;cursor:pointer;}
 .chest-trigger img{position:absolute;inset:0;display:block;width:100%;height:auto;pointer-events:none;}
 .chest-trigger .chest-closed{top:auto;bottom:0;opacity:1;transition:opacity 350ms ease;}
+/* Match the vase's expanding hint ring while the chest is waiting to open. */
+.chest-trigger::after{
+  content:"";
+  position:absolute;
+  /* Center on the lock, accounting for the bottom-aligned closed image. */
+  left:42.8%;top:47.6%;
+  width:14%;aspect-ratio:1;
+  border:1.4px solid var(--accent);
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0;
+  animation:ikbPulse 2.6s ease-out infinite;
+}
+.chest-scene.is-open .chest-trigger::after{display:none;}
 .chest-open{opacity:0;transform:scaleY(.84);transform-origin:50% 78%;transition:opacity 450ms ease,transform 600ms ease;}
 .chest-scene.is-open .chest-closed{opacity:0;}
 .chest-scene.is-open .chest-open{opacity:1;transform:scaleY(1);}
@@ -707,6 +721,7 @@ footer{
 .chest-scene:has(.chest-trigger:focus-visible){outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
 @media(prefers-reduced-motion:reduce){
   .chest-closed,.chest-open,.chest-scene .chest-treasure{transition:none;}
+  .chest-trigger::after{animation:none;opacity:.4;}
 }
 
 /* Garden-leave archive: expandable rows and dashboard navigation. */

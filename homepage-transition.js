@@ -62,6 +62,8 @@
     else if(!introVisible && direction < 0 && rest.scrollTop <= 0) show('hello');
   };
   document.querySelector('.home-scroll').addEventListener('wheel', event => {
+    // Let horizontal gestures and trackpad pinch-to-zoom keep their native behavior.
+    if(event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
     if(transitioning){
       event.preventDefault();
       return;

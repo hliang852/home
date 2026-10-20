@@ -51,40 +51,37 @@
 
         <!-- # EDIT: Intro Paragraph -->
         <div class="intro">
-          <p class="intro-copy">I trade <strong>risk</strong> for a living, <strong>build</strong> tools as a side hustle, and spend the rest of my time
-            asking <strong>questions</strong>. 
-            <!-- <br> This site records what I’ve
-          worked on, built, and written.</p> -->
-          <p class="welcome-line">Welcome.</p>
-          <p class="postscript"><span style="font-family: 'Zapfino', cursive;">p.s. </span>
-            <a href="garden-leave.html">weekly updates on my utter negligence of botanical pursuits &#x1FAB4;</a><br>
-            <!-- <span style="font-family: 'Zapfino', cursive;">p.p.s. </span>
-            <a href="articles.html">where my mind wandered to </a> -->
+          <p class="intro-greeting">Hey there!</p>
+          <p class="intro-copy">
+            <span>I trade <strong>risk</strong> for a living,</span>
+            <span><strong>build</strong> tools as a side hustle,</span>
+            <span>spend the rest <strong>reading</strong> and asking <strong>questions</strong>.</span>
           </p>
-          
-
-           <footer>© 2026 Kelly Liang</footer>
-
+          <!-- <p class="postscript"><span class="postscript-label">p.s. </span> -->
+            <!-- <a href="garden-leave.html">weekly updates on my utter negligence of botanical pursuits &#x1FAB4;</a> -->
+          <!-- </p> -->
         </div>
 
-        <!-- # EDIT: Portrait beside the intro; basic facts below -->
-        <div class="profile-row">
-          <div class="img"><img src="portrait.jpg" alt="Kelly Liang" width="350" height="450"></div>
-        </div>
+        <figure class="intro-portrait">
+          <img src="portrait.jpg" alt="Kelly Liang in a red-rock landscape" width="3325" height="4058">
+        </figure>
       </div>
 
-      <a class="scroll-nudge scroll-nudge-down" href="#about" aria-label="Scroll to profile details">
-        <span>More</span><span class="scroll-arrow" aria-hidden="true">↓</span>
-      </a>
       </section>
 
       <div class="home-continuous" id="home-continuous">
       <section class="home-screen home-screen-about" id="about" aria-label="Profile details">
       <div class="home-second-main">
+        <div class="home-section-label">About</div>
 
-        <div class="about-text">
+        <div class="about-composition">
+          <div class="about-text">
           <h2>A trader with an engineer’s habits and a philosopher’s curiosity.</h2>
-          <p>I studied political thought and computer science before drifting into equities trading, though my philosophy and engineering sides never quite left me. Nowadays, I split my time musing about markets, working with Claude Code, and reading “unnecessary” German political thought.</p>
+          <p>I studied political thought and computer science before drifting into equities trading,
+            though my philosophy and engineering sides never quite left me.
+            Nowadays, I split my time musing about markets, working with Codex & Claude Code,
+            and reading “unnecessary” German political thought.</p>
+          </div>
         </div>
 
         <div class="home-meta">
@@ -98,14 +95,11 @@
           </div>
         </div>
 
-               <footer>© 2026 Kelly Liang</footer>
+               <!-- <footer>© 2026 Kelly Liang</footer> -->
 
       </div>
 
-      <a class="scroll-nudge scroll-nudge-down" href="#explore" aria-label="Continue to site guide">
-        <span>Explore</span><span class="scroll-arrow" aria-hidden="true">↓</span>
-      </a>
-      
+
 
 
       </section>
@@ -113,18 +107,19 @@
       <section class="home-screen home-screen-explore" id="explore" aria-label="Explore the site">
       <div class="home-explore-main">
         <div class="home-indexes">
+          <section class="home-index" id="home-journal" aria-labelledby="home-journal-title">
+            <h2 id="home-journal-title"><a href="garden-leave.html">Garden-Leave <span aria-hidden="true">↗</span></a></h2>
+            <div class="home-widget" data-source="garden-leave.html" aria-busy="true">
+              <p><a href="garden-leave.html">Open the journal dashboard</a></p>
+            </div>
+          </section>
           <section class="home-index" id="home-projects" aria-labelledby="home-projects-title">
             <h2 id="home-projects-title"><a href="projects.html">Projects <span aria-hidden="true">↗</span></a></h2>
             <div class="home-widget" data-source="projects.html" aria-busy="true">
               <p><a href="projects.html">Explore projects</a></p>
             </div>
           </section>
-          <section class="home-index" id="home-journal" aria-labelledby="home-journal-title">
-            <h2 id="home-journal-title"><a href="garden-leave.html">Garden-Leave <span aria-hidden="true">↗</span></a></h2>
-            <div class="home-widget" data-source="garden-leave.html" aria-busy="true">
-              <p><a href="garden-leave.html">Open the journal dashboard</a></p>
-            </div>
-            <section class="home-vault" aria-labelledby="home-vault-title">
+          <section class="home-index home-vault" aria-labelledby="home-vault-title">
               <h2 id="home-vault-title"><a href="vault.html">Vault <span aria-hidden="true">↗</span></a></h2>
               <div class="home-chest-card">
                 <div class="chest-scene" id="chest-scene">
@@ -147,23 +142,18 @@
                 </div>
                 <noscript><p><a href="articles.html">Articles</a> · <a href="map.html">Maps</a></p></noscript>
               </div>
-            </section>
           </section>
         </div>
 
         <footer>© 2026 Kelly Liang</footer>
       </div>
 
-      <a class="scroll-nudge scroll-nudge-up" href="#about" aria-label="Return to profile details">
-        <span class="scroll-arrow" aria-hidden="true">↑</span><span>Back</span>
-      </a>
       </section>
       </div>
       </main>
     </div>
 
   <script src="vault-nav.js"></script>
-  <script src="homepage-transition.js"></script>
   <script src="homepage-indexes.js"></script>
   <script src="chest.js"></script>
 </body>
