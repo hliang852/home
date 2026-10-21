@@ -26,11 +26,15 @@ html{scroll-behavior:smooth;}
 .balanced-home main p{margin:0;}
 
 /* A text-led opening, with equal emphasis on each part of the introduction. */
-.balanced-home .home-first-main{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:40px;align-items:center;width:100%;margin:56px 0 48px;padding:0;}
+.balanced-home .home-first-main{display:grid;grid-template-columns:minmax(0,540px) 240px;gap:24px;align-items:center;width:100%;margin:48px 0;padding:0;}
 .balanced-home .intro{max-width:100%;min-width:0;}
-.balanced-home .intro-greeting{font-family:var(--font-ui);font-size:12px;color:var(--ink-soft);margin-bottom:18px;}
-.balanced-home .intro-copy{font-size:26px;line-height:1.65;letter-spacing:-.018em;text-wrap:pretty;}
+.balanced-home .intro-greeting{font-family:var(--font-ui);font-size:15px;color:var(--ink-soft);margin-bottom:16px;}
+.balanced-home .intro-copy{font-family:var(--font-body);font-size:27px;line-height:1.55;letter-spacing:-.012em;text-wrap:pretty;}
 .balanced-home .intro-copy > span{display:block;}
+.balanced-home .sidenav{gap:18px;}
+.balanced-home .sidenav a,
+.balanced-home .social-row{font-size:14px;}
+.balanced-home .social-row a{padding-block:4px;}
 .balanced-home .postscript{font-size:14px;line-height:1.8;color:var(--accent);margin-top:30px;}
 .postscript-label{font-family:'Zapfino',cursive;font-size:11px;}
 
@@ -51,13 +55,15 @@ html{scroll-behavior:smooth;}
   margin:0;
   padding-top:24px;
 }
-.balanced-home .home-meta div{min-width:0;line-height:1.7;}
+.balanced-home .home-meta div{min-width:0;font-size:15px;line-height:1.65;}
+.balanced-home .home-meta strong{font-size:13px;font-weight:600;margin-bottom:6px;}
 .balanced-home .current{grid-area:current;}
 .balanced-home .home{grid-area:home;}
 .balanced-home .gig{grid-area:gig;}
 .balanced-home .longings{grid-area:longings;}
 .balanced-home .languages{grid-area:languages;}
-.balanced-home .about-text{min-width:0;max-width:720px;margin:0 0 34px;font-size:16.5px;line-height:1.75;}
+.balanced-home .about-text{min-width:0;max-width:804px;margin:0 0 34px;font-size:17px;line-height:1.75;}
+.balanced-home .about-text > p{font-size:inherit;font-style:normal;line-height:1.75;color:var(--ink-soft);text-wrap:pretty;}
 .balanced-home .about-text h2{
   max-width:640px;margin:0 0 20px;font-family:var(--font-display);font-size:28px;
   font-weight:400;line-height:1.35;letter-spacing:-.02em;text-wrap:balance;
@@ -109,13 +115,13 @@ html{scroll-behavior:smooth;}
     grid-template-rows:auto auto auto;
     grid-template-areas:"name" "nav" "main";
   }
-  .balanced-home .home-first-main{margin-top:40px;grid-template-columns:minmax(0,1fr) 200px;gap:28px;}
+  .balanced-home .home-first-main{margin-top:40px;grid-template-columns:minmax(0,1fr) 200px;gap:24px;}
   .balanced-home .intro-copy{font-size:23px;}
 }
 
 @media(max-width:700px){
-  .balanced-home .home-first-main{grid-template-columns:minmax(0,1fr);margin:36px 0 40px;gap:28px;}
-  .balanced-home .intro-copy{font-size:23px;line-height:1.6;letter-spacing:-.018em;}
+  .balanced-home .home-first-main{grid-template-columns:minmax(0,1fr);margin:32px 0 40px;gap:20px;}
+  .balanced-home .intro-copy{font-size:clamp(22px,5.5vw,26px);line-height:1.55;letter-spacing:-.012em;}
   .balanced-home .intro-copy > span + span{margin-top:4px;}
   .intro-portrait{width:min(260px,100%);justify-self:start;margin:0;}
   .balanced-home .about-text h2{font-size:25px;}
@@ -146,7 +152,7 @@ html{scroll-behavior:smooth;}
   gap:clamp(28px,4vw,40px);
 }
 .home-index{min-width:0;}
-.home-section-label, .home-index h2{font-family:var(--font-ui);font-weight:500;font-size:11px;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;margin:0 0 28px;padding-bottom:12px;border-bottom:1px solid var(--rule);color:var(--ink-soft);}
+.home-section-label, .home-index h2{font-family:var(--font-ui);font-weight:600;font-size:13px;line-height:1.5;letter-spacing:.09em;text-transform:uppercase;margin:0 0 28px;padding-bottom:12px;border-bottom:1px solid var(--rule);color:var(--ink-soft);}
 .home-index h2{margin-bottom:16px;padding-bottom:10px;}
 .home-index h2 a{display:flex;justify-content:space-between;align-items:center;color:var(--ink-soft);}
 .home-index h2 span{font-family:var(--font-ui);font-size:15px;color:var(--accent);}
@@ -179,9 +185,12 @@ html{scroll-behavior:smooth;}
 /* Vault shares the same card dimensions and spacing as the other indexes. */
 .home-chest-card{
   padding:12px 18px;
-  background:var(--paper-deep);
-  border:1px solid var(--rule);
-  border-radius:3px;
+}
+.home-index .ikebana-wrap,
+.home-index .home-chest-card{
+  background:transparent;
+  border:0;
+  border-radius:0;
 }
 .home-chest-card .chest-scene{max-width:320px;margin-inline:auto;}
 /* Account for the transparent margins shared by both chest images. */

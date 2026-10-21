@@ -63,7 +63,10 @@
         </div>
 
         <figure class="intro-portrait">
-          <img src="portrait.jpg" alt="Kelly Liang in a red-rock landscape" width="3325" height="4058">
+          <picture>
+            <source type="image/webp" srcset="portrait-520.webp 520w, portrait-780.webp 780w" sizes="(max-width: 700px) 260px, (max-width: 880px) 200px, 240px">
+            <img src="portrait-520.jpg" alt="Kelly Liang in a red-rock landscape" width="520" height="635" fetchpriority="high" loading="eager" decoding="async">
+          </picture>
         </figure>
       </div>
 
