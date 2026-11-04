@@ -150,7 +150,9 @@
     if(!group.months.has(month)){
       const section = document.createElement('details');
       section.className = 'journal-month';
-      section.open = false;
+      // Keep the archive browsable on arrival: month tabs and their entries
+      // start expanded, while the controls still let readers collapse them.
+      section.open = true;
       const summary = document.createElement('summary');
       const heading = document.createElement('h3');
       heading.textContent = month;
@@ -168,16 +170,16 @@
     bodies.set(entry, body);
     body.classList.add('journal-body');
     body.id ||= entry.id + '-body';
-    body.hidden = true;
+    body.hidden = false;
     const row = document.createElement('button');
     row.type = 'button';
     row.className = 'journal-row';
     row.setAttribute('aria-controls', body.id);
-    row.setAttribute('aria-expanded', 'false');
+    row.setAttribute('aria-expanded', 'true');
     row.addEventListener('click', () => setExpanded(entry, body.hidden));
     const arrow = document.createElement('span');
     arrow.className = 'journal-arrow';
-    arrow.textContent = '▸';
+    arrow.textContent = '▾';
     arrow.setAttribute('aria-hidden', 'true');
     row.appendChild(arrow);
     if(when){

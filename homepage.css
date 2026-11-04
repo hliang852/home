@@ -62,6 +62,22 @@ html{scroll-behavior:smooth;}
 .balanced-home .gig{grid-area:gig;}
 .balanced-home .longings{grid-area:longings;}
 .balanced-home .languages{grid-area:languages;}
+.achievement-section{margin:42px 0 0;padding-top:20px;border-top:1px solid var(--rule);}
+.achievement-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px;}
+.achievement-heading h2{margin:0;font-family:var(--font-ui);font-size:13px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);}
+.achievement-heading > span,.achievement-kicker{font-family:var(--font-ui);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+.achievement-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.achievement-card{display:flex;align-items:center;gap:16px;min-width:0;padding:16px;border:1px solid var(--rule);border-radius:10px;background:linear-gradient(145deg,#fffdf8,var(--paper-deep));}
+.achievement-mark{flex:0 0 72px;width:72px;height:72px;display:grid;place-items:center;}
+.achievement-ring{width:64px;height:64px;display:grid;place-items:center;border-radius:50%;background:conic-gradient(#92bb82 0 79%,#e1e8d9 79% 100%);position:relative;}
+.achievement-ring::before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--paper);}
+.achievement-ring span{position:relative;font-family:var(--font-ui);font-size:13px;font-weight:700;color:var(--ink);}
+.achievement-medal{width:58px;height:58px;display:grid;place-items:center;border-radius:50%;border:3px solid #d7a74c;background:radial-gradient(circle at 35% 30%,#fff5c9,#e7bd63 72%);box-shadow:0 0 0 5px #e7bd6330, inset 0 1px 4px #fff9;}
+.achievement-medal span{font-size:26px;color:#89642a;line-height:1;}
+.achievement-copy{min-width:0;}
+.achievement-copy p{margin:0;color:var(--ink-soft);font-size:12px;line-height:1.55;}
+.achievement-copy .achievement-kicker{margin-bottom:4px;font-size:9px;}
+.achievement-copy h3{margin:0 0 4px;font-family:var(--font-display);font-size:18px;font-weight:500;line-height:1.25;color:var(--ink);}
 .balanced-home .about-text{min-width:0;max-width:804px;margin:0 0 34px;font-size:17px;line-height:1.75;}
 .balanced-home .about-text > p{font-size:inherit;font-style:normal;line-height:1.75;color:var(--ink-soft);text-wrap:pretty;}
 .balanced-home .about-text h2{
@@ -132,6 +148,7 @@ html{scroll-behavior:smooth;}
     gap:21px 23px;
     padding-top:22px;
   }
+  .achievement-grid{grid-template-columns:1fr;}
   .balanced-home .about-text{font-size:16px;line-height:1.8;}
   .home-explore-main{padding:0 0 32px;}
   .scroll-nudge-down{bottom:20px;}
